@@ -17,10 +17,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Attemp to Terminate and Remove previous session
-if [ -f ubotindo.session ]; then
-    kill $(pgrep -f 'python3 -m ubotindo')
-    rm -f ubotindo.session-journal ubotindo.session
+if [ -f ibuki.session ]; then
+    kill $(pgrep -f 'python3 -m ibuki')
+    rm -f ibuki.session-journal ibuki.session
 fi
 
 # start
-python3 -m ubotindo
+python3 -m ibuki
