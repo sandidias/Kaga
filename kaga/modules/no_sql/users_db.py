@@ -15,8 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """User database utils."""
 
-from ubotindo import dispatcher
-from ubotindo.modules.no_sql import get_collection
+from kaga import dispatcher
+from kaga.modules.no_sql import get_collection
 
 
 USERS_DB = get_collection("USERS")
