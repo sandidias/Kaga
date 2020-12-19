@@ -20,11 +20,11 @@ from typing import Optional
 from telegram import MAX_MESSAGE_LENGTH, Message, ParseMode, User
 from telegram.utils.helpers import escape_markdown
 
-from ubotindo import DEV_USERS, dispatcher
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.no_sql import get_collection
-from ubotindo.modules.helper_funcs.alternate import typing_action
-from ubotindo.modules.helper_funcs.extraction import extract_user
+from kaga import DEV_USERS, dispatcher
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.no_sql import get_collection
+from kaga.modules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.extraction import extract_user
 
 
 USER_INFO = get_collection("USER_INFO")
