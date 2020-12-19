@@ -27,7 +27,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects import postgresql
 
-from ubotindo.modules.sql import SESSION, BASE
+from kaga.modules.sql import SESSION, BASE
 
 
 class Warns(BASE):
