@@ -18,7 +18,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-from ubotindo import DB_URI
+from kaga import DB_URI
 
 
 def start() -> scoped_session:
