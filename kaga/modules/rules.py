@@ -27,11 +27,11 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 from telegram.utils.helpers import escape_markdown
 
-from ubotindo import dispatcher
-from ubotindo.modules.no_sql import get_collection
-from ubotindo.modules.helper_funcs.alternate import typing_action
-from ubotindo.modules.helper_funcs.chat_status import user_admin
-from ubotindo.modules.helper_funcs.string_handling import markdown_parser
+from kaga import dispatcher
+from kaga.modules.no_sql import get_collection
+from kaga.modules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.chat_status import user_admin
+from kaga.modules.helper_funcs.string_handling import markdown_parser
 
 
 RULES_DATA = get_collection("RULES")
