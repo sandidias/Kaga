@@ -23,22 +23,22 @@ from telegram import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler
 
-# from ubotindo.modules.sql import warns_sql as warnssql
-from ubotindo.modules.no_sql import blacklist_db
+# from kaga.modules.sql import warns_sql as warnssql
+from kaga.modules.no_sql import blacklist_db
 
-# from ubotindo.modules.sql import cust_filters_sql as filtersql
-# import ubotindo.modules.sql.welcome_sql as welcsql
-import ubotindo.modules.sql.locks_sql as locksql
-import ubotindo.modules.sql.notes_sql as sql
+# from kaga.modules.sql import cust_filters_sql as filtersql
+# import kaga.modules.sql.welcome_sql as welcsql
+import kaga.modules.sql.locks_sql as locksql
+import kaga.modules.sql.notes_sql as sql
 
-# from ubotindo.modules.rules import get_rules
-from ubotindo.modules.rules import chat_rules
-from ubotindo import DEV_USERS, LOGGER, MESSAGE_DUMP, OWNER_ID, dispatcher
-from ubotindo.__main__ import DATA_IMPORT
-from ubotindo.modules.connection import connected
-from ubotindo.modules.helper_funcs.alternate import typing_action
-from ubotindo.modules.helper_funcs.chat_status import user_admin
-from ubotindo.modules.no_sql import disable_db
+# from kaga.modules.rules import get_rules
+from kaga.modules.rules import chat_rules
+from kaga import DEV_USERS, LOGGER, MESSAGE_DUMP, OWNER_ID, dispatcher
+from kaga.__main__ import DATA_IMPORT
+from kaga.modules.connection import connected
+from kaga.modules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.chat_status import user_admin
+from kaga.modules.no_sql import disable_db
 
 
 @user_admin
