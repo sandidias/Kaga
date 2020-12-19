@@ -1,4 +1,5 @@
-# Kaga Robot
+![Logo](https://telegra.ph/file/6cb06b87a648599b081d3.png)
+## Kaga Robot
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/HayakaRyu/)
@@ -7,8 +8,6 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8bfae649db3742a883e0ac1008755db3)](https://www.codacy.com/gh/HayakaRyu/KagaRobot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HayakaRyu/KagaRobot&utm_campaign=Badge_Grade)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HayakaRyu/KagaRobot/pulls)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HayakaRyu/KagaRobot/graphs/commit-activity)
-![logo](https://telegra.ph/file/a282c6aeb3936f225c3d2.png)
-![Logo](https://telegra.ph/file/6cb06b87a648599b081d3.png)
 
 A modular telegram Python bot running on python3 with sqlalchemy database.
 
