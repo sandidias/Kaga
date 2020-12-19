@@ -21,14 +21,14 @@ from telegram import MessageEntity
 from telegram.error import BadRequest
 from telegram.ext import Filters, MessageHandler
 
-import ubotindo.modules.helper_funcs.fun_strings as fun
-from ubotindo import dispatcher
-from ubotindo.modules.disable import (
+import kaga.modules.helper_funcs.fun_strings as fun
+from kaga import dispatcher
+from kaga.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
 )
-from ubotindo.modules.no_sql import afk_db
-from ubotindo.modules.users import get_user_id
+from kaga.modules.no_sql import afk_db
+from kaga.modules.users import get_user_id
 
 AFK_GROUP = 7
 AFK_REPLY_GROUP = 8
