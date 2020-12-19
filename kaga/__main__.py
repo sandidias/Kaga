@@ -36,7 +36,7 @@ from telegram.utils.helpers import escape_markdown
 from sqlalchemy.exc import SQLAlchemyError, DBAPIError
 
 
-from ubotindo import (
+from kaga import (
     dispatcher,
     DEV_USERS,
     SUDO_USERS,
@@ -55,18 +55,19 @@ from ubotindo import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-from ubotindo.modules import ALL_MODULES
-from ubotindo.modules.helper_funcs.chat_status import is_user_admin
-from ubotindo.modules.helper_funcs.filters import CustomFilters
-from ubotindo.modules.helper_funcs.misc import paginate_modules
-from ubotindo.modules.helper_funcs.alternate import typing_action
+from kaga.modules import ALL_MODULES
+from kaga.modules.helper_funcs.chat_status import is_user_admin
+from kaga.modules.helper_funcs.filters import CustomFilters
+from kaga.modules.helper_funcs.misc import paginate_modules
+from kaga.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
 Hey there! my name is *{dispatcher.bot.first_name}*.
-Any questions on how to use me? use /help
+I am an Anime themed group management bot with a lot of Special Features.
+You can find the list of available commands with /help.
 
-Join Our [Group](https://t.me/userbotindo) If You wanna Report Issue 🙂
+Join Our [Group](https://t.me/ZeroBotSupport) If You wanna Report Issue 🙂
 
 I'm here to make your group management fun and easy!
 I have lots of handy features ☺️ such as :
@@ -74,7 +75,7 @@ I have lots of handy features ☺️ such as :
 • flood control.         • Note'S keeping system.
 • Warning System.   • Predetermined Filters.
 
-*Managed With ❤️ By :* [UserbotIndo Team](https://t.me/userbotindo)
+*Managed With ❤️ By :* [Hayaka Ryu](https://t.me/HayakaRyu)
 
 Wanna Add me to your Group? Just click the button below!
 """
@@ -82,10 +83,10 @@ Wanna Add me to your Group? Just click the button below!
 buttons = [
     [
         InlineKeyboardButton(
-            text="Add to Group 👥", url="t.me/userbotindobot?startgroup=true"
+            text="Add to Group 👥", url="t.me/KagaBot?startgroup=true"
         ),
         InlineKeyboardButton(
-            text="Gban Logs 🚫", url="https://t.me/UserIndoBotBannedLog"
+            text="Gban Logs 🚫", url="https://t.me/joinchat/AAAAAEuYErj6v8_DOigW0g"
         ),
     ]
 ]
@@ -98,7 +99,10 @@ buttons += [
             url=f"t.me/{dispatcher.bot.username}?start=help",
         ),
         InlineKeyboardButton(
-            text="Support Group 🎗️", url="https://t.me/userbotindo"
+            text="Support Group 🎗️", url="https://t.me/ZeroBotSupport"
+        ),
+        InlineKeyboardButton(
+            text="Source Code", url="https://github.com/HayakaRyu/KagaRobot"
         ),
     ]
 ]
@@ -164,7 +168,7 @@ GDPR = []
 
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module(
-        "ubotindo.modules." + module_name
+        "kaga.modules." + module_name
     )
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
