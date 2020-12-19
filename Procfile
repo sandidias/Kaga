@@ -18,7 +18,7 @@
 # Choose one which you think is better
 
 # Turn on this if you not using Webhook
-worker: python3 -m ubotindo
+worker: python3 -m kaga
 
 # Turn on this if you using Webhook
-web: python3 -m ubotindo
+web: python3 -m kaga
