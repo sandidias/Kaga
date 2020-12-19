@@ -16,7 +16,7 @@
 """Chat blacklist database."""
 
 
-from ubotindo.modules.no_sql import get_collection
+from kaga.modules.no_sql import get_collection
 
 
 BL = get_collection("BLACKLIST")
