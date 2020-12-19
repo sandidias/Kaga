@@ -19,8 +19,8 @@ from typing import List, Optional
 from telegram import Message, MessageEntity
 from telegram.error import BadRequest
 
-from ubotindo import LOGGER
-from ubotindo.modules.users import get_user_id
+from kaga import LOGGER
+from kaga.modules.users import get_user_id
 
 
 def id_from_reply(message):
