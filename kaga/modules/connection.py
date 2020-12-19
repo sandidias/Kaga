@@ -21,10 +21,10 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CallbackQueryHandler, CommandHandler
 
-import ubotindo.modules.sql.connection_sql as sql
-from ubotindo import DEV_USERS, SUDO_USERS, dispatcher
-from ubotindo.modules.helper_funcs import chat_status
-from ubotindo.modules.helper_funcs.alternate import send_message, typing_action
+import kaga.modules.sql.connection_sql as sql
+from kaga import DEV_USERS, SUDO_USERS, dispatcher
+from kaga.modules.helper_funcs import chat_status
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
 
 user_admin = chat_status.user_admin
 
