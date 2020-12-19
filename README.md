@@ -7,14 +7,14 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8bfae649db3742a883e0ac1008755db3)](https://www.codacy.com/gh/HayakaRyu/KagaRobot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HayakaRyu/KagaRobot&utm_campaign=Badge_Grade)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HayakaRyu/KagaRobot/pulls)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HayakaRyu/KagaRobot/graphs/commit-activity)
-![logo](https://telegra.ph/file/0116640577a1a293253d2.png)
+![logo](https://telegra.ph/file/a282c6aeb3936f225c3d2.png)
 
 A modular telegram Python bot running on python3 with sqlalchemy database.
 
 Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and
 simple to use. Note that this project uses a well-known Telegram-bot of its time @BanhammerMarie_bot from Paul Larson as its base.
 
-Can be found on telegram as [Ibuki](https://t.me/KagaRobot).
+Can be found on telegram as [Kaga](https://t.me/KagaRobot).
 
 Join the [Group Support](https://t.me/ZeroBotSupport) if you just want to stay in the loop about new features or announcements.
 
