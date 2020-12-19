@@ -17,7 +17,7 @@
 
 from pymongo import MongoClient, collection
 
-from ubotindo import MONGO_URI, LOGGER
+from kaga import MONGO_URI, LOGGER
 
 
 LOGGER.info("Connecting to MongoDB")
