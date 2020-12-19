@@ -34,7 +34,7 @@ from kaga import (
     dispatcher,
     spamwtc,
 )
-from kaga.kagamodules.helper_funcs.alternate import (
+from kaga.modules.helper_funcs.alternate import (
     send_action,
     send_message,
     typing_action,
