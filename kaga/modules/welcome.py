@@ -47,25 +47,25 @@ from ubotindo import (
     dispatcher,
     spamwtc,
 )
-from ubotindo.modules.helper_funcs.alternate import send_message, typing_action
-from ubotindo.modules.helper_funcs.chat_status import (
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
+from kaga.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     user_admin,
     can_restrict,
 )
-from ubotindo.modules.helper_funcs.misc import (
+from kaga.modules.helper_funcs.misc import (
     build_keyboard,
     build_keyboard_parser,
     revert_buttons,
 )
-from ubotindo.modules.helper_funcs.msg_types import get_welcome_type
-from ubotindo.modules.helper_funcs.string_handling import (
+from kaga.modules.helper_funcs.msg_types import get_welcome_type
+from kaga.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
     markdown_parser,
     markdown_to_html,
 )
-from ubotindo.modules.log_channel import loggable
-from ubotindo.modules.no_sql.gban_db import is_user_gbanned
+from kaga.modules.log_channel import loggable
+from kaga.modules.no_sql.gban_db import is_user_gbanned
 
 VALID_WELCOME_FORMATTERS = [
     "first",
