@@ -2,15 +2,15 @@ import os
 import datetime
 from telegram.ext import CommandHandler
 from telegram import Update
-from ubotindo import dispatcher
-from ubotindo.modules.helper_funcs.filters import CustomFilters
-from ubotindo.modules.helper_funcs.alternate import typing_action
+from kaga import dispatcher
+from kaga.modules.helper_funcs.filters import CustomFilters
+from kaga.modules.helper_funcs.alternate import typing_action
 
 
 @typing_action
 def logs(update, context):
     user = update.effective_user
-    with open("ubotindo-log.txt", "rb") as f:
+    with open("kagarobot-log.txt", "rb") as f:
         context.bot.send_document(
             document=f,
             filename=f.name,
