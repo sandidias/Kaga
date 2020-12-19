@@ -23,9 +23,9 @@ from google_trans_new import google_translator, LANGUAGES
 from gtts import gTTS
 from telegram import ChatAction
 
-from ubotindo import dispatcher
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.helper_funcs.alternate import send_action, typing_action
+from kaga import dispatcher
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.alternate import send_action, typing_action
 
 
 @typing_action
