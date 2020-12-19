@@ -28,22 +28,22 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from ubotindo import LOGGER, dispatcher
-from ubotindo.modules.connection import connected
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.helper_funcs.alternate import send_message, typing_action
-from ubotindo.modules.helper_funcs.chat_status import user_admin
-from ubotindo.modules.helper_funcs.extraction import extract_text
-from ubotindo.modules.helper_funcs.filters import CustomFilters
-from ubotindo.modules.helper_funcs.misc import build_keyboard_parser
-from ubotindo.modules.helper_funcs.msg_types import get_filter_type
-from ubotindo.modules.helper_funcs.string_handling import (
+from kaga import LOGGER, dispatcher
+from kaga.modules.connection import connected
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
+from kaga.modules.helper_funcs.chat_status import user_admin
+from kaga.modules.helper_funcs.extraction import extract_text
+from kaga.modules.helper_funcs.filters import CustomFilters
+from kaga.modules.helper_funcs.misc import build_keyboard_parser
+from kaga.modules.helper_funcs.msg_types import get_filter_type
+from kaga.modules.helper_funcs.string_handling import (
     button_markdown_parser,
     escape_invalid_curly_brackets,
     markdown_to_html,
     split_quotes,
 )
-from ubotindo.modules.sql import cust_filters_sql as sql
+from kaga.modules.sql import cust_filters_sql as sql
 
 HANDLER_GROUP = 15
 
