@@ -6,11 +6,11 @@ from telegram.error import BadRequest
 from telegram.ext import Filters
 from telegram.utils.helpers import mention_html
 
-from ubotindo import dispatcher, LOGGER
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.helper_funcs.chat_status import user_admin, can_delete
-from ubotindo.modules.helper_funcs.admin_rights import user_can_delete
-from ubotindo.modules.log_channel import loggable
+from kaga import dispatcher, LOGGER
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.chat_status import user_admin, can_delete
+from kaga.modules.helper_funcs.admin_rights import user_can_delete
+from kaga.modules.log_channel import loggable
 
 
 @user_admin
