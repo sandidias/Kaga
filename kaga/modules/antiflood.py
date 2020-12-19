@@ -22,13 +22,13 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters, MessageHandler
 from telegram.utils.helpers import mention_html
 
-from ubotindo import dispatcher
-from ubotindo.modules.connection import connected
-from ubotindo.modules.helper_funcs.alternate import send_message, typing_action
-from ubotindo.modules.helper_funcs.chat_status import is_user_admin, user_admin
-from ubotindo.modules.helper_funcs.string_handling import extract_time
-from ubotindo.modules.log_channel import loggable
-from ubotindo.modules.sql import antiflood_sql as sql
+from kaga import dispatcher
+from kaga.modules.connection import connected
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
+from kaga.modules.helper_funcs.chat_status import is_user_admin, user_admin
+from kaga.modules.helper_funcs.string_handling import extract_time
+from kaga.modules.log_channel import loggable
+from kaga.modules.sql import antiflood_sql as sql
 
 FLOOD_GROUP = 3
 
