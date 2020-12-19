@@ -23,9 +23,9 @@ from telegram.error import BadRequest, TelegramError, Unauthorized
 from telegram.ext import CommandHandler, Filters, MessageHandler
 from telegram.utils.helpers import mention_html
 
-import ubotindo.modules.no_sql.gban_db as gban_db
-from ubotindo import STRICT_GBAN  # LOGGER,
-from ubotindo import (
+import kaga.modules.no_sql.gban_db as gban_db
+from kaga import STRICT_GBAN  # LOGGER,
+from kaga import (
     DEV_USERS,
     GBAN_LOGS,
     OWNER_ID,
@@ -34,18 +34,18 @@ from ubotindo import (
     dispatcher,
     spamwtc,
 )
-from ubotindo.modules.helper_funcs.alternate import (
+from kaga.kagamodules.helper_funcs.alternate import (
     send_action,
     send_message,
     typing_action,
 )
-from ubotindo.modules.helper_funcs.chat_status import is_user_admin, user_admin
-from ubotindo.modules.helper_funcs.extraction import (
+from kaga.modules.helper_funcs.chat_status import is_user_admin, user_admin
+from kaga.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from ubotindo.modules.helper_funcs.filters import CustomFilters
-from ubotindo.modules.no_sql.users_db import get_all_chats
+from kaga.modules.helper_funcs.filters import CustomFilters
+from kaga.modules.no_sql.users_db import get_all_chats
 
 GBAN_ENFORCE_GROUP = 6
 
