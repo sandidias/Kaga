@@ -24,15 +24,15 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 from telegram.utils.helpers import escape_markdown
 
-import ubotindo.modules.helper_funcs.fun_strings as fun
-from ubotindo import DEV_USERS, LOGGER, SUDO_USERS, SUPPORT_USERS, dispatcher
-from ubotindo.modules.disable import (
+import kaga.modules.helper_funcs.fun_strings as fun
+from kaga import DEV_USERS, LOGGER, SUDO_USERS, SUPPORT_USERS, dispatcher
+from kaga.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
 )
-from ubotindo.modules.helper_funcs.alternate import typing_action
-from ubotindo.modules.helper_funcs.extraction import extract_user
-from ubotindo.modules.helper_funcs.filters import CustomFilters
+from kaga.kagamodules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.extraction import extract_user
+from kaga.modules.helper_funcs.filters import CustomFilters
 
 
 @typing_action
