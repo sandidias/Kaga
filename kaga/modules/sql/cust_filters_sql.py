@@ -10,8 +10,8 @@ from sqlalchemy import (
     func,
 )
 
-from ubotindo.modules.helper_funcs.msg_types import Types
-from ubotindo.modules.sql import BASE, SESSION
+from kaga.modules.helper_funcs.msg_types import Types
+from kaga.modules.sql import BASE, SESSION
 
 
 class CustomFilters(BASE):
