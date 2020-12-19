@@ -19,8 +19,8 @@ import threading
 from sqlalchemy import Column, String, UnicodeText, Integer, Boolean
 from telegram.error import BadRequest, Unauthorized
 
-from ubotindo import dispatcher
-from ubotindo.modules.sql import SESSION, BASE
+from kaga import dispatcher
+from kaga.modules.sql import SESSION, BASE
 
 
 class Federations(BASE):
