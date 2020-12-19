@@ -28,8 +28,8 @@ from sqlalchemy import (
     distinct,
 )
 
-from ubotindo.modules.helper_funcs.msg_types import Types
-from ubotindo.modules.sql import SESSION, BASE
+from kaga.modules.helper_funcs.msg_types import Types
+from kaga.modules.sql import SESSION, BASE
 
 
 class Notes(BASE):
