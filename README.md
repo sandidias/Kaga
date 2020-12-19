@@ -7,7 +7,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8bfae649db3742a883e0ac1008755db3)](https://www.codacy.com/gh/HayakaRyu/IbukiRobot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HayakaRyu/IbukiRobot&utm_campaign=Badge_Grade)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HayakaRyu/IbukiRobot/pulls)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HayakaRyu/IbukiRobot/graphs/commit-activity)
-![logo](https://v.pinimg.com/videos/mc/720p/ff/90/02/ff90029837381410bbf5291e76c3ac4a.mp4)
+![logo](https://tenor.com/view/gif-19622621)
 
 A modular telegram Python bot running on python3 with sqlalchemy database.
 
