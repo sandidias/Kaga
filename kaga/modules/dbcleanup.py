@@ -20,10 +20,10 @@ from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CallbackQueryHandler, CommandHandler
 
-from ubotindo.modules.no_sql import gban_db
-from ubotindo.modules.no_sql import users_db
-from ubotindo import DEV_USERS, dispatcher
-from ubotindo.modules.helper_funcs.filters import CustomFilters
+from kaga.modules.no_sql import gban_db
+from kaga.modules.no_sql import users_db
+from kaga import DEV_USERS, dispatcher
+from kaga.modules.helper_funcs.filters import CustomFilters
 
 
 def get_invalid_chats(bot: Bot, update: Update, remove: bool = False):
