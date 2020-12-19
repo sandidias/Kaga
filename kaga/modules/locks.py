@@ -22,19 +22,19 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters, MessageHandler
 from telegram.utils.helpers import mention_html
 
-import ubotindo.modules.sql.locks_sql as sql
-from ubotindo import DEV_USERS, LOGGER, SUDO_USERS, dispatcher
-from ubotindo.modules.connection import connected
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.helper_funcs.alternate import send_message, typing_action
-from ubotindo.modules.helper_funcs.chat_status import (
+import kaga.modules.sql.locks_sql as sql
+from kaga import DEV_USERS, LOGGER, SUDO_USERS, dispatcher
+from kaga.modules.connection import connected
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
+from kaga.modules.helper_funcs.chat_status import (
     can_delete,
     is_bot_admin,
     is_user_admin,
     user_admin,
     user_not_admin,
 )
-from ubotindo.modules.log_channel import loggable
+from kaga.modules.log_channel import loggable
 
 ad = AlphabetDetector()
 
