@@ -18,7 +18,7 @@ from functools import wraps
 from telegram import User, Chat, ChatMember
 from telegram.error import BadRequest, Unauthorized
 
-from ubotindo import (
+from kaga import (
     DEL_CMDS,
     DEV_USERS,
     SUDO_USERS,
