@@ -2,7 +2,7 @@
 FROM python:3.8
 
 # set the working directory in the container
-WORKDIR /ubotindo/
+WORKDIR /kaga/
 
 RUN apt -qq update && apt -qq upgrade
 RUN apt -qq install -y --no-install-recommends \
