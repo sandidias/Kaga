@@ -30,7 +30,7 @@ from kaga.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
 )
-from kaga.kagamodules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.alternate import typing_action
 from kaga.modules.helper_funcs.extraction import extract_user
 from kaga.modules.helper_funcs.filters import CustomFilters
 
