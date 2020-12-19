@@ -21,21 +21,21 @@ from telegram import Chat, ParseMode, Update
 from telegram.ext import CommandHandler, MessageHandler
 from telegram.utils.helpers import escape_markdown
 
-from ubotindo import dispatcher
-from ubotindo.modules.connection import connected
-from ubotindo.modules.helper_funcs.alternate import send_message, typing_action
-from ubotindo.modules.helper_funcs.handlers import CMD_STARTERS
-from ubotindo.modules.helper_funcs.misc import is_module_loaded
+from kaga import dispatcher
+from kaga.modules.connection import connected
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
+from kaga.modules.helper_funcs.handlers import CMD_STARTERS
+from kaga.modules.helper_funcs.misc import is_module_loaded
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
 # If module is due to be loaded, then setup all the magical handlers
 if is_module_loaded(FILENAME):
-    from ubotindo.modules.helper_funcs.chat_status import (
+    from kaga.modules.helper_funcs.chat_status import (
         is_user_admin,
         user_admin,
     )
-    from ubotindo.modules.no_sql import disable_db
+    from kaga.modules.no_sql import disable_db
 
     DISABLE_CMDS = []
     DISABLE_OTHER = []
