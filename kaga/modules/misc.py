@@ -43,7 +43,7 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from ubotindo import (
+from kaga import (
     DEV_USERS,
     OWNER_ID,
     SUDO_USERS,
@@ -53,13 +53,13 @@ from ubotindo import (
     dispatcher,
     spamwtc,
 )
-from ubotindo.__main__ import GDPR, STATS, USER_INFO
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.global_bans import check_cas
-from ubotindo.modules.helper_funcs.alternate import send_action, typing_action
-from ubotindo.modules.helper_funcs.extraction import extract_user
-from ubotindo.modules.helper_funcs.filters import CustomFilters
-from ubotindo.modules.no_sql.afk_db import is_afk
+from kaga.__main__ import GDPR, STATS, USER_INFO
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.global_bans import check_cas
+from kaga.modules.helper_funcs.alternate import send_action, typing_action
+from kaga.modules.helper_funcs.extraction import extract_user
+from kaga.modules.helper_funcs.filters import CustomFilters
+from kaga.modules.no_sql.afk_db import is_afk
 
 
 @typing_action
