@@ -21,9 +21,9 @@ from telegram import TelegramError
 from telegram.error import BadRequest, TimedOut, Unauthorized
 from telegram.ext import CommandHandler, Filters, MessageHandler
 
-from ubotindo.modules.no_sql import users_db
-from ubotindo import LOGGER, OWNER_ID, dispatcher
-from ubotindo.modules.helper_funcs.filters import CustomFilters
+from kaga.modules.no_sql import users_db
+from kaga import LOGGER, OWNER_ID, dispatcher
+from kaga.modules.helper_funcs.filters import CustomFilters
 
 USERS_GROUP = 4
 CHAT_GROUP = 10
