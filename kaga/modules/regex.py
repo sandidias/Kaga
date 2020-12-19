@@ -20,8 +20,8 @@ import sre_constants
 import telegram
 from telegram.ext import Filters
 
-from ubotindo import LOGGER, dispatcher
-from ubotindo.modules.disable import DisableAbleMessageHandler
+from kaga import LOGGER, dispatcher
+from kaga.modules.disable import DisableAbleMessageHandler
 
 DELIMITERS = ("/", ":", "|", "_")
 
