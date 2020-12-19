@@ -4,17 +4,17 @@
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/HayakaRyu/)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8bfae649db3742a883e0ac1008755db3)](https://www.codacy.com/gh/HayakaRyu/IbukiRobot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HayakaRyu/IbukiRobot&utm_campaign=Badge_Grade)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HayakaRyu/IbukiRobot/pulls)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HayakaRyu/IbukiRobot/graphs/commit-activity)
-![logo](https://media1.tenor.com/images/015fb8aa888d601f809379c4da3806c5/tenor.gif?itemid=19622621)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8bfae649db3742a883e0ac1008755db3)](https://www.codacy.com/gh/HayakaRyu/KagaRobot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=HayakaRyu/KagaRobot&utm_campaign=Badge_Grade)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HayakaRyu/KagaRobot/pulls)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HayakaRyu/KagaRobot/graphs/commit-activity)
+![logo](https://telegra.ph/file/0116640577a1a293253d2.png)
 
 A modular telegram Python bot running on python3 with sqlalchemy database.
 
 Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and
 simple to use. Note that this project uses a well-known Telegram-bot of its time @BanhammerMarie_bot from Paul Larson as its base.
 
-Can be found on telegram as [Ibuki](https://t.me/IbukiRobot).
+Can be found on telegram as [Ibuki](https://t.me/KagaRobot).
 
 Join the [Group Support](https://t.me/ZeroBotSupport) if you just want to stay in the loop about new features or announcements.
 
@@ -42,7 +42,7 @@ Any other missing Credits can be seen in commits!
 
 Once you've set up your database and your configuration (see below) is complete, simply run:
 
-`python3 -m ubotindo`
+`python3 -m kaga`
 
 ## Setting up the bot Read this before trying to use
 
@@ -151,7 +151,7 @@ All that is needed is that your .py file is in the modules folder.
 
 To add commands, make sure to import the dispatcher via
 
-`from ubotindo import dispatcher`.
+`from kaga import dispatcher`.
 
 You can then add commands using the usual
 
