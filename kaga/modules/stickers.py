@@ -28,9 +28,9 @@ from telegram import (
 )
 from telegram.utils.helpers import mention_html
 
-from ubotindo import dispatcher
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.helper_funcs.alternate import typing_action
+from kaga import dispatcher
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.alternate import typing_action
 
 
 @typing_action
