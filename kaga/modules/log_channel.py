@@ -1,4 +1,4 @@
-# UserindoBot
+kaga# UserindoBot
 # Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
 
 from functools import wraps
 
-from ubotindo.modules.helper_funcs.misc import is_module_loaded
+from kaga.modules.helper_funcs.misc import is_module_loaded
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
@@ -26,9 +26,9 @@ if is_module_loaded(FILENAME):
     from telegram.ext import CommandHandler
     from telegram.utils.helpers import escape_markdown
 
-    from ubotindo import LOGGER, dispatcher
-    from ubotindo.modules.helper_funcs.chat_status import user_admin
-    from ubotindo.modules.no_sql import log_channel_db as db
+    from kaga import LOGGER, dispatcher
+    from kaga.modules.helper_funcs.chat_status import user_admin
+    from kaga.modules.no_sql import log_channel_db as db
 
     def loggable(func):
         @wraps(func)
