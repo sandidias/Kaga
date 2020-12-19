@@ -19,7 +19,7 @@ import threading
 
 from sqlalchemy import Column, String, Boolean
 
-from ubotindo.modules.sql import SESSION, BASE
+from kaga.modules.sql import SESSION, BASE
 
 
 class Permissions(BASE):
