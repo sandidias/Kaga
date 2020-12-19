@@ -57,6 +57,7 @@
       "GBAN_LOGS": {
          "description": "Gban log channel, include the hyphen too: ex: -123456",
          "value": "-123"
+      },
       "API_OPENWEATHER": {
          "description": "Required for weather information",
          "value": "-xyz"
@@ -79,6 +80,7 @@
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
          "required": false,
          "value": "1025855210"
+      },
       "TOKEN": {
          "description": "Your bot token.",
          "required": true,
