@@ -18,7 +18,7 @@ import telegram.ext as tg
 from telegram import Update
 
 try:
-    from ubotindo import CUSTOM_CMD
+    from kaga import CUSTOM_CMD
 except BaseException:
     CUSTOM_CMD = False
 
