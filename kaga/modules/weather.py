@@ -1,4 +1,4 @@
-kaga# UserindoBot
+# UserindoBot
 # Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
 #
 # This program is free software: you can redistribute it and/or modify
