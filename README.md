@@ -1,4 +1,3 @@
-![Logo](https://telegra.ph/file/6cb06b87a648599b081d3.png)
 ## Kaga Robot
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
