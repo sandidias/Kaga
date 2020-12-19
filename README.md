@@ -18,6 +18,9 @@ Can be found on telegram as [Kaga](https://t.me/KagaRobot).
 
 Join the [Group Support](https://t.me/ZeroBotSupport) if you just want to stay in the loop about new features or announcements.
 
+# Deploy to Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Credits
 
 Skyleebot For Awesome Bot, And This Base in They
