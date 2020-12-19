@@ -38,8 +38,8 @@ from telegram.utils.helpers import (
     escape_markdown,
 )
 
-import ubotindo.modules.sql.welcome_sql as sql
-from ubotindo import (
+import kaga.modules.sql.welcome_sql as sql
+from kaga import (
     DEV_USERS,
     LOGGER,
     MESSAGE_DUMP,
