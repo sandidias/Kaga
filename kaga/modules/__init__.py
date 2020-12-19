@@ -16,7 +16,7 @@
 
 import sys
 
-from ubotindo import LOAD, LOGGER, NO_LOAD
+from kaga import LOAD, LOGGER, NO_LOAD
 
 
 def __list_all_modules():
