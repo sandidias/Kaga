@@ -23,27 +23,27 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
-from ubotindo import dispatcher
-from ubotindo.modules.connection import connected
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.helper_funcs.admin_rights import (
+from kaga import dispatcher
+from kaga.modules.connection import connected
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.admin_rights import (
     user_can_changeinfo,
     user_can_pin,
     user_can_promote,
 )
-from ubotindo.modules.helper_funcs.alternate import typing_action
-from ubotindo.modules.helper_funcs.chat_status import (
+from kaga.modules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.chat_status import (
     bot_admin,
     can_pin,
     can_promote,
     user_admin,
     ADMIN_CACHE,
 )
-from ubotindo.modules.helper_funcs.extraction import (
+from kaga.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from ubotindo.modules.log_channel import loggable
+from kaga.modules.log_channel import loggable
 
 
 @bot_admin
