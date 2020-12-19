@@ -18,7 +18,7 @@ import threading
 
 from sqlalchemy import String, Column, Integer, UnicodeText
 
-from ubotindo.modules.sql import SESSION, BASE
+from kaga.modules.sql import SESSION, BASE
 
 DEF_COUNT = 0
 DEF_LIMIT = 0
