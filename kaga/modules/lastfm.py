@@ -20,10 +20,10 @@ import requests
 from telegram import ParseMode, error
 from telegram.ext import CommandHandler
 
-from ubotindo import LASTFM_API_KEY, dispatcher
-from ubotindo.modules.no_sql import get_collection
-from ubotindo.modules.disable import DisableAbleCommandHandler
-from ubotindo.modules.helper_funcs.alternate import typing_action
+from kaga import LASTFM_API_KEY, dispatcher
+from kaga.modules.no_sql import get_collection
+from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.alternate import typing_action
 
 
 LASTFM_USER = get_collection("LAST_FM")
