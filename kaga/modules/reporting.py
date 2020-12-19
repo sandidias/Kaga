@@ -34,14 +34,14 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html
 
-from ubotindo import LOGGER, dispatcher
-from ubotindo.modules.helper_funcs.alternate import typing_action
-from ubotindo.modules.helper_funcs.chat_status import (
+from kaga import LOGGER, dispatcher
+from kaga.modules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.chat_status import (
     user_admin,
     user_not_admin,
 )
-from ubotindo.modules.log_channel import loggable
-from ubotindo.modules.no_sql import get_collection
+from kaga.modules.log_channel import loggable
+from kaga.modules.no_sql import get_collection
 
 REPORT_GROUP = 5
 
