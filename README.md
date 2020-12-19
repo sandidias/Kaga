@@ -8,6 +8,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HayakaRyu/KagaRobot/pulls)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HayakaRyu/KagaRobot/graphs/commit-activity)
 ![logo](https://telegra.ph/file/a282c6aeb3936f225c3d2.png)
+![Logo](https://telegra.ph/file/6cb06b87a648599b081d3.png)
 
 A modular telegram Python bot running on python3 with sqlalchemy database.
 
