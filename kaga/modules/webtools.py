@@ -32,9 +32,9 @@ from telegram import ParseMode, __version__
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 
-from ubotindo import MESSAGE_DUMP, OWNER_ID, dispatcher, updater
-from ubotindo.modules.helper_funcs.alternate import typing_action
-from ubotindo.modules.helper_funcs.filters import CustomFilters
+from kaga import MESSAGE_DUMP, OWNER_ID, dispatcher, updater
+from kaga.modules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.filters import CustomFilters
 
 
 @typing_action
