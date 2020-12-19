@@ -17,7 +17,7 @@
 from telegram import Message
 from telegram.ext import MessageFilter
 
-from ubotindo import SUPPORT_USERS, SUDO_USERS, DEV_USERS
+from kaga import SUPPORT_USERS, SUDO_USERS, DEV_USERS
 
 
 class CustomFilters(object):
