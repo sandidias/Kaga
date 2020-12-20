@@ -56,8 +56,10 @@ Bergabunglah di [Group](https://t.me/ZeroBotSupport) Jika Anda ingin Melaporkan 
 Saya di sini untuk membuat pengelolaan grup Anda menyenangkan dan mudah!
 Saya memiliki banyak fitur praktis ☺️ seperti:
 
-• pengendalian flood.         • Sistem penyimpanan Note.
-• Sistem Warning.   • Filter yang Ditentukan Sebelumnya.
+• pengendalian flood.
+• Sistem penyimpanan Note.
+• Sistem Warning.
+• Filter yang Ditentukan Sebelumnya.
 
 *Dikelolah oleh ❤️:* [Hayaka Ryu](https://t.me/HayakaRyu)
 
