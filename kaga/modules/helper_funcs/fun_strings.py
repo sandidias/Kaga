@@ -397,7 +397,7 @@ GBUN = (
     "Bersiaplah untuk palu roti global!",
 )
 
-DECIDE = ("Ya.", "Tidak.", "Mungkin.", "Tidak.)
+DECIDE = ("Ya.", "Tidak.", "Mungkin.", "Tidak.")
 
 # AFK strings credits: PaperPlaneExtended!
 AFKRPL = (
