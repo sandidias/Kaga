@@ -108,8 +108,8 @@ def bot_can_delete(func):
             return func(update, context, *args, **kwargs)
         else:
             update.effective_message.reply_text(
-                "I can't delete messages here! "
-                "Make sure I'm admin and can delete other user's messages."
+                "Saya tidak dapat menghapus pesan di sini! "
+                "Pastikan saya admin dan dapat menghapus pesan pengguna lain."
             )
 
     return delete_rights
@@ -122,8 +122,8 @@ def can_pin(func):
             return func(update, context, *args, **kwargs)
         else:
             update.effective_message.reply_text(
-                "I can't pin messages here! "
-                "Make sure I'm admin and can pin messages."
+                "Saya tidak dapat memasang pin pada pesan di sini! "
+                "Pastikan saya admin dan dapat memasang pin pada pesan."
             )
 
     return pin_rights
@@ -138,8 +138,8 @@ def can_promote(func):
             return func(update, context, *args, **kwargs)
         else:
             update.effective_message.reply_text(
-                "I can't promote/demote people here! "
-                "Make sure I'm admin and can appoint new admins."
+                "Saya tidak dapat mempromosikan/menurunkan orang di sini! "
+                "Pastikan saya adalah admin dan dapat menunjuk admin baru."
             )
 
     return promote_rights
@@ -154,8 +154,8 @@ def can_restrict(func):
             return func(update, context, *args, **kwargs)
         else:
             update.effective_message.reply_text(
-                "I can't restrict people here! "
-                "Make sure I'm admin and can appoint new admins."
+                "Saya tidak dapat membatasi orang di sini! "
+                "Pastikan saya adalah admin dan dapat menunjuk admin baru."
             )
 
     return promote_rights
@@ -167,7 +167,7 @@ def bot_admin(func):
         if is_bot_admin(update.effective_chat, context.bot.id):
             return func(update, context, *args, **kwargs)
         else:
-            update.effective_message.reply_text("I'm not admin!")
+            update.effective_message.reply_text("Saya bukan admin!")
 
     return is_admin
 
@@ -190,7 +190,7 @@ def user_admin(func):
 
         else:
             update.effective_message.reply_text(
-                "You're missing admin rights for using this command!"
+                "Anda kehilangan hak admin untuk menggunakan perintah ini!"
             )
 
     return is_admin
