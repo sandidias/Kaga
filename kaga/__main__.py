@@ -83,7 +83,7 @@ Wanna Add me to your Group? Just click the button below!
 buttons = [
     [
         InlineKeyboardButton(
-            text="Add to Group 👥", url="t.me/KagaBot?startgroup=true"
+            text="Add to Group 👥", url="t.me/KagaRobot?startgroup=true"
         ),
         InlineKeyboardButton(
             text="Gban Logs 🚫", url="https://t.me/joinchat/AAAAAEuYErj6v8_DOigW0g"
