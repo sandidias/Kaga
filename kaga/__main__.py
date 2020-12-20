@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import importlib
 import traceback
 import html
@@ -63,30 +47,27 @@ from kaga.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Hey there! my name is *{dispatcher.bot.first_name}*.
-I am an Anime themed group management bot with a lot of Special Features.
-You can find the list of available commands with /help.
+Hai {dispatcher.first_name}, perkenalkan nama saya adalah *{dispatcher.bot.first_name}*.
+Saya adalah bot manajemen grup bertema Anime dengan banyak Fitur Khusus.
+Anda dapat menemukan daftar perintah yang tersedia dengan /help.
 
-Join Our [Group](https://t.me/ZeroBotSupport) If You wanna Report Issue 🙂
+Bergabunglah di [Group](https://t.me/ZeroBotSupport) Jika Anda ingin Melaporkan Masalah 🙂
 
-I'm here to make your group management fun and easy!
-I have lots of handy features ☺️ such as :
+Saya di sini untuk membuat pengelolaan grup Anda menyenangkan dan mudah!
+Saya memiliki banyak fitur praktis ☺️ seperti:
 
-• flood control.         • Note'S keeping system.
-• Warning System.   • Predetermined Filters.
+• pengendalian flood.         • Sistem penyimpanan Note.
+• Sistem Warning.   • Filter yang Ditentukan Sebelumnya.
 
-*Managed With ❤️ By :* [Hayaka Ryu](https://t.me/HayakaRyu)
+*Dikelolah oleh ❤️:* [Hayaka Ryu](https://t.me/HayakaRyu)
 
-Wanna Add me to your Group? Just click the button below!
+Ingin menambahkan saya ke grup Anda? Cukup klik tombol di bawah!
 """
 
 buttons = [
     [
         InlineKeyboardButton(
-            text="Add to Group 👥", url="t.me/KagaRobot?startgroup=true"
-        ),
-        InlineKeyboardButton(
-            text="Gban Logs 🚫", url="https://t.me/joinchat/AAAAAEuYErj6v8_DOigW0g"
+            text="Tambahkan Saya ke Grup 👥", url="t.me/KagaRobot?startgroup=true"
         ),
     ]
 ]
@@ -94,20 +75,26 @@ buttons = [
 
 buttons += [
     [
+        InlineKeyboardButton(
+            text="Gban Logs 🚫", url="https://t.me/joinchat/AAAAAEuYErj6v8_DOigW0g"
+        ),
         InlineKeyboardButton(
             text="Help & Commands ❔",
             url=f"t.me/{dispatcher.bot.username}?start=help",
         ),
-        InlineKeyboardButton(
-            text="Support Group 🎗️", url="https://t.me/ZeroBotSupport"
-        ),
     ]
 ]
 
 buttons += [
     [
         InlineKeyboardButton(
-            text="Source Code", url="https://github.com/HayakaRyu/KagaRobot"
+            text="Support Group 🎗️", url="https://t.me/ZeroBotSupport"
+        ),
+        InlineKeyboardButton(
+            text="Source Code 💻", url="https://github.com/HayakaRyu/KagaRobot"
+        ),
+        InlineKeyboardButton(
+            text="Channel 📢", url="https://t.me/HayakaRyuUpdates"
         ),
     ]
 ]
@@ -115,48 +102,48 @@ buttons += [
 
 
 HELP_STRINGS = f"""
-Hello there! My name is *{dispatcher.bot.first_name}*.
-I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
-the things I can help you with.
+Halo! Nama saya adalah *{dispatcher.bot.first_name}*.
+Saya bot manajemen grup bertema Anime dengan beberapa tambahan yang menyenangkan! Lihatlah yang berikut ini untuk mendapatkan gambaran tentang beberapa \
+hal-hal yang dapat saya bantu.
 
-*Main* commands available:
- × /start: Starts me, can be used to check i'm alive or no...
- × /help: PM's you this message.
- × /help <module name>: PM's you info about that module.
- × /settings: in PM: will send you your settings for all supported modules.
-   - in a group: will redirect you to pm, with all that chat's settings.
- \nClick on the buttons below to get documentation about specific modules!"""
+*Perintah utama* yang tersedia:
+ × /start: Mulai saya, dapat digunakan untuk memeriksa saya masih hidup atau tidak...
+ × /help: PM Anda ke pesan ini.
+ × /help <nama modul>: PM Anda info tentang modul itu.
+ × /settings: di PM: akan mengirimkan pengaturan Anda untuk semua modul yang didukung.
+   - dalam grup: akan mengarahkan Anda ke pm, dengan semua pengaturan obrolan itu.
+ \nKlik tombol di bawah ini untuk mendapatkan dokumentasi tentang modul tertentu!"""
 
 
-STAFF_HELP_STRINGS = """Hey there staff users. Nice to see you :)
-Here is all the staff's commands. Users above has the command access for all commands below.
+STAFF_HELP_STRINGS = """Halo pengguna staf. Senang bertemu Anda :)
+Ini semua perintah staf. Pengguna di atas memiliki akses perintah untuk semua perintah di bawah ini.
 
 *OWNER*
-× /broadcast: Send a broadcast message to all chat that i'm currently in.
-× /staffids: Get all staff's you have.
-× /ip: Sends the bot's IP address to ssh in if necessary (PM only).
+× /broadcast: Kirim pesan siaran ke semua obrolan yang saya ikuti saat ini.
+× /staffids: Dapatkan semua staf yang Anda miliki.
+× /ip: Mengirimkan alamat IP bot ke ssh jika perlu (khusus PM).
 
-*DEV USERS*
-× /gitpull: Pull latest update.
-× /reboot: Restart the bot.
-× /dbcleanup: Clean my invalid database.
-× /leavemutedchats: Leave all chats where i can't send message.
-× /leave <chatid>: Tell me to leave the given group. (alias /leavechat /leavegroup).
-× /stats: List of all blacklists, filters, federations, gbans, etc from all group.
-× /getlink <chatid>: Get chat invite link.
-× /sysinfo: Get my system info.
+*DEV*
+× /gitpull: Tarik pembaruan terbaru.
+× /reboot: Mulai ulang bot.
+× /dbcleanup: Bersihkan database saya yang tidak valid.
+× /leavemutedchats: Tinggalkan semua obrolan di mana saya tidak bisa mengirim pesan.
+× /leave <chatid>: Katakan padaku untuk meninggalkan grup tertentu. (alias /leavechat /leavegroup).
+× /stats: Daftar semua blacklist, filter, federation, gbans, dll dari semua grup.
+× /getlink <chatid>: Dapatkan tautan undangan obrolan.
+× /sysinfo: Dapatkan info sistem saya.
 
-*SUDO USERS*
-× /snipe <chatid> <string>: Tell me to send a message to the given chat.
-× /echo <string>: Like snipe but on the current chat.
-× /chatlist: Get the list of chat that i'm currently in.
-× /ping: Start a ping test.
-× /speedtest: Start a speedtest from my server.
+*SUDO*
+× /snipe <chatid> <string>: Beri tahu saya untuk mengirim pesan ke obrolan yang diberikan.
+× /echo <string>: Seperti snipe tetapi pada obrolan saat ini.
+× /chatlist: Dapatkan daftar obrolan yang saat ini saya ikuti.
+× /ping: Mulailah tes ping.
+× /speedtest: Mulai uji kecepatan dari server saya.
 
-*SUPPORT USERS*
-× /gban <userid>: global ban a user.
-× /ungban <userid>: remove currently gbanned user.
-× /gbanlist: Get the list of currently gbanned users."""
+*SUPPORT*
+× /gban <userid>: larangan global pengguna.
+× /ungban <userid>: hapus pengguna yang saat ini dilarang.
+× /gbanlist: Dapatkan daftar pengguna yang diblokir saat ini."""
 
 
 IMPORTED = {}
@@ -293,7 +280,7 @@ def start(update, context):
             )
     else:
         update.effective_message.reply_text(
-            "Sending you a warm hi & wishing your day is a happy one!"
+            "Mengirimi Anda salam hangat & berharap hari Anda menyenangkan!"
         )
 
 
@@ -365,7 +352,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "Here is the help for the *{}* module:\n".format(
+                "Berikut adalah bantuan untuk modul *{}*e:\n".format(
                     HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
@@ -377,7 +364,7 @@ def help_button(update, context):
                     [
                         [
                             InlineKeyboardButton(
-                                text="⬅️ Back", callback_data="help_back"
+                                text="⬅️ Kembali", callback_data="help_back"
                             )
                         ]
                     ]
@@ -392,7 +379,7 @@ def help_button(update, context):
                     [
                         [
                             InlineKeyboardButton(
-                                text="⬅️ Back", callback_data="help_back"
+                                text="⬅️ Kembali", callback_data="help_back"
                             )
                         ]
                     ]
@@ -442,7 +429,7 @@ def staff_help(update, context):
 
     if chat.type != chat.PRIVATE:
         update.effective_message.reply_text(
-            "Contact me in PM to get the list of staff's command"
+            "Hubungi saya di PM untuk mendapatkan daftar perintah staf"
         )
         return
 
@@ -458,14 +445,14 @@ def staff_help(update, context):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Modules help", callback_data="help_back"
+                            text="Modul help", callback_data="help_back"
                         )
                     ]
                 ]
             ),
         )
     else:
-        update.effective_message.reply_text("You can't access this command")
+        update.effective_message.reply_text("Anda tidak dapat mengakses perintah ini")
 
 
 @typing_action
@@ -478,12 +465,12 @@ def get_help(update, context):
     if chat.type != chat.PRIVATE:
 
         update.effective_message.reply_text(
-            "Contact me in PM to get the list of possible commands.",
+            "Hubungi saya di PM untuk mendapatkan daftar kemungkinan perintah.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Help",
+                            text="Bantuan",
                             url="t.me/{}?start=help".format(
                                 context.bot.username
                             ),
@@ -497,7 +484,7 @@ def get_help(update, context):
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
         text = (
-            "Here is the available help for the *{}* module:\n".format(
+            "Berikut adalah bantuan yang tersedia untuk modul *{}*:\n".format(
                 HELPABLE[module].__mod_name__
             )
             + HELPABLE[module].__help__
@@ -509,7 +496,7 @@ def get_help(update, context):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Back", callback_data="help_back"
+                            text="Kembali", callback_data="help_back"
                         )
                     ]
                 ]
@@ -546,14 +533,14 @@ def send_settings(chat_id, user_id, user=False):
             )
             dispatcher.bot.send_message(
                 user_id,
-                "These are your current settings:" + "\n\n" + settings,
+                "Ini adalah pengaturan Anda saat ini:" + "\n\n" + settings,
                 parse_mode=ParseMode.MARKDOWN,
             )
 
         else:
             dispatcher.bot.send_message(
                 user_id,
-                "Seems like there aren't any user specific settings available :'(",
+                "Sepertinya tidak ada pengaturan khusus pengguna yang tersedia :'(",
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -562,7 +549,7 @@ def send_settings(chat_id, user_id, user=False):
             chat_name = dispatcher.bot.getChat(chat_id).title
             dispatcher.bot.send_message(
                 user_id,
-                text="Which module would you like to check {}'s settings for?".format(
+                text="Modul mana yang ingin Anda periksa setelan {}?".format(
                     chat_name
                 ),
                 reply_markup=InlineKeyboardMarkup(
@@ -572,8 +559,8 @@ def send_settings(chat_id, user_id, user=False):
         else:
             dispatcher.bot.send_message(
                 user_id,
-                "Seems like there aren't any chat settings available :'(\nSend this "
-                "in a group chat you're admin in to find its current settings!",
+                "Sepertinya tidak ada pengaturan obrolan yang tersedia :'(\nKirim ini di "
+                "dalam obrolan grup tempat Anda menjadi admin untuk menemukan pengaturannya saat ini!",
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -590,7 +577,7 @@ def settings_button(update, context):
             chat_id = mod_match.group(1)
             module = mod_match.group(2)
             chat = context.bot.get_chat(chat_id)
-            text = "*{}* has the following settings for the *{}* module:\n\n".format(
+            text = "*{}* memiliki pengaturan berikut untuk modul *{}*:\n\n".format(
                 escape_markdown(chat.title), CHAT_SETTINGS[module].__mod_name__
             ) + CHAT_SETTINGS[
                 module
@@ -604,7 +591,7 @@ def settings_button(update, context):
                     [
                         [
                             InlineKeyboardButton(
-                                text="Back",
+                                text="Kembali",
                                 callback_data="stngs_back({})".format(chat_id),
                             )
                         ]
@@ -617,8 +604,8 @@ def settings_button(update, context):
             curr_page = int(prev_match.group(2))
             chat = context.bot.get_chat(chat_id)
             query.message.reply_text(
-                "Hi there! There are quite a few settings for {} - go ahead and pick what "
-                "you're interested in.".format(chat.title),
+                "Halo yang disana! Ada beberapa setelan untuk {} - lanjutkan dan pilih apa "
+                "bikin Anda tertarik.".format(chat.title),
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(
                         curr_page - 1, CHAT_SETTINGS, "stngs", chat=chat_id
@@ -631,8 +618,8 @@ def settings_button(update, context):
             next_page = int(next_match.group(2))
             chat = context.bot.get_chat(chat_id)
             query.message.reply_text(
-                "Hi there! There are quite a few settings for {} - go ahead and pick what "
-                "you're interested in.".format(chat.title),
+                "Halo yang disana! Ada beberapa setelan untuk {} - lanjutkan dan pilih apa "
+                "bikin Anda tertarik.".format(chat.title),
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(
                         next_page + 1, CHAT_SETTINGS, "stngs", chat=chat_id
@@ -644,8 +631,8 @@ def settings_button(update, context):
             chat_id = back_match.group(1)
             chat = context.bot.get_chat(chat_id)
             query.message.reply_text(
-                text="Hi there! There are quite a few settings for {} - go ahead and pick what "
-                "you're interested in.".format(escape_markdown(chat.title)),
+                text="Halo yang disana! Ada beberapa setelan untuk {} - lanjutkan dan pilih apa "
+                "bikin Anda tertarik.".format(escape_markdown(chat.title)),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)
@@ -679,14 +666,14 @@ def get_settings(update, context):
     # ONLY send settings in PM
     if chat.type != chat.PRIVATE:
         if is_user_admin(chat, user.id):
-            text = "Click here to get this chat's settings, as well as yours."
+            text = "Klik di sini untuk mendapatkan pengaturan obrolan ini, serta milik Anda."
             msg.reply_text(
                 text,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
-                                text="Settings",
+                                text="Pengaturan",
                                 url="t.me/{}?start=stngs_{}".format(
                                     context.bot.username, chat.id
                                 ),
@@ -696,7 +683,7 @@ def get_settings(update, context):
                 ),
             )
         else:
-            text = "Click here to check your settings."
+            text = "Klik di sini untuk memeriksa pengaturan Anda."
 
     else:
         send_settings(chat.id, user.id, True)
@@ -728,7 +715,7 @@ def is_chat_allowed(update, context):
             try:
                 context.bot.send_message(
                     chat_id=chat_id,
-                    text="This group is Blacklisted! Leaving...",
+                    text="Grup ini Masuk Daftar Hitam! Out ah 😅...",
                 )
                 context.bot.leave_chat(chat_id)
             except Unauthorized:
@@ -741,7 +728,7 @@ def is_chat_allowed(update, context):
             try:
                 context.bot.send_message(
                     chat_id=chat_id,
-                    text="This group is Blacklisted! Leaving...",
+                    text="Grup ini Masuk Daftar Hitam! Out ah 😅...",
                 )
                 context.bot.leave_chat(chat_id)
             except Unauthorized:
@@ -754,7 +741,7 @@ def is_chat_allowed(update, context):
             try:
                 context.bot.send_message(
                     chat_id=chat_id,
-                    text="This group is Blacklisted! Leaving..."
+                    text="Grup ini Masuk Daftar Hitam! Out ah 😅..."
                 )
                 context.bot.leave_chat(chat_id)
             except Unauthorized:
