@@ -27,3 +27,6 @@ telegraph
 wget
 wikipedia
 hurry.filesize
+jikanpy>=4.2.2
+telethon
+pyrogram
