@@ -78,22 +78,23 @@ buttons = [
 buttons += [
     [
         InlineKeyboardButton(
-            text="Gban Logs 🚫", url="https://t.me/joinchat/AAAAAEuYErj6v8_DOigW0g"
-        ),
-        InlineKeyboardButton(
             text="Help & Commands ❔",
             url=f"t.me/{dispatcher.bot.username}?start=help",
         ),
+        InlineKeyboardButton(
+            text="Gban Logs 🚫", url="https://t.me/joinchat/AAAAAEuYErj6v8_DOigW0g"
+        ),
+        
     ]
 ]
 
 buttons += [
     [
         InlineKeyboardButton(
-            text="Support Group 🎗️", url="https://t.me/ZeroBotSupport"
+            text="Support 🎗️", url="https://t.me/ZeroBotSupport"
         ),
         InlineKeyboardButton(
-            text="Source Code 💻", url="https://github.com/HayakaRyu/KagaRobot"
+            text="Source 💻", url="https://github.com/HayakaRyu/KagaRobot"
         ),
         InlineKeyboardButton(
             text="Channel 📢", url="https://t.me/HayakaRyuUpdates"
