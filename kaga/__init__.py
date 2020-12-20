@@ -118,6 +118,10 @@ STAFF_USERS = list(STAFF)
 
 WHITELIST_USERS = list(WHITELIST_USERS)
 
+pbot = Client("KagaRobot", api_id=API_KEY,
+              api_hash=API_HASH,
+              bot_token=TOKEN)
+
 # Load at end to ensure all prev variables have been set
 # pylint: disable=C0413
 from kaga.modules.helper_funcs.handlers import (
