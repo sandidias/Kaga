@@ -82,71 +82,71 @@ ABUSE_STRINGS = (
     "Diam pergi bercinta sendiri",
     "Anda noob",
     "Rilekskan Belakangmu, jangan takut, Kereta pemerkosaan akhirnya ada di sini",
-    "diam sm",
-    "diam dan Gtfo U nub",
+    "diam kau",
+    "diam dan kamu itu nub",
     "Vagina",
     "Gay ada di sini",
-    "Owww ... Seperti idiot bodoh."
+    "Owww ... Seperti idiot bodoh.",
     "Jangan minum dan mengetik.",
-    "Saya pikir Anda harus pulang atau lebih baik rumah sakit jiwa."
+    "Saya pikir Anda harus pulang atau lebih baik rumah sakit jiwa.",
     "Komando tidak ditemukan. Sama seperti otakmu.",
     "Apakah Anda menyadari Anda membuat bodoh diri sendiri? Rupanya tidak.",
     "Kau bisa mengetik lebih baik dari itu.",
     "Aturan bot 544 bagian 9 mencegah saya membalas manusia bodoh seperti Anda.",
     "Maaf, kami tidak menjual otak.",
     "Percayalah kau tidak normal.",
-    "Saya yakin otak Anda terasa sebagus baru, melihat bahwa Anda tidak pernah menggunakannya."
+    "Saya yakin otak Anda terasa sebagus baru, melihat bahwa Anda tidak pernah menggunakannya.",
     "Jika aku ingin bunuh diri aku akan memanjat egomu dan melompat ke IQ-nya.",
-    "Zombie memakan otak... Anda aman."
-    "Anda tidak berevolusi dari kera, mereka berevolusi dari Anda. "
+    "Zombie memakan otak... Anda aman.",
+    "Anda tidak berevolusi dari kera, mereka berevolusi dari Anda.",
     "Kembalilah dan bicaralah padaku saat IQ-nya melebihi usiamu.",
-    "Saya tidak mengatakan Anda bodoh, saya hanya mengatakan Anda punya nasib buruk ketika datang ke berpikir."
-    "Bahasa apa yang anda bicarakan? Karena kedengarannya seperti omong kosong."
-    "Kebodohan bukanlah kejahatan sehingga Anda bebas untuk pergi."
+    "Saya tidak mengatakan Anda bodoh, saya hanya mengatakan Anda punya nasib buruk ketika datang ke berpikir.",
+    "Bahasa apa yang anda bicarakan? Karena kedengarannya seperti omong kosong.",
+    "Kebodohan bukanlah kejahatan sehingga Anda bebas untuk pergi.",
     "Anda adalah bukti bahwa evolusi BISA berbalik.",
-    "Saya akan bertanya berapa usia Anda tapi saya tahu Anda tidak bisa menghitung setinggi itu."
+    "Saya akan bertanya berapa usia Anda tapi saya tahu Anda tidak bisa menghitung setinggi itu.",
     "Sebagai orang luar, apa pendapatmu tentang umat manusia?",
-    "Otak bukanlah segalanya. Dalam kasus Anda mereka bukan apa-apa."
-    "Biasanya orang hidup dan belajar. Anda hanya hidup.
-    "Aku tidak tahu apa yang membuatmu begitu bodoh, tapi itu benar-benar berhasil."
+    "Otak bukanlah segalanya. Dalam kasus Anda mereka bukan apa-apa.",
+    "Biasanya orang hidup dan belajar. Anda hanya hidup.",
+    "Aku tidak tahu apa yang membuatmu begitu bodoh, tapi itu benar-benar berhasil.",
     "Teruslah bicara, suatu hari nanti kamu akan mengatakan sesuatu yang cerdas! (Aku meragukannya)",
-    "Shock saya, mengatakan sesuatu yang cerdas."
+    "Shock saya, mengatakan sesuatu yang cerdas.",
     "IQ-mu lebih rendah dari ukuran sepatumu.",
-    "Alangkah besarnya penyesalan terhadap hamba-hamba Neurotransmiter anda tidak lebih bekerja."
-    "Apakah Anda gila Anda bodoh."
-    "Setiap orang memiliki hak untuk menjadi bodoh tetapi Anda menyalahgunakan hak istimewa."
-    "Maaf aku menyakiti perasaanmu saat aku memanggilmu bodoh. Kupikir kau sudah tahu itu."
-    "Anda harus mencoba mencicipi sianida."
+    "Alangkah besarnya penyesalan terhadap hamba-hamba Neurotransmiter anda tidak lebih bekerja.",
+    "Apakah Anda gila Anda bodoh.",
+    "Setiap orang memiliki hak untuk menjadi bodoh tetapi Anda menyalahgunakan hak istimewa.",
+    "Maaf aku menyakiti perasaanmu saat aku memanggilmu bodoh. Kupikir kau sudah tahu itu.",
+    "Anda harus mencoba mencicipi sianida.",
     "Enzimmu dimaksudkan untuk mencerna racun tikus.",
-    "Anda harus mencoba tidur selamanya."
+    "Anda harus mencoba tidur selamanya.",
     "Ambil pistol dan tembak dirimu sendiri.",
-    "Anda bisa membuat rekor dunia dengan melompat dari pesawat tanpa parasut."
+    "Anda bisa membuat rekor dunia dengan melompat dari pesawat tanpa parasut.",
     "Berhenti bicara BS dan melompat di depan kereta peluru yang sedang berjalan.",
     "Cobalah mandi dengan Asam Klorida alih-alih air.",
     "Cobalah ini: jika Anda menahan napas di bawah air selama satu jam, Anda kemudian dapat menahannya selamanya.",
     "Go Green! Berhenti menghirup Oksigen.",
-    "Tuhan sedang mencarimu. Anda harus pergi untuk bertemu dengannya.
-    "Berikan 100%. Sekarang, pergi menyumbangkan darah."
-    "Cobalah melompat dari seratus bangunan cerita tetapi Anda dapat melakukannya hanya sekali."
-    "Anda harus menyumbangkan otak Anda melihat bahwa Anda tidak pernah menggunakannya."
-    "Sukarelawan untuk target dalam jarak tembak."
-    "Sundulannya menyenangkan. Dapatkan diri Anda satu."
-    "Anda harus mencoba berenang dengan hiu putih besar."
-    "Anda harus melukis diri Anda merah dan berlari dalam maraton banteng."
-    "Anda dapat tinggal di bawah air selama sisa hidup Anda tanpa datang kembali."
-    "Bagaimana kalau kau berhenti bernapas selama 1 hari? Itu akan menjadi besar."
+    "Tuhan sedang mencarimu. Anda harus pergi untuk bertemu dengannya.",
+    "Berikan 100%. Sekarang, pergi menyumbangkan darah.",
+    "Cobalah melompat dari seratus bangunan cerita tetapi Anda dapat melakukannya hanya sekali.",
+    "Anda harus menyumbangkan otak Anda melihat bahwa Anda tidak pernah menggunakannya.",
+    "Sukarelawan untuk target dalam jarak tembak.",
+    "Sundulannya menyenangkan. Dapatkan diri Anda satu.",
+    "Anda harus mencoba berenang dengan hiu putih besar.",
+    "Anda harus melukis diri Anda merah dan berlari dalam maraton banteng.",
+    "Anda dapat tinggal di bawah air selama sisa hidup Anda tanpa datang kembali.",
+    "Bagaimana kalau kau berhenti bernapas selama 1 hari? Itu akan menjadi besar.",
     "Cobalah memprovokasi harimau saat kalian berdua berada di kandang.",
     "Apakah Anda mencoba menembak diri sendiri setinggi 100m menggunakan kanon.",
     "Anda harus mencoba memegang TNT di mulut Anda dan menyalakannya.",
     "Cobalah bermain menangkap dan melempar dengan RDX kesenangannya.",
     "Saya mendengar foorin beracun tetapi saya kira Anda tidak akan keberatan menghirupnya untuk bersenang-senang.",
     "Luncurkan diri anda ke luar angkasa sambil melupakan oksigen di Bumi.",
-    "Anda harus mencoba bermain ular dan tangga, dengan ular nyata dan tidak ada tangga."
-    "Menari telanjang di beberapa kabel HT."
+    "Anda harus mencoba bermain ular dan tangga, dengan ular nyata dan tidak ada tangga.",
+    "Menari telanjang di beberapa kabel HT.",
     "Gunung Berapi Aktif adalah kolam renang terbaik untuk Anda.",
-    "Anda harus mencoba mandi air panas di gunung berapi."
-    "Cobalah untuk menghabiskan satu hari dalam peti mati dan itu akan menjadi milikmu selamanya."
-    "Pukul Uranium dengan neutron bergerak lambat di hadapanmu. Ini akan menjadi pengalaman yang berharga."
+    "Anda harus mencoba mandi air panas di gunung berapi.",
+    "Cobalah untuk menghabiskan satu hari dalam peti mati dan itu akan menjadi milikmu selamanya.",
+    "Pukul Uranium dengan neutron bergerak lambat di hadapanmu. Ini akan menjadi pengalaman yang berharga.",
     "Anda bisa menjadi orang pertama yang menginjak matahari. Cobalah.",
 )
 
@@ -176,7 +176,7 @@ RUN_STRINGS = (
     "Semoga peluangnya selalu menguntungkanmu.",
     "Kata-kata terakhir yang terkenal.",
     "Dan mereka menghilang selamanya, tidak pernah terlihat lagi."
-    'Oh, lihat aku! Aku sangat keren, aku bisa lari dari bot!"
+    "Oh, lihat aku! Aku sangat keren, aku bisa lari dari bot!"
     "Ya ya, cukup ketuk /kickme sudah.",
     "Di sini, ambil cincin ini dan menuju ke Mordor saat Anda berada di itu."
     "Legenda memilikinya, mereka masih berjalan ...",
@@ -225,7 +225,7 @@ SLAP_TEMPLATES = (
     "{user2} mengucapkan selamat tinggal pada dunia yang kejam ini.",
     "{user2} mendapat rekt.",
     "{user2} digaji setengah oleh {user1}.",
-    Melon "{user2}dipisahkan oleh {user1}.",
+    "Melon {user2} dibagi oleh {user1}.",
     "{user2} diiris dan dipotong dadu oleh {user1}.",
     "{user2}kematian menempatkan takik lain di sumbu {user1}.",
     "{user2} meninggal karena penyakit tropis misterius {user1}.",
