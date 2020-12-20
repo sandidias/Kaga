@@ -8,7 +8,6 @@ dnspython
 emoji
 feedparser
 future
-git+https://github.com/HitsukiNetwork/Hitsuki-PTB.git
 git+https://github.com/TomyPrs/python-markdown2.git
 google_trans_new
 gtts
