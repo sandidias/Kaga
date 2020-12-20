@@ -101,11 +101,17 @@ buttons += [
         InlineKeyboardButton(
             text="Support Group 🎗️", url="https://t.me/ZeroBotSupport"
         ),
+    ]
+]
+
+buttons += [
+    [
         InlineKeyboardButton(
             text="Source Code", url="https://github.com/HayakaRyu/KagaRobot"
         ),
     ]
 ]
+
 
 
 HELP_STRINGS = f"""
