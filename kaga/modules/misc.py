@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import codecs
 import datetime
 import codecs
@@ -74,7 +58,7 @@ def get_id(update, context):
             user1 = update.effective_message.reply_to_message.from_user
             user2 = update.effective_message.reply_to_message.forward_from
             update.effective_message.reply_text(
-                "The original sender, {}, has an ID of `{}`.\nThe forwarder, {}, has an ID of `{}`.".format(
+                "Pengirim asli, {}, memiliki ID `{}`.\nPenerusan, {}, memiliki ID dari `{}`.".format(
                     escape_markdown(user2.first_name),
                     user2.id,
                     escape_markdown(user1.first_name),
@@ -85,7 +69,7 @@ def get_id(update, context):
         else:
             user = context.bot.get_chat(user_id)
             update.effective_message.reply_text(
-                "{}'s id is `{}`.".format(
+                "ID {} adalah `{}`.".format(
                     escape_markdown(user.first_name), user.id
                 ),
                 parse_mode=ParseMode.MARKDOWN,
@@ -94,13 +78,13 @@ def get_id(update, context):
         chat = update.effective_chat  # type: Optional[Chat]
         if chat.type == "private":
             update.effective_message.reply_text(
-                "Your id is `{}`.".format(chat.id),
+                "Id kamu `{}`.".format(chat.id),
                 parse_mode=ParseMode.MARKDOWN,
             )
 
         else:
             update.effective_message.reply_text(
-                "This group's id is `{}`.".format(chat.id),
+                "Id Grup ini adalah `{}`.".format(chat.id),
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -127,38 +111,38 @@ def info(update, context):
             and not msg.parse_entities([MessageEntity.TEXT_MENTION])
         )
     ):
-        msg.reply_text("I can't extract a user from this.")
+        msg.reply_text("Saya tidak dapat mengekstrak pengguna dari ini.")
         return
 
     else:
         return
 
     del_msg = msg.reply_text(
-        "Hold tight while I steal some data from <b>FBI Database</b>...",
+        "Tunggu sebentar sementara saya mencuri beberapa data dari <b>Database FBI</b>...",
         parse_mode=ParseMode.HTML,
     )
 
     text = (
         "<b>USER INFO</b>:"
         "\n<b>ID:</b> <code>{}</code>"
-        "\n<b>First Name:</b> <code>{}</code>".format(
+        "\n<b>Nama Depan:</b> <code>{}</code>".format(
             user.id, html.escape(user.first_name)
         )
     )
 
     if user.last_name:
-        text += "\n<b>Last Name:</b> <code>{}</code>".format(
+        text += "\n<b>Nama Belakang:</b> <code>{}</code>".format(
             html.escape(user.last_name)
         )
 
     if user.username:
-        text += "\n<b>Username:</b> @{}".format(html.escape(user.username))
+        text += "\n<b>Nama pengguna:</b> @{}".format(html.escape(user.username))
 
-    text += "\n<b>Permanent user link:</b> {}".format(
+    text += "\n<b>Tautan pengguna permanen:</b> {}".format(
         mention_html(user.id, "link")
     )
 
-    text += "\n<b>Number of profile pics:</b> <code>{}</code>".format(
+    text += "\n<b>Jumlah foto profil:</b> <code>{}</code>".format(
         context.bot.get_user_profile_photos(user.id).total_count
     )
 
@@ -183,9 +167,9 @@ def info(update, context):
     try:
         sw = spamwtc.get_ban(int(user.id))
         if sw:
-            text += "\n\n<b>This person is banned in Spamwatch!</b>"
-            text += f"\n<b>Reason:</b> <pre>{sw.reason}</pre>"
-            text += "\nAppeal at @SpamWatchSupport"
+            text += "\n\n<b>Orang ini dilarang di Spamwatch!</b>"
+            text += f"\n<b>Alasan:</b> <pre>{sw.reason}</pre>"
+            text += "\nAda yang salah coba tanyakan di @SpamWatchSupport"
         else:
             pass
     except BaseException:
@@ -193,46 +177,46 @@ def info(update, context):
 
     cas_banned = check_cas(user.id)
     if cas_banned:
-        text += "\n\n<b>This Person is CAS Banned!</b>"
-        text += f"\n<b>Reason: </b> <a href='{cas_banned}'>CAS Banned</a>"
-        text += "\nAppeal at @cas_discussion"
+        text += "\n\n<b>Orang ini Dilarang di CAS!</b>"
+        text += f"\n<b>Alasan: </b> <a href='{cas_banned}'>CAS Banned</a>"
+        text += "\nAda yang salah coba tanyakan di @cas_discussion"
 
     if user.id == OWNER_ID:
-        text += "\n\nAye this guy is my owner.\nI would never do anything against him!"
+        text += "\n\nAye, orang ini adalah pemilikku.\nSaya tidak akan pernah melakukan apa pun untuk melawannya!"
 
     elif user.id in DEV_USERS:
         text += (
-            "\n\nThis person is one of my dev users! "
-            "\nHe has the most command for me after my owner."
+            "\n\nOrang ini adalah salah satu pengguna dev saya! "
+            "\nDia memiliki perintah paling banyak untuk saya setelah pemilik saya."
         )
 
     elif user.id in SUDO_USERS:
         text += (
-            "\n\nThis person is one of my sudo users! "
-            "Nearly as powerful as my owner - so watch it."
+            "\n\nOrang ini adalah salah satu pengguna sudo saya! "
+            "Hampir sekuat pemilik saya - jadi tontonlah."
         )
 
     elif user.id in SUPPORT_USERS:
         text += (
-            "\n\nThis person is one of my support users! "
-            "Not quite a sudo user, but can still gban you off the map."
+            "\n\nOrang ini adalah salah satu pengguna dukungan saya! "
+            "Bukan pengguna sudo, tetapi masih bisa membuat Anda keluar dari peta."
         )
 
     elif user.id in WHITELIST_USERS:
         text += (
-            "\n\nThis person has been whitelisted! "
-            "That means I'm not allowed to ban/kick them."
+            "\n\nOrang ini telah masuk daftar putih! "
+            "Itu artinya saya tidak boleh melarang / menendang mereka."
         )
 
     elif user.id == int(1087968824):
-        text += "\n\nThis is anonymous admin in this group. "
+        text += "\n\nIni adalah admin anonim di grup ini. "
 
     try:
         memstatus = chat.get_member(user.id).status
         if memstatus == "administrator" or memstatus == "creator":
             result = context.bot.get_chat_member(chat.id, user.id)
             if result.custom_title:
-                text += f"\n\nThis user has custom title <b>{result.custom_title}</b> in this chat."
+                text += f"\n\nPengguna ini memiliki judul khusus <b>{result.custom_title}</b> di obrolan ini."
     except BadRequest:
         pass
 
@@ -275,46 +259,46 @@ def echo(update, context):
 
 @typing_action
 def gdpr(update, context):
-    update.effective_message.reply_text("Deleting identifiable data...")
+    update.effective_message.reply_text("Menghapus data yang dapat diidentifikasi...")
     for mod in GDPR:
         mod.__gdpr__(update.effective_user.id)
 
     update.effective_message.reply_text(
-        "Your personal data has been deleted.\n\nNote that this will not unban "
-        "you from any chats, as that is telegram data, not UserbotindoBot data. "
-        "Flooding, warns, and gbans are also preserved, as of "
+        "Data pribadi Anda telah dihapus.\n\nPerhatikan bahwa ini tidak akan membatalkan pelarangan "
+        "Anda dari obrolan apa pun, karena itu adalah data telegram, bukan data KagaRobot. "
+        "Flood, peringatan, dan gban juga dipertahankan, mulai dari "
         "[this](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
-        "which clearly states that the right to erasure does not apply "
-        '"for the performance of a task carried out in the public interest", as is '
-        "the case for the aforementioned pieces of data.",
+        "yang dengan jelas menyatakan bahwa hak untuk menghapus tidak berlaku "
+        '"untuk pelaksanaan tugas yang dilakukan untuk kepentingan umum", sebagaimana adanya '
+        "kasus untuk potongan data tersebut di atas.",
         parse_mode=ParseMode.MARKDOWN,
     )
 
 
 MARKDOWN_HELP = """
-Markdown is a very powerful formatting tool supported by telegram. {} has some enhancements, to make sure that \
-saved messages are correctly parsed, and to allow you to create buttons.
+Markdown adalah alat pemformatan yang sangat kuat yang didukung oleh telegram. {} memiliki beberapa peningkatan, untuk memastikannya \
+pesan yang disimpan diurai dengan benar, dan untuk memungkinkan Anda membuat tombol.
 
-- <code>_italic_</code>: wrapping text with '_' will produce italic text
-- <code>*bold*</code>: wrapping text with '*' will produce bold text
-- <code>`code`</code>: wrapping text with '`' will produce monospaced text, also known as 'code'
-- <code>~strike~</code> wrapping text with '~' will produce strikethrough text
-- <code>--underline--</code> wrapping text with '--' will produce underline text
-- <code>[sometext](someURL)</code>: this will create a link - the message will just show <code>sometext</code>, \
-and tapping on it will open the page at <code>someURL</code>.
-EG: <code>[test](example.com)</code>
+- <code>_italic_</code>: membungkus teks dengan '_' akan menghasilkan teks miring
+- <code>*bold*</code>: membungkus teks dengan '*' akan menghasilkan teks tebal
+- <code>`code`</code>: membungkus teks dengan '"' akan menghasilkan teks berspasi tunggal, juga dikenal sebagai 'kode'
+- <code>~strike~</code> membungkus teks dengan '~' akan menghasilkan teks coretan
+- <code>--underline--</code> membungkus teks dengan '-' akan menghasilkan teks garis bawah
+- <code>[sometext](someURL)</code>:ini akan membuat tautan - pesan itu hanya akan ditampilkan <code>sometext</code>, \
+dan mengetuknya akan membuka halaman di <code>someURL</code>.
+Misal: <code>[test](contoh.com)</code>
 
-- <code>[buttontext](buttonurl:someURL)</code>: this is a special enhancement to allow users to have telegram \
-buttons in their markdown. <code>buttontext</code> will be what is displayed on the button, and <code>someurl</code> \
-will be the url which is opened.
-EG: <code>[This is a button](buttonurl:example.com)</code>
+- <code>[buttontext](buttonurl:someURL)</code>: ini adalah peningkatan khusus untuk memungkinkan pengguna memiliki telegram \
+tombol di markdown mereka. <code>buttontext</code> akan menjadi apa yang ditampilkan pada tombol, dan <code>someurl</code> \
+akan menjadi url yang dibuka.
+Misal: <code>[Ini sebuah tombol](buttonurl:contoh.com)</code>
 
-If you want multiple buttons on the same line, use :same, as such:
-<code>[one](buttonurl://example.com)
-[two](buttonurl://google.com:same)</code>
-This will create two buttons on a single line, instead of one button per line.
+ika Anda ingin beberapa tombol pada baris yang sama, gunakan: sama, seperti:
+<code>[satu](buttonurl://contoh.com)
+[dua](buttonurl://google.com:same)</code>
+Ini akan membuat dua tombol pada satu baris, bukan satu tombol per baris.
 
-Keep in mind that your message <b>MUST</b> contain some text other than just a button!
+Ingatlah bahwa pesan Anda <b>HARUS</b> berisi teks selain hanya tombol!
 """.format(
     dispatcher.bot.first_name
 )
@@ -326,12 +310,12 @@ def markdown_help(update, context):
         MARKDOWN_HELP, parse_mode=ParseMode.HTML
     )
     update.effective_message.reply_text(
-        "Try forwarding the following message to me, and you'll see!"
+        "Coba teruskan pesan berikut kepada saya, dan Anda akan melihat!"
     )
     update.effective_message.reply_text(
-        "/save test This is a markdown test. _italics_, --underline--, *bold*, `code`, ~strike~ "
-        "[URL](example.com) [button](buttonurl:github.com) "
-        "[button2](buttonurl://google.com:same)"
+        "/save tes Ini adalah tes markdown. _italics_, --underline--, *bold*, `code`, ~strike~ "
+        "[URL](example.com) [tombol](buttonurl:github.com) "
+        "[tombol2](buttonurl://google.com:same)"
     )
 
 
@@ -340,10 +324,10 @@ def wiki(update, context):
     kueri = re.split(pattern="wiki", string=update.effective_message.text)
     wikipedia.set_lang("en")
     if len(str(kueri[1])) == 0:
-        update.effective_message.reply_text("Enter keywords!")
+        update.effective_message.reply_text("Masukkan kata kunci!")
     else:
         try:
-            pertama = update.effective_message.reply_text("🔄 Loading...")
+            pertama = update.effective_message.reply_text("🔄 Harap bersabar...")
             keyboard = InlineKeyboardMarkup(
                 [
                     [
@@ -366,7 +350,7 @@ def wiki(update, context):
             update.effective_message.reply_text(f"⚠ Error: {et}")
         except wikipedia.exceptions.DisambiguationError as eet:
             update.effective_message.reply_text(
-                f"⚠ Error\n There are too many query! Express it more!\nPossible query result:\n{eet}"
+                f"⚠ Kesalahan\nPermintaan terlalu banyak! Ekspresikan lebih banyak!\nKemungkinan hasil permintaan:\n{eet}"
             )
 
 
@@ -376,21 +360,21 @@ def ud(update, context):
     args = context.args
     text = " ".join(args).lower()
     if not text:
-        msg.reply_text("Please enter keywords to search!")
+        msg.reply_text("Harap masukkan kata kunci untuk pencarian!")
         return
     elif text == "starry":
-        msg.reply_text("Fek off bitch!")
+        msg.reply_text("Sialan!")
         return
     try:
         results = get(
             f"http://api.urbandictionary.com/v0/define?term={text}"
         ).json()
         reply_text = (
-            f'Word: {text}\nDefinition: {results["list"][0]["definition"]}'
+            f'Kata: {text}\nDefinisi: {results["list"][0]["definition"]}'
         )
-        reply_text += f'\n\nExample: {results["list"][0]["example"]}'
+        reply_text += f'\n\nContoh: {results["list"][0]["example"]}'
     except IndexError:
-        reply_text = f"Word: {text}\nResults: Sorry could not find any matching results!"
+        reply_text = f"Kata: {text}\nHasil: Maaf tidak dapat menemukan hasil yang cocok!"
     ignore_chars = "[]"
     reply = reply_text
     for chars in ignore_chars:
@@ -406,7 +390,7 @@ def ud(update, context):
 @typing_action
 def src(update, context):
     update.effective_message.reply_text(
-        "Hey there! You can find what makes me click [here](https://github.com/MoveAngel/UserbotindoBot.git).",
+        "Hei yang disana! Anda dapat menemukan apa yang membuat saya mengklik [here](https://github.com/HayakaRyu/KagaRobot.git).",
         parse_mode=ParseMode.MARKDOWN,
         disable_web_page_preview=True,
     )
@@ -429,12 +413,12 @@ def wall(update, context):
             f"https://wall.alphacoders.com/api2.0/get.php?auth={WALL_API}&method=search&term={term}"
         ).json()
         if not json_rep.get("success"):
-            msg.reply_text("An error occurred!")
+            msg.reply_text("Terjadi kesalahan!")
 
         else:
             wallpapers = json_rep.get("wallpapers")
             if not wallpapers:
-                msg.reply_text("No results found! Refine your search.")
+                msg.reply_text("Tidak ada hasil yang ditemukan! Persempit pencarian Anda.")
                 return
             else:
                 index = randint(0, len(wallpapers) - 1)  # Choose random index
@@ -465,8 +449,8 @@ def getlink(update, context):
     if args:
         pattern = re.compile(r"-\d+")
     else:
-        message.reply_text("You don't seem to be referring to any chats.")
-    links = "Invite link(s):\n"
+        message.reply_text("Anda sepertinya tidak mengacu pada obrolan apa pun.")
+    links = "Undang tautan:\n"
     for chat_id in pattern.findall(message.text):
         try:
             chat = context.bot.getChat(chat_id)
@@ -477,7 +461,7 @@ def getlink(update, context):
             else:
                 links += (
                     str(chat_id)
-                    + ":\nI don't have access to the invite link."
+                    + ":\nSaya tidak memiliki akses ke tautan undangan."
                     + "\n"
                 )
         except BadRequest as excp:
@@ -489,22 +473,22 @@ def getlink(update, context):
 
 
 def staff_ids(update, context):
-    sfile = "List of SUDO & SUPPORT users:\n"
-    sfile += f"× DEV USER IDs; {DEV_USERS}\n"
-    sfile += f"× SUDO USER IDs; {SUDO_USERS}\n"
-    sfile += f"× SUPPORT USER IDs; {SUPPORT_USERS}"
+    sfile = "Daftar pengguna SUDO & SUPPORT:\n"
+    sfile += f"× DEV USER ID; {DEV_USERS}\n"
+    sfile += f"× SUDO USER ID; {SUDO_USERS}\n"
+    sfile += f"× SUPPORT USER ID; {SUPPORT_USERS}"
     with BytesIO(str.encode(sfile)) as output:
         output.name = "staff-ids.txt"
         update.effective_message.reply_document(
             document=output,
             filename="staff-ids.txt",
-            caption="Here is the list of SUDO & SUPPORTS users.",
+            caption="Berikut adalah daftar pengguna SUDO & SUPPORTS.",
         )
 
 
 def stats(update, context):
     update.effective_message.reply_text(
-        "Current stats:\n" + "\n".join([mod.__stats__() for mod in STATS])
+        "Statistik saat ini:\n" + "\n".join([mod.__stats__() for mod in STATS])
     )
 
 
@@ -526,7 +510,7 @@ def covid(update, context):
         c_case = data.get_status_by_country_name(country)
     except Exception:
         message.reply_text(
-            "An error have occured! Are you sure the country name is correct?"
+            "Telah terjadi kesalahan! Apakah Anda yakin nama negaranya benar?"
         )
         return
     total_tests = c_case["total_tests"]
@@ -538,17 +522,17 @@ def covid(update, context):
     date = datetime.datetime.now().strftime("%d %b %Y")
 
     output = (
-        f"<b>Corona Virus Statistics in {c_case['country']}</b>\n"
-        f"<b>on {date}</b>\n\n"
-        f"<b>Confirmed Cases :</b> <code>{format_integer(c_case['confirmed'])}</code>\n"
-        f"<b>Active Cases :</b> <code>{format_integer(c_case['active'])}</code>\n"
-        f"<b>Deaths :</b> <code>{format_integer(c_case['deaths'])}</code>\n"
-        f"<b>Recovered :</b> <code>{format_integer(c_case['recovered'])}</code>\n\n"
-        f"<b>New Cases :</b> <code>{format_integer(c_case['new_cases'])}</code>\n"
-        f"<b>New Deaths :</b> <code>{format_integer(c_case['new_deaths'])}</code>\n"
-        f"<b>Critical Cases :</b> <code>{format_integer(c_case['critical'])}</code>\n"
-        f"<b>Total Tests :</b> <code>{total_tests}</code>\n\n"
-        f"Data provided by <a href='{link}'>Worldometer</a>"
+        f"<b>Statistik Virus Corona di {c_case['country']}</b>\n"
+        f"<b>pada {date}</b>\n\n"
+        f"<b>Kasus terkonfirmasi :</b> <code>{format_integer(c_case['confirmed'])}</code>\n"
+        f"<b>Kasus aktif :</b> <code>{format_integer(c_case['active'])}</code>\n"
+        f"<b>Meninggal :</b> <code>{format_integer(c_case['deaths'])}</code>\n"
+        f"<b>Sembuh :</b> <code>{format_integer(c_case['recovered'])}</code>\n\n"
+        f"<b>Kasus Baru :</b> <code>{format_integer(c_case['new_cases'])}</code>\n"
+        f"<b>Kematian Baru :</b> <code>{format_integer(c_case['new_deaths'])}</code>\n"
+        f"<b>Kasus Kritis :</b> <code>{format_integer(c_case['critical'])}</code>\n"
+        f"<b>Tes Totals :</b> <code>{total_tests}</code>\n\n"
+        f"Data disediakan oleh <a href='{link}'>Worldometer</a>"
     )
 
     message.reply_text(
@@ -598,10 +582,10 @@ def paste(update, context):
         buttons = [
             [
                 InlineKeyboardButton(
-                    text="View Link", url=f"https://nekobin.com/{link}"
+                    text="Lihat Link", url=f"https://nekobin.com/{link}"
                 ),
                 InlineKeyboardButton(
-                    text="View Raw",
+                    text="Lihat Raw",
                     url=f"https://nekobin.com/raw/{link}",
                 ),
             ]
@@ -614,23 +598,23 @@ def paste(update, context):
         )
         os.remove("file.txt")
     else:
-        msg.reply_text("Give me a text file to paste on nekobin")
+        msg.reply_text("Beri saya file teks untuk ditempel di nekobin")
         return
 
 
 __help__ = """
-An "odds and ends" module for small, simple commands which don't really fit anywhere
+Module"odds and ends" untuk perintah kecil dan sederhana yang tidak muat di mana pun
 
- × /id: Get the current group id. If used by replying to a message, gets that user's id.
- × /info: Get information about a user.
- × /wiki : Search wikipedia articles.
- × /ud <query> : Search stuffs in urban dictionary.
- × /wall <query> : Get random wallpapers directly from bot!
- × /reverse : Reverse searches image or stickers on google.
- × /covid <country name>: Give stats about COVID-19.
- × /paste : Paste any text file to Nekobin.
- × /gdpr: Deletes your information from the bot's database. Private chats only.
- × /markdownhelp: Quick summary of how markdown works in telegram - can only be called in private chats.
+ × /id: Dapatkan id grup saat ini. Jika digunakan dengan membalas pesan, dapatkan id pengguna itu.
+ × /info: Dapatkan informasi tentang pengguna.
+ × /wiki : Cari artikel wikipedia.
+ × /ud <query> : Cari barang di kamus perkotaan.
+ × /wall <query> : Dapatkan wallpaper acak langsung dari bot!
+ × /reverse : Mencari gambar atau stiker di google.
+ × /covid <nama negara>: Berikan statistik tentang COVID-19.
+ × /paste : Tempel file teks apa pun ke Nekobin.
+ × /gdpr: Menghapus informasi Anda dari database bot. Obrolan pribadi saja.
+ × /markdownhelp: Ringkasan cepat tentang cara kerja markdown di telegram - hanya dapat dipanggil dalam obrolan pribadi.
 """
 
 __mod_name__ = "Miscs"
