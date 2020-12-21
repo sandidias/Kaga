@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import time
 
 import requests
@@ -39,14 +23,14 @@ def set_user(update, context):
         if LASTFM_USER.find_one({'_id': user}):
             LASTFM_USER.find_one_and_update(
                 {'_id': user}, {"$set": {'username': username}})
-            del_msg = msg.reply_text(f"Username updated to {username}!")
+            del_msg = msg.reply_text(f"Nama pengguna diperbarui menjadi {username}!")
         else:
             LASTFM_USER.insert_one({'_id': user, 'username': username})
-            del_msg = msg.reply_text(f"Username set as {username}!")
+            del_msg = msg.reply_text(f"Nama pengguna disetel sebagai {username}!")
 
     else:
         del_msg = msg.reply_text(
-            "That's not how this works...\nRun /setuser followed by your username!"
+            "That's Bukan begitu cara kerjanyanot how this works...\nJalankan /setuser diikuti dengan nama pengguna Anda!"
         )
     time.sleep(10)
     try:
@@ -60,7 +44,7 @@ def clear_user(update, context):
     user = update.effective_user.id
     LASTFM_USER.delete_one({'_id': user})
     clear = update.effective_message.reply_text(
-        "Last.fm username successfully cleared from my database!"
+        "Nama pengguna Last.fm berhasil dihapus dari database saya!"
     )
     time.sleep(10)
     clear.delete()
@@ -73,7 +57,7 @@ def last_fm(update, context):
     user_id = update.effective_user.id
     data = LASTFM_USER.find_one({'_id': user_id})
     if data is None:
-        msg.reply_text("You haven't set your username yet!")
+        msg.reply_text("Anda belum menyetel nama pengguna Anda!")
         return
     username = data["username"]
     base_url = "http://ws.audioscrobbler.com/2.0"
@@ -82,14 +66,14 @@ def last_fm(update, context):
     )
     if not res.status_code == 200:
         msg.reply_text(
-            "Hmm... something went wrong.\nPlease ensure that you've set the correct username!"
+            "Hmm ... ada yang tidak beres.\nPastikan Anda telah menyetel nama pengguna yang benar!"
         )
         return
 
     try:
         first_track = res.json().get("recenttracks").get("track")[0]
     except IndexError:
-        msg.reply_text("You don't seem to have scrobbled any songs...")
+        msg.reply_text("Sepertinya Anda tidak memiliki lagu apa pun...")
         return
     if first_track.get("@attr"):
         # Ensures the track is now playing
@@ -98,7 +82,7 @@ def last_fm(update, context):
         artist = first_track.get("artist").get("name")
         song = first_track.get("name")
         loved = int(first_track.get("loved"))
-        rep = f"{user} is currently listening to:\n"
+        rep = f"{user} sedang mendengarkan:\n"
         if not loved:
             rep += f"🎧  <code>{artist} - {song}</code>"
         else:
