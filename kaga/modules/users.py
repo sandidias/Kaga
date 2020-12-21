@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 from io import BytesIO
 from time import sleep
 
@@ -53,10 +37,10 @@ def get_user_id(username):
                     return userdat.id
 
             except BadRequest as excp:
-                if excp.message == "Chat not found":
+                if excp.message == "brolan tidak ditemukan":
                     pass
                 else:
-                    LOGGER.exception("Error extracting user ID")
+                    LOGGER.exception("Terjadi kesalahan saat mengekstrak ID pengguna")
 
     return None
 
@@ -79,8 +63,8 @@ def broadcast(update, context):
                 )
 
         update.effective_message.reply_text(
-            "Broadcast complete. {} groups failed to receive the message, probably "
-            "due to being kicked.".format(failed)
+            "Siaran selesai. {} grup mungkin gagal menerima pesan "
+            "karena ditendang.".format(failed)
         )
 
 
@@ -106,7 +90,7 @@ def log_user(update, context):
 
 def chats(update, context):
     all_chats = users_db.get_all_chats() or []
-    chatfile = "List of chats.\n"
+    chatfile = "Daftar obrolan.\n"
     for chat in all_chats:
         chatfile += "{} - ({})\n".format(chat["chat_name"], chat["chat_id"])
 
@@ -115,7 +99,7 @@ def chats(update, context):
         update.effective_message.reply_document(
             document=output,
             filename="chatlist.txt",
-            caption="Here is the list of chats in my database.",
+            caption="Berikut adalah daftar obrolan di database saya.",
         )
 
 
@@ -134,9 +118,9 @@ def chat_checker(update, context):
 
 def __user_info__(user_id):
     if user_id == dispatcher.bot.id:
-        return """I've seen them in... Wow. Are they stalking me? They're in all the same places I am... oh. It's me."""
+        return """Saya telah melihat mereka di ... Wow. Apakah mereka menguntit saya? Mereka ada di semua tempat yang sama dengan saya ... oh. Ini aku."""
     num_chats = users_db.get_user_num_chats(user_id)
-    return """I've seen them in <code>{}</code> chats in total.""".format(
+    return """Saya pernah melihat mereka dalam <code>{}</code> secara total.""".format(
         num_chats
     )
 
