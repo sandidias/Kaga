@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 from typing import Optional
 
 from telegram import (
@@ -53,15 +37,15 @@ def send_rules(update, chat_id, from_pm=False):
         if excp.message == "Chat not found" and from_pm:
             bot.send_message(
                 user.id,
-                "The rules shortcut for this chat hasn't been set properly! Ask admins to "
-                "fix this.",
+                "Pintasan aturan untuk obrolan ini belum disetel dengan benar! Minta admin untuk "
+                "memperbaiki ini.",
             )
             return
         else:
             raise
 
     rules = chat_rules(chat_id)
-    text = "The rules for *{}* are:\n\n{}".format(
+    text = "Aturan untuk *{}* adalah:\n\n{}".format(
         escape_markdown(chat.title), rules
     )
 
@@ -70,17 +54,17 @@ def send_rules(update, chat_id, from_pm=False):
     elif from_pm:
         bot.send_message(
             user.id,
-            "The group admins haven't set any rules for this chat yet. "
-            "This probably doesn't mean it's lawless though...!",
+            "Admin grup belum menetapkan aturan apa pun untuk obrolan ini. "
+            "Ini mungkin tidak berarti itu melanggar hukum...!",
         )
     elif rules:
         update.effective_message.reply_text(
-            "Contact me in PM to get this group's rules.",
+            "Hubungi saya di PM untuk mendapatkan aturan grup ini.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Rules",
+                            text="Aturan",
                             url="t.me/{}?start={}".format(
                                 bot.username, chat_id
                             ),
@@ -91,8 +75,8 @@ def send_rules(update, chat_id, from_pm=False):
         )
     else:
         update.effective_message.reply_text(
-            "The group admins haven't set any rules for this chat yet. "
-            "This probably doesn't mean it's lawless though...!"
+            "Admin grup belum menetapkan aturan apa pun untuk obrolan ini. "
+            "Tini mungkin tidak berarti itu melanggar hukum...!"
         )
 
 
@@ -117,7 +101,7 @@ def set_rules(update, context):
             {"$set": {'rules': markdown_rules}},
             upsert=True)
         update.effective_message.reply_text(
-            "Successfully set rules for this group."
+            "Berhasil menetapkan aturan untuk grup ini."
         )
 
 
@@ -126,7 +110,7 @@ def set_rules(update, context):
 def clear_rules(update, context):
     chat_id = update.effective_chat.id
     RULES_DATA.delete_one({'_id': chat_id})
-    update.effective_message.reply_text("Successfully cleared rules!")
+    update.effective_message.reply_text("Aturan berhasil dihapus!")
 
 
 def chat_rules(chat_id):
@@ -139,7 +123,7 @@ def chat_rules(chat_id):
 
 def __stats__():
     count = RULES_DATA.count_documents({})
-    return "× {} chats have rules set.".format(count)
+    return "× {} obrolan memiliki aturan yang ditetapkan.".format(count)
 
 
 def __import_data__(chat_id, data):
@@ -159,19 +143,19 @@ def __migrate__(old_chat_id, new_chat_id):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "This chat has had it's rules set: `{}`".format(
+    return "Obrolan ini telah menetapkan aturannya: `{}`".format(
         bool(chat_rules(chat_id))
     )
 
 
 __help__ = """
-Every chat works with different rules; this module will help make those rules clearer!
+Setiap obrolan bekerja dengan aturan yang berbeda; modul ini akan membantu memperjelas aturan tersebut!
 
- × /rules: get the rules for this chat.
+ × /rules: dapatkan aturan untuk obrolan ini.
 
-*Admin only:*
- × /setrules <your rules here>: Sets rules for the chat.
- × /clearrules: Clears saved rules for the chat.
+*Khusus Admin:*
+ × /setrules <aturan Anda di sini>: Menetapkan aturan untuk obrolan.
+ × /clearrules: Menghapus aturan yang disimpan untuk obrolan.
 """
 
 __mod_name__ = "Rules"
