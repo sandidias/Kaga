@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import random
 import re
 import time
@@ -298,7 +282,7 @@ def snipe(update, context):
         del args[0]
     except (TypeError, IndexError):
         update.effective_message.reply_text(
-            "Please give me a chat to echo to!"
+            "Tolong beri saya obrolan untuk digemakan!"
         )
     to_send = " ".join(args)
     if len(to_send) >= 2:
@@ -307,11 +291,11 @@ def snipe(update, context):
         except TelegramError:
             LOGGER.warning("Couldn't send to group %s", str(chat_id))
             update.effective_message.reply_text(
-                "Couldn't send the message. Perhaps I'm not part of that group?"
+                "Tidak dapat mengirim pesan. Mungkin saya bukan bagian dari grup itu?"
             )
     else:
         update.effective_message.reply_text(
-            "Where should i send??\nGive me the chat id!"
+            "Kemana saya harus mengirim??\nBeri aku id obrolan!"
         )
 
 
@@ -319,7 +303,7 @@ def snipe(update, context):
 def copypasta(update, context):
     message = update.effective_message
     if not message.reply_to_message:
-        message.reply_text("I need a message to make pasta.")
+        message.reply_text("Saya butuh pesan untuk membuat pasta.")
     else:
         emojis = [
             "😂",
@@ -375,7 +359,7 @@ def copypasta(update, context):
 def clapmoji(update, context):
     message = update.effective_message
     if not message.reply_to_message:
-        message.reply_text("I need a message to clap!")
+        message.reply_text("Saya butuh pesan untuk bertepuk tangan!")
     else:
         reply_text = "👏 "
         reply_text += message.reply_to_message.text.replace(" ", " 👏 ")
@@ -387,7 +371,7 @@ def clapmoji(update, context):
 def owo(update, context):
     message = update.effective_message
     if not message.reply_to_message:
-        message.reply_text("I need a message to meme.")
+        message.reply_text("Saya butuh pesan untuk meme.")
     else:
         faces = [
             "(・`ω´・)",
@@ -427,7 +411,7 @@ def owo(update, context):
 def stretch(update, context):
     message = update.effective_message
     if not message.reply_to_message:
-        message.reply_text("I need a message to streeeeeeeeetch.")
+        message.reply_text("Aku butuh pesan untuk streeeeeeetch.")
     else:
         count = random.randint(3, 10)
         reply_text = re.sub(
@@ -437,7 +421,7 @@ def stretch(update, context):
         )
         if len(reply_text) >= MAX_MESSAGE_LENGTH:
             return message.reply_text(
-                "Result of this message was too long for telegram!"
+                "Hasil pesan ini terlalu panjang untuk telegram!"
             )
 
         message.reply_to_message.reply_text(reply_text)
@@ -446,7 +430,7 @@ def stretch(update, context):
 def me_too(update, context):
     message = update.effective_message
     reply = random.choice(
-        ["Me too thanks", "Haha yes, me too", "Same lol", "Me irl"]
+        ["Aku juga terima kasih", "Haha ya, aku juga", "Sama lol", "Aku irl"]
     )
     message.reply_text(reply)
 
@@ -464,33 +448,33 @@ def goodmorning(update, context):
 
 
 __help__ = """
-Some dank memes for fun or whatever!
+Beberapa meme lembap untuk bersenang-senang atau apa pun!
 
- × /shrug | /cri: Get shrug or ToT.
- × /decide: Randomly answer yes no etc.
- × /abuse: Abuses the retard!
- × /table: Flips a table...
- × /runs: Reply a random string from an array of replies.
- × /slap: Slap a user, or get slapped if not a reply.
- × /pasta: Famous copypasta meme, try and see.
- × /clap: Claps on someones message!
- × /owo: UwU-fy whole text XD.
- × /roll: Rolls a dice.
- × /recite: Logical quotes to change your life.
+ × /shrug | /cri: Angkat bahu atau ToT.
+ × /decide: Jawab secara acak ya tidak dll.
+ × /abuse: Menyalahgunakan yang terbelakang!
+ × /table: Membalik meja...
+ × /runs: Balas string acak dari serangkaian balasan.
+ × /slap: Tampar pengguna, atau ditampar jika bukan balasan.
+ × /pasta: Meme copypasta terkenal, coba dan lihat
+ × /clap: Tepuk tangan pada pesan seseorang!
+ × /owo: UwU-fy seluruh teks XD.
+ × /roll: Melempar dadu.
+ × /recite: Kutipan logis untuk mengubah hidup Anda
  × /stretch:  streeeeeeetch iiiiiiit.
- × /warm: Hug a user warmly, or get hugged if not a reply.
- × /punch: Punch a user, or get punched if not a reply.
- × /police: Give Police siren Animation
+ × /warm: Peluk pengguna dengan hangat, atau peluk jika bukan balasan.
+ × /punch: Pukul pengguna, atau dapatkan pukulan jika bukan balasan.
+ × /police: Berikan Animasi sirene Polisi
 
-*Regex based memes:*
+*Meme berbasis regex:*
 
-`/decide` can be also used with regex like: `ubotindo What? <question>: randomly answer "Yes, No" etc.`
+`/decide` bisa juga digunakan dengan regex jika suka: `kaga Apa? <pertanyaan>: menjawab acak "Yes, No" dll.`
 
-Some other regex filters are:
-`me too` | `good morning` | `good night`.
+Beberapa filter regex lainnya adalah:
+`saya juga` | `selamat pagi` | `selamat malam`.
 
-Userbotindobot will reply random strings accordingly when these words are used!
-All regex filters can be disabled incase u don't want... like: `/disable metoo`.
+KagaRobot akan membalas string acak sesuai saat kata-kata ini digunakan!
+Semua filter regex dapat dinonaktifkan jika Anda tidak ingin ... suka: `/disable sayajuga`.
 
 """
 
@@ -498,7 +482,7 @@ __mod_name__ = "Memes"
 
 SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug, run_async=True)
 DECIDE_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(ubotindo)"), decide, friendly="decide", run_async=True
+    Filters.regex(r"(?i)(kaga)"), decide, friendly="decide", run_async=True
 )
 SNIPE_HANDLER = CommandHandler(
     "snipe",
@@ -527,7 +511,7 @@ CLAP_HANDLER = DisableAbleCommandHandler("clap", clapmoji, run_async=True)
 OWO_HANDLER = DisableAbleCommandHandler("owo", owo, run_async=True)
 STRECH_HANDLER = DisableAbleCommandHandler("stretch", stretch, run_async=True)
 MEETOO_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(me too)"), me_too, friendly="metoo", run_async=True
+    Filters.regex(r"(?i)(saya juga)"), me_too, friendly="sayajuga", run_async=True
 )
 RECITE_HANDLER = DisableAbleCommandHandler("recite", recite, run_async=True)
 DICE_HANDLER = DisableAbleCommandHandler("roll", dice, run_async=True)
@@ -535,15 +519,15 @@ YESNOWTF_HANDLER = DisableAbleCommandHandler(
     "decide", yesnowtf, run_async=True
 )
 GDMORNING_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(good morning)"),
+    Filters.regex(r"(?i)(selamat pagi)"),
     goodmorning,
-    friendly="goodmorning",
+    friendly="selamatpagi",
     run_async=True,
 )
 GDNIGHT_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(good night)"),
+    Filters.regex(r"(?i)(selamat malam)"),
     goodnight,
-    friendly="goodnight",
+    friendly="selamatmalam",
     run_async=True,
 )
 
