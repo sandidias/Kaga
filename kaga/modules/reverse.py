@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import os
 import re
 import urllib
@@ -53,7 +37,7 @@ def reverse(update, context):
         elif reply.document:
             file_id = reply.document.file_id
         else:
-            msg.reply_text("Reply to an image or sticker to lookup.")
+            msg.reply_text("Balas gambar atau stiker untuk dicari.")
             return
         image_file = context.bot.get_file(file_id)
         image_file.download(imagename)
@@ -77,17 +61,17 @@ def reverse(update, context):
             img_link = splatargs[1]
             lim = 2
         else:
-            msg.reply_text("/reverse <link> <amount of images to return.>")
+            msg.reply_text("/reverse <link> <jumlah gambar untuk dikembalikan.>")
             return
         try:
             urllib.request.urlretrieve(img_link, imagename)
         except HTTPError as HE:
             if HE.reason == "Not Found":
-                msg.reply_text("Image not found.")
+                msg.reply_text("Gambar tidak ditemukan.")
                 return
             elif HE.reason == "Forbidden":
                 msg.reply_text(
-                    "Couldn't access the provided link, The website might have blocked accessing to the website by bot or the website does not existed."
+                    "Tidak dapat mengakses tautan yang disediakan, Situs web mungkin telah memblokir akses ke situs web dengan bot atau situs web tidak ada."
                 )
                 return
         except URLError as UE:
@@ -95,12 +79,12 @@ def reverse(update, context):
             return
         except ValueError as VE:
             msg.reply_text(
-                f"{VE}\nPlease try again using http or https protocol."
+                f"{VE}\nHarap coba lagi menggunakan protokol http atau https."
             )
             return
     else:
         msg.reply_markdown(
-            "Please reply to a sticker, or an image to search it!\nDo you know that you can search an image with a link too? `/reverse [picturelink] <amount>`."
+            "Harap balas stiker, atau gambar untuk mencarinya!\nTahukah Anda bahwa Anda juga dapat mencari gambar dengan tautan? `/reverse [picturelink] <amount>`."
         )
         return
 
@@ -118,14 +102,14 @@ def reverse(update, context):
         if response != 400:
             xx = context.bot.send_message(
                 chat_id,
-                "Image was successfully uploaded to Google."
-                "\nParsing source now. Maybe.",
+                "Gambar berhasil diunggah ke Google."
+                "\nMencari sumber sekarang. Mungkin.",
                 reply_to_message_id=rtmid,
             )
         else:
             xx = context.bot.send_message(
                 chat_id,
-                "Google told me to go away.",
+                "Google menyuruh saya pergi.",
                 reply_to_message_id=rtmid,
             )
             return
@@ -140,19 +124,19 @@ def reverse(update, context):
 
         if guess and imgspage:
             xx.edit_text(
-                f"[{guess}]({fetchUrl})\nLooking for images...",
+                f"[{guess}]({fetchUrl})\nMencari gambar...",
                 parse_mode="Markdown",
                 disable_web_page_preview=True,
             )
         else:
-            xx.edit_text("Couldn't find anything.")
+            xx.edit_text("Tidak dapat menemukan apa pun.")
             return
 
         images = scam(imgspage, lim)
         if len(images) == 0:
             xx.edit_text(
-                f"[{guess}]({fetchUrl})\n[Visually similar images]({imgspage})"
-                "\nCouldn't fetch any images.",
+                f"[{guess}]({fetchUrl})\n[Gambar yang mirip secara visual]({imgspage})"
+                "\nTidak dapat mengambil gambar apa pun.",
                 parse_mode="Markdown",
             )
             return
@@ -166,7 +150,7 @@ def reverse(update, context):
             chat_id=chat_id, media=imglinks, reply_to_message_id=rtmid
         )
         xx.edit_text(
-            f"[{guess}]({fetchUrl})\n[Visually similar images]({imgspage})",
+            f"[{guess}]({fetchUrl})\n[Gambar yang mirip secara visual]({imgspage})",
             parse_mode="Markdown",
             disable_web_page_preview=True,
         )
