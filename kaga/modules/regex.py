@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import re
 import sre_constants
 
@@ -100,7 +84,7 @@ def sed(update, context):
 
         if not repl:
             update.effective_message.reply_to_message.reply_text(
-                "You're trying to replace... " "nothing with something?"
+                "Anda mencoba mengganti ... " " tidak ada apa-apa dengan sesuatu?"
             )
             return
 
@@ -108,7 +92,7 @@ def sed(update, context):
 
             # Protects bot from retarded geys -_-
             if infinite_checker(repl):
-                return update.effective_message.reply_text("Nice try -_-")
+                return update.effective_message.reply_text("Usaha yang bagus -_-")
 
             if "i" in flags and "g" in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
@@ -124,14 +108,14 @@ def sed(update, context):
             LOGGER.warning(update.effective_message.text)
             LOGGER.exception("SRE constant error")
             update.effective_message.reply_text(
-                "Do you even sed? Apparently not."
+                "Apakah kamu bahkan sed? Sepertinya tidak."
             )
             return
 
         # empty string errors -_-
         if len(text) >= telegram.MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(
-                "The result of the sed command was too long for \
+                "Hasil dari perintah sed terlalu lama untuk \
                                                  telegram!"
             )
         elif text:
