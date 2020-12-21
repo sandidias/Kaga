@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import datetime
 import html
 import os
@@ -46,11 +30,11 @@ def leavechat(update, context):
         del args[0]
         try:
             bot.leave_chat(int(chat_id))
-            update.effective_message.reply_text("Left the group successfully!")
+            update.effective_message.reply_text("Berhasil keluar dari grup!")
         except telegram.TelegramError:
-            update.effective_message.reply_text("Attempt failed.")
+            update.effective_message.reply_text("Percobaan gagal.")
     else:
-        update.effective_message.reply_text("Give me a valid chat id")
+        update.effective_message.reply_text("Beri saya id obrolan yang valid")
 
 
 @typing_action
@@ -67,8 +51,8 @@ def ping(update, context):
 
 @typing_action
 def get_bot_ip(update, context):
-    """Sends the bot's IP address, so as to be able to ssh in if necessary.
-    OWNER ONLY.
+    """Mengirimkan alamat IP bot, agar dapat melakukan ssh jika perlu.
+    HANYA PEMILIK.
     """
     res = requests.get("http://ipinfo.io/ip")
     update.message.reply_text(res.text)
@@ -77,7 +61,7 @@ def get_bot_ip(update, context):
 @typing_action
 def speedtst(update, context):
     message = update.effective_message
-    ed_msg = message.reply_text("Running high speed test . . .")
+    ed_msg = message.reply_text("Menjalankan tes kecepatan tinggi . . .")
     test = speedtest.Speedtest()
     test.get_best_server()
     test.download()
@@ -129,7 +113,7 @@ def system_status(update, context):
 
 
 def speed_convert(size):
-    """Hi human, you can't read bytes?"""
+    """Hai manusia, Anda tidak bisa membaca byte?"""
     power = 2 ** 10
     zero = 0
     units = {0: "", 1: "Kb/s", 2: "Mb/s", 3: "Gb/s", 4: "Tb/s"}
@@ -142,25 +126,25 @@ def speed_convert(size):
 @typing_action
 def gitpull(update, context):
     sent_msg = update.effective_message.reply_text(
-        "Pulling all changes from remote..."
+        "Menarik semua perubahan dari jarak jauh..."
     )
     subprocess.Popen("git pull", stdout=subprocess.PIPE, shell=True)
 
     sent_msg_text = (
         sent_msg.text
-        + "\n\nChanges pulled... I guess..\nContinue to restart with /reboot "
+        + "\n\nPerubahan ditarik ... Kurasa..\nLanjutkan untuk memulai ulang dengan /reboot "
     )
     sent_msg.edit_text(sent_msg_text)
 
 
 def stop_and_restart():
-        """Kill old instance, replace the new one"""
+        """Bunuh instance lama, ganti yang baru"""
         updater.stop()
         os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 def restart(update, context):
-        update.message.reply_text('Bot is restarting...')
+        update.message.reply_text('Bot sedang memulai ulang...')
         Thread(target=stop_and_restart).start()
 
 
