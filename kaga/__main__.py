@@ -47,7 +47,7 @@ from kaga.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Hai, perkenalkan nama saya adalah *{dispatcher.bot.first_name}*.
+Hai {dispatcher.user.first_name}, perkenalkan nama saya adalah *{dispatcher.bot.first_name}*.
 Saya adalah bot manajemen grup bertema Anime dengan banyak Fitur Khusus.
 Anda dapat menemukan daftar perintah yang tersedia dengan /help.
 
@@ -807,7 +807,7 @@ def main():
         updater.start_polling(timeout=15, read_latency=5, clean=True)
         if MESSAGE_DUMP:
             updater.bot.send_message(
-                chat_id=MESSAGE_DUMP, text="System Started..."
+                chat_id=MESSAGE_DUMP, text="Sistem Dimulai..."
             )
 
     updater.idle()
