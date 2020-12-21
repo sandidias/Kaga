@@ -1,18 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """Afk module: Tell anyone if you away from keyboard."""
 import random
 from time import sleep
@@ -51,7 +36,7 @@ def afk(update, context):
         reason = args[1]
         if len(reason) > 100:
             reason = reason[:100]
-            notice = "\nYour afk reason was shortened to 100 characters."
+            notice = "\nAlasan afk Anda disingkat menjadi 100 karakter."
     else:
         reason = ""
 
@@ -82,14 +67,14 @@ def no_longer_afk(update, context):
         firstname = update.effective_user.first_name
         try:
             options = [
-                "{} is here!",
-                "{} is back!",
-                "{} is now in the chat!",
-                "{} is awake!",
-                "{} is back online!",
-                "{} is finally here!",
-                "Welcome back! {}",
-                "Where is {}?\nIn the chat!",
+                "{} ada di sini!",
+                "{} telah kembali!",
+                "{} sekarang sedang mengobrol!",
+                "{} sudah bangun!",
+                "{} kembali online!",
+                "{} telah muncul di sini!",
+                "Selamat datang kembali! {}",
+                "Dimana {}?\nOh, dia sudah didalam obrolan!",
             ]
             chosen_option = random.choice(options)
             unafk = update.effective_message.reply_text(
@@ -169,7 +154,7 @@ def check_afk(update, context, user_id, fst_name, userc_id):
         else:
             if int(userc_id) == int(user_id):
                 return
-            res = "<b>{}</b> is away from keyboard! says it's because of <b>Reason:</b> <code>{}</code>".format(
+            res = "<b>{}</b> jauh dari keyboard! mengatakan itu karena <b>Alasan:</b> <code>{}</code>".format(
                 fst_name, user["reason"])
             replafk = update.effective_message.reply_text(
                 res, parse_mode="html"
@@ -186,10 +171,10 @@ def __gdpr__(user_id):
 
 
 __help__ = """
-When marked as AFK, any mentions will be replied to with a message to say you're not available!
+Saat ditandai sebagai AFK, setiap sebutan akan dibalas dengan pesan yang mengatakan Anda tidak tersedia!
 
- × /afk <reason>: Mark yourself as AFK.
- × brb <reason>: Same as the afk command - but not a command.
+ × /afk <alasan>: Tandai diri Anda sebagai AFK.
+ × brb <alasan>: Sama seperti perintah afk - tetapi bukan perintah.
 """
 
 
