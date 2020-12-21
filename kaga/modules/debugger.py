@@ -15,9 +15,9 @@ def logs(update, context):
             document=f,
             filename=f.name,
             chat_id=user.id,
-            caption="This logs that I saved",
+            caption="Log ini yang saya simpan",
         )
-        update.effective_message.reply_text("I am send log to your pm 💌")
+        update.effective_message.reply_text("Saya mengirim log ke pm Anda 💌")
 
 
 LOG_HANDLER = CommandHandler(
