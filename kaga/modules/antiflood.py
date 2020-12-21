@@ -376,7 +376,7 @@ def __chat_settings__(chat_id, user_id):
 __help__ = """
 Kau tahu bagaimana kadang-kadang, orang bergabung, mengirim 100 pesan, dan merusak obrolan Anda? Dengan antiflood, itu tidak terjadi lagi!
 
-Antiflood memungkinkan Anda mengambil tindakan pada pengguna yang mengirim lebih dari x pesan berturut-turut. Melebihi flood yang ditetapkan 
+Antiflood memungkinkan Anda mengambil tindakan pada pengguna yang mengirim lebih dari x pesan berturut-turut. Melebihi flood yang ditetapkan \
 akan mengakibatkan pembatasan pengguna tersebut.
 
  × /flood: Dapatkan setelan pengendalian flood saat ini
