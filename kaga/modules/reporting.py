@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import html
 from typing import Optional
 
@@ -64,7 +48,7 @@ def report_setting(update, context):
                     {"$set": {'should_report': True}},
                     upsert=True)
                 msg.reply_text(
-                    "Turned on reporting! You'll be notified whenever anyone reports something."
+                    "Aktifkan pelaporan! Anda akan diberi tahu setiap kali ada yang melaporkan sesuatu."
                 )
 
             elif args[0] in ("no", "off", "false"):
@@ -73,11 +57,12 @@ def report_setting(update, context):
                     {"$set": {'should_report': False}},
                     upsert=True)
                 msg.reply_text(
-                    "Turned off reporting! You wont get any reports."
+                    "Nonaktifkan pelaporan! Anda tidak akan mendapatkan laporan apapun
+."
                 )
         else:
             msg.reply_text(
-                "Your current report preference is: `{}`".format(
+                "Preferensi laporan Anda saat ini adalah: `{}`".format(
                     user_should_report(chat.id)
                 ),
                 parse_mode=ParseMode.MARKDOWN,
@@ -91,8 +76,8 @@ def report_setting(update, context):
                     {"$set": {'should_report': True}},
                     upsert=True)
                 msg.reply_text(
-                    "Turned on reporting! Admins who have turned on reports will be notified when /report "
-                    "or @admin are called."
+                    "Aktifkan pelaporan! Admin yang telah mengaktifkan laporan akan diberi tahu ketika /report "
+                    "atau sebut @admin."
                 )
 
             elif args[0] in ("no", "off", "false"):
@@ -101,11 +86,11 @@ def report_setting(update, context):
                     {"$set": {'should_report': False}},
                     upsert=True)
                 msg.reply_text(
-                    "Turned off reporting! No admins will be notified on /report or @admin."
+                    "Nonaktifkan pelaporan! Tidak ada admin yang akan diberitahukan pada /report atau @admin."
                 )
         else:
             msg.reply_text(
-                "This chat's current setting is: `{}`".format(
+                "Pengaturan obrolan saat ini adalah: `{}`".format(
                     chat_should_report(chat.id)
                 ),
                 parse_mode=ParseMode.MARKDOWN,
@@ -125,60 +110,70 @@ def report(update, context) -> str:
         reported_user = message.reply_to_message.from_user
         chat_name = chat.title or chat.first or chat.username
         admin_list = chat.get_administrators()
-        update.effective_message
 
         isadmeme = chat.get_member(reported_user.id).status
         if isadmeme == "administrator" or isadmeme == "creator":
             return ""  # No point of reporting admins!
 
         if user.id == reported_user.id:
-            message.reply_text("Why the hell you're reporting yourself?")
+            message.reply_text("Kenapa kamu melaporkan dirimu sendiri?")
             return ""
 
         if reported_user.id == context.bot.id:
-            message.reply_text("I'm not gonna report myself!")
+            message.reply_text("Saya tidak akan melaporkan diri saya sendiri!")
             return ""
 
         if chat.username and chat.type == Chat.SUPERGROUP:
 
-            reported = f"Reported {mention_html(reported_user.id, reported_user.first_name)} to the admins!"
+            reported = f"Dilaporkan {mention_html(reported_user.id, reported_user.first_name)} kepada admin!"
 
             msg = (
-                f"<b>Report from: </b>{html.escape(chat.title)}\n"
-                f"<b> × Report by:</b> {mention_html(user.id, user.first_name)}(<code>{user.id}</code>)\n"
-                f"<b> × Reported user:</b> {mention_html(reported_user.id, reported_user.first_name)} (<code>{reported_user.id}</code>)\n"
+                f"<b>Laporan dari: </b>{html.escape(chat.title)}\n"
+                f"<b> × Laporkan oleh:</b> {mention_html(user.id, user.first_name)}(<code>{user.id}</code>)\n"
+                f"<b> × engguna yang dilaporkan:</b> {mention_html(reported_user.id, reported_user.first_name)} (<code>{reported_user.id}</code>)\n"
             )
-            link = f'<b> × Reported message:</b> <a href="https://t.me/{chat.username}/{message.reply_to_message.message_id}">click here</a>'
+            link = f'<b> × Pesan yang dilaporkan:</b> <a href="https://t.me/{chat.username}/{message.reply_to_message.message_id}">klik disini</a>'
             should_forward = False
             keyboard = [
                 [
                     InlineKeyboardButton(
-                        "💬 Message",
+                        "💬 Pesan",
                         url=f"https://t.me/{chat.username}/{message.reply_to_message.message_id}",
                     ),
                     InlineKeyboardButton(
-                        "⚽ Kick",
+                        "⚽ Tendang",
                         callback_data=f"report_{chat.id}=kick={reported_user.id}={reported_user.first_name}",
                     ),
                 ],
                 [
                     InlineKeyboardButton(
-                        "⛔️ Ban",
+                        "⛔️ Melarang",
                         callback_data=f"report_{chat.id}=banned={reported_user.id}={reported_user.first_name}",
                     ),
                     InlineKeyboardButton(
-                        "❎ Delete Message",
+                        "❎ Hapus pesan",
                         callback_data=f"report_{chat.id}=delete={reported_user.id}={message.reply_to_message.message_id}",
                     ),
                 ],
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
         else:
-            reported = f"Reported {mention_html(reported_user.id, reported_user.first_name)} to the admins!"
+            reported = f"Dilaporkan {mention_html(reported_user.id, reported_user.first_name)} kepada admin!"
 
-            msg = f'{mention_html(user.id, user.first_name)} is calling for admins in "{html.escape(chat_name)}"!'
+            msg = f'{mention_html(user.id, user.first_name)} memanggil admin masuk "{html.escape(chat_name)}"!'
             link = ""
             should_forward = True
+            keyboard = [
+                InlineKeyboardButton(
+                    "⚽ Tendang",
+                    callback_data=f"report_{chat.id}=kick={reported_user.id}={reported_user.first_name}",
+                ),
+                InlineKeyboardButton(
+                    "⛔️ Larang",
+                    callback_data=f"report_{chat.id}=banned={reported_user.id}={reported_user.first_name}",
+                ),
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
 
         for admin in admin_list:
             if admin.user.is_bot:  # can't message bots
@@ -214,8 +209,9 @@ def report(update, context) -> str:
             reported, parse_mode=ParseMode.HTML
         )
         return msg
-
-    return ""
+    else:
+        message.reply_text("Hei ... Apa yang harus aku laporkan!")
+        return ""
 
 
 def report_buttons(update, context):
@@ -225,10 +221,10 @@ def report_buttons(update, context):
         try:
             context.bot.kickChatMember(splitter[0], splitter[2])
             context.bot.unbanChatMember(splitter[0], splitter[2])
-            query.answer("User has been succesfully kicked")
+            query.answer("Pengguna telah berhasil ditendang")
             return ""
         except Exception as err:
-            query.answer("⚠️ Failed to kick!")
+            query.answer("⚠️ Gagal menendang!")
             context.bot.sendMessage(
                 text=f"Error: {err}",
                 chat_id=query.message.chat_id,
@@ -237,7 +233,7 @@ def report_buttons(update, context):
     elif splitter[1] == "banned":
         try:
             context.bot.kickChatMember(splitter[0], splitter[2])
-            query.answer("User has been succesfully banned")
+            query.answer("Pengguna telah berhasil diblokir")
             return ""
         except Exception as err:
             context.bot.sendMessage(
@@ -245,11 +241,11 @@ def report_buttons(update, context):
                 chat_id=query.message.chat_id,
                 parse_mode=ParseMode.HTML,
             )
-            query.answer("⚠️ Failed to Ban")
+            query.answer("⚠️ Gagal Mencekal")
     elif splitter[1] == "delete":
         try:
             context.bot.deleteMessage(splitter[0], splitter[3])
-            query.answer("Message has been deleted!")
+            query.answer("Pesan telah dihapus!")
             return ""
         except Exception as err:
             context.bot.sendMessage(
@@ -257,7 +253,7 @@ def report_buttons(update, context):
                 chat_id=query.message.chat_id,
                 parse_mode=ParseMode.HTML,
             )
-            query.answer("⚠️ Failed to delete message!")
+            query.answer("⚠️ Gagal menghapus pesan!")
 
 
 def user_should_report(user_id: int) -> bool:
@@ -282,13 +278,13 @@ def __migrate__(old_chat_id, new_chat_id):
 
 
 def __chat_settings__(chat_id, user_id):
-    return "This chat is setup to send user reports to admins, via /report and @admin: `{}`".format(
+    return "Obrolan ini disiapkan untuk mengirim laporan pengguna ke admin, melalui /report atau @admin: `{}`".format(
         chat_should_report(chat_id)
     )
 
 
 def __user_settings__(user_id):
-    return "You receive reports from chats you're admin in: `{}`.\nToggle this with /reports in PM.".format(
+    return "Anda menerima laporan dari obrolan yang Anda kelola: `{}`.\nAlihkan ini dengan /reports di PM.".format(
         user_should_report(user_id)
     )
 
@@ -296,23 +292,23 @@ def __user_settings__(user_id):
 __mod_name__ = "Reporting"
 
 __help__ = """
-We're all busy people who don't have time to monitor our groups 24/7. But how do you \
-react if someone in your group is spamming?
+Kita semua adalah orang sibuk yang tidak punya waktu untuk memantau grup kita 24/7. Tapi bagaimana kabarmu \
+bereaksi jika seseorang di grup Anda melakukan spamming?
 
-Presenting reports; if someone in your group thinks someone needs reporting, they now have \
-an easy way to call all admins.
+Menyajikan laporan; jika seseorang di grup Anda berpikir seseorang perlu melaporkan, mereka sekarang punya \
+cara mudah untuk memanggil semua admin.
 
-*Admin only:*
- × /reports <on/off>: Change report setting, or view current status.
-   • If done in pm, toggles your status.
-   • If in chat, toggles that chat's status.
+*Khusus Admin:*
+ × /reports <on/off>: Ubah setelan laporan, atau lihat status saat ini.
+   • Jika selesai di pm, matikan status Anda.
+   • Jika dalam obrolan, matikan status obrolan itu.
 
-To report a user, simply reply to user's message with @admin or /report. \
-This message tags all the chat admins; same as if they had been @'ed.
-You MUST reply to a message to report a user; you can't just use @admin to tag admins for no reason!
+Untuk melaporkan pengguna, cukup balas pesan pengguna dengan @admin atau /report. \
+Pesan ini menandai semua admin obrolan; sama seperti jika mereka telah @ 'ed.
+Anda HARUS membalas pesan untuk melaporkan pengguna; Anda tidak bisa begitu saja menggunakan @admin untuk menandai admin tanpa alasan!
 
-Note that the report commands do not work when admins use them; or when used to report an admin. Bot assumes that \
-admins don't need to report, or be reported!
+Perhatikan bahwa perintah laporan tidak berfungsi saat admin menggunakannya; atau saat digunakan untuk melaporkan admin. Bot mengasumsikan itu \
+admin tidak perlu melaporkan, atau dilaporkan!
 """
 REPORT_HANDLER = CommandHandler(
     "report", report, filters=Filters.chat_type.groups, run_async=True
