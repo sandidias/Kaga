@@ -47,7 +47,7 @@ from kaga.modules.helper_funcs.alternate import typing_action
 
 
 PM_START_TEXT = f"""
-Hai {dispatcher.user.first_name}, perkenalkan nama saya adalah *{dispatcher.bot.first_name}*.
+Hai, perkenalkan nama saya adalah *{dispatcher.bot.first_name}*.
 Saya adalah bot manajemen grup bertema Anime dengan banyak Fitur Khusus.
 Anda dapat menemukan daftar perintah yang tersedia dengan /help.
 
