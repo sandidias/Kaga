@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 from typing import Union
 
 from future.utils import string_types
@@ -125,7 +109,7 @@ if is_module_loaded(FILENAME):
             if update.effective_message.chat.type == "private":
                 send_message(
                     update.effective_message,
-                    "This command meant to be used in group not in PM",
+                    "Perintah ini dimaksudkan untuk digunakan di grup bukan di PM",
                 )
                 return ""
             chat = update.effective_chat
@@ -139,11 +123,11 @@ if is_module_loaded(FILENAME):
             if disable_cmd in set(DISABLE_CMDS + DISABLE_OTHER):
                 disable_db.disable_command(chat.id, disable_cmd)
                 if conn:
-                    text = "Disabled the use of `{}` command in *{}*!".format(
+                    text = "Menonaktifkan penggunaan perintah `{}` di *{}*!".format(
                         disable_cmd, chat_name
                     )
                 else:
-                    text = "Disabled the use of `{}` command!".format(
+                    text = "Menonaktifkan penggunaan perintah `{}`!".format(
                         disable_cmd
                     )
                 send_message(
@@ -153,11 +137,11 @@ if is_module_loaded(FILENAME):
                 )
             else:
                 send_message(
-                    update.effective_message, "This command can't be disabled"
+                    update.effective_message, "Perintah ini tidak dapat dinonaktifkan"
                 )
 
         else:
-            send_message(update.effective_message, "What should I disable?")
+            send_message(update.effective_message, "Apa yang harus saya nonaktifkan?")
 
     @user_admin
     @typing_action
@@ -174,7 +158,7 @@ if is_module_loaded(FILENAME):
             if update.effective_message.chat.type == "private":
                 send_message(
                     update.effective_message,
-                    "This command is meant to be used in group not in PM",
+                    "Perintah ini dimaksudkan untuk digunakan di grup bukan di PM",
                 )
                 return ""
             chat = update.effective_chat
@@ -188,11 +172,11 @@ if is_module_loaded(FILENAME):
 
             if disable_db.enable_command(chat.id, enable_cmd):
                 if conn:
-                    text = "Enabled the use of `{}` command in *{}*!".format(
+                    text = "Mengaktifkan penggunaan perintah `{}` di *{}*!".format(
                         enable_cmd, chat_name
                     )
                 else:
-                    text = "Enabled the use of `{}` command!".format(
+                    text = "Mengaktifkan penggunaan perintah `{}`!".format(
                         enable_cmd
                     )
                 send_message(
@@ -202,11 +186,11 @@ if is_module_loaded(FILENAME):
                 )
             else:
                 send_message(
-                    update.effective_message, "Is that even disabled?"
+                    update.effective_message, "Apakah itu bahkan dinonaktifkan?"
                 )
 
         else:
-            send_message(update.effective_message, "What should I enable?")
+            send_message(update.effective_message, "Apa yang harus saya aktifkan?")
 
     @user_admin
     # @typing_action
@@ -216,22 +200,22 @@ if is_module_loaded(FILENAME):
             for cmd in set(DISABLE_CMDS + DISABLE_OTHER):
                 result += " - `{}`\n".format(escape_markdown(str(cmd)))
             update.effective_message.reply_text(
-                "The following commands are toggleable:\n{}".format(result),
+                "Perintah berikut dapat diubah:\n{}".format(result),
                 parse_mode=ParseMode.MARKDOWN,
             )
         else:
-            update.effective_message.reply_text("No commands can be disabled.")
+            update.effective_message.reply_text("Tidak ada perintah yang dapat dinonaktifkan.")
 
     # do not async
     def build_curr_disabled(chat_id: Union[str, int]) -> str:
         disabled = disable_db.get_all_disabled(chat_id)
         if not disabled:
-            return "No commands are disabled!"
+            return "Tidak ada perintah yang dinonaktifkan!"
 
         result = ""
         for cmd in disabled:
             result += " - `{}`\n".format(escape_markdown(cmd))
-        return "The following commands are currently restricted:\n{}".format(
+        return "Perintah berikut saat ini dibatasi:\n{}".format(
             result
         )
 
@@ -246,7 +230,7 @@ if is_module_loaded(FILENAME):
             if update.effective_message.chat.type == "private":
                 send_message(
                     update.effective_message,
-                    "This command is meant to use in group not in PM",
+                    "Perintah ini dimaksudkan untuk digunakan dalam grup bukan di PM",
                 )
                 return ""
             chat = update.effective_chat
@@ -262,7 +246,7 @@ if is_module_loaded(FILENAME):
             disable_db.disable_command(chat_id, disable_cmd)
 
     def __stats__():
-        return "× {} disabled items, across {} chats.".format(
+        return "× {} item dinonaktifkan, di {} obrolan.".format(
             disable_db.num_disabled(), disable_db.num_chats()
         )
 
@@ -275,18 +259,18 @@ if is_module_loaded(FILENAME):
     __mod_name__ = "Disabling"
 
     __help__ = """
-Not everyone wants every feature that the bot offers. Some commands are best \
-left unused; to avoid spam and abuse.
+Tidak semua orang menginginkan setiap fitur yang ditawarkan bot. Beberapa perintah adalah yang terbaik \
+dibiarkan tidak digunakan; untuk menghindari spam dan penyalahgunaan.
 
-This allows you to disable some commonly used commands, so noone can use them. \
-It'll also allow you to autodelete them, stopping people from bluetexting.
+Ini memungkinkan Anda untuk menonaktifkan beberapa perintah yang umum digunakan, jadi tidak ada yang bisa menggunakannya. \
+Ini juga akan memungkinkan Anda untuk menghapusnya secara otomatis, menghentikan orang dari bluetexting.
 
- × /cmds: Check the current status of disabled commands
+ × /cmds: Periksa status saat ini dari perintah yang dinonaktifkan
 
-*Admin only:*
- × /enable <cmd name>: Enable that command
- × /disable <cmd name>: Disable that command
- × /listcmds: List all possible disablable commands
+*Khusus Admin:*
+ × /enable <cmd name>: Aktifkan perintah itu
+ × /disable <cmd name>: Nonaktifkan perintah itu
+ × /listcmds: Buat daftar semua kemungkinan perintah yang dapat dinonaktifkan
     """
 
     DISABLE_HANDLER = CommandHandler(
