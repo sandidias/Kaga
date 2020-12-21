@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 from functools import wraps
 
 from kaga.modules.helper_funcs.misc import is_module_loaded
@@ -70,7 +54,7 @@ if is_module_loaded(FILENAME):
             if excp.message == "Chat not found":
                 bot.send_message(
                     orig_chat_id,
-                    "This log channel has been deleted - unsetting.",
+                    "Saluran log ini telah dihapus - tidak disetel.",
                 )
                 db.stop_chat_logging(orig_chat_id)
             else:
@@ -81,7 +65,7 @@ if is_module_loaded(FILENAME):
                 bot.send_message(
                     log_chat_id,
                     result
-                    + "\n\nFormatting has been disabled due to an unexpected error.",
+                    + "\n\nPemformatan telah dinonaktifkan karena kesalahan yang tidak terduga.",
                 )
 
     @user_admin
@@ -93,14 +77,14 @@ if is_module_loaded(FILENAME):
         if log_channel:
             log_channel_info = context.bot.get_chat(log_channel)
             message.reply_text(
-                "This group has all it's logs sent to: {} (`{}`)".format(
+                "Grup ini memiliki semua log yang dikirim ke: {} (`{}`)".format(
                     escape_markdown(log_channel_info.title), log_channel
                 ),
                 parse_mode=ParseMode.MARKDOWN,
             )
 
         else:
-            message.reply_text("No log channel has been set for this group!")
+            message.reply_text("Tidak ada saluran log yang disetel untuk grup ini!")
 
     @user_admin
     def setlog(update, context):
@@ -108,7 +92,7 @@ if is_module_loaded(FILENAME):
         chat = update.effective_chat
         if chat.type == chat.CHANNEL:
             message.reply_text(
-                "Now, forward the /setlog to the group you want to tie this channel to!"
+                "Sekarang, teruskan /setlog ke grup yang ingin Anda kaitkan dengan saluran ini!"
             )
 
         elif message.forward_from_chat:
@@ -126,7 +110,7 @@ if is_module_loaded(FILENAME):
             try:
                 context.bot.send_message(
                     message.forward_from_chat.id,
-                    "This channel has been set as the log channel for {}.".format(
+                    "Saluran ini telah ditetapkan sebagai saluran log untuk {}.".format(
                         chat.title or chat.first_name
                     ),
                 )
@@ -136,19 +120,19 @@ if is_module_loaded(FILENAME):
                     == "Forbidden: bot is not a member of the channel chat"
                 ):
                     context.bot.send_message(
-                        chat.id, "Successfully set log channel!"
+                        chat.id, "Berhasil menyetel saluran log!"
                     )
                 else:
                     LOGGER.exception("ERROR in setting the log channel.")
 
-            context.bot.send_message(chat.id, "Successfully set log channel!")
+            context.bot.send_message(chat.id, "Berhasil menyetel saluran log!")
 
         else:
             message.reply_text(
-                "The steps to set a log channel are:\n"
-                " - add bot to the desired channel\n"
-                " - send /setlog to the channel\n"
-                " - forward the /setlog to the group\n"
+                "Langkah-langkah untuk mengatur saluran log adalah:\n"
+                " - tambahkan bot ke saluran yang diinginkan\n"
+                " - kirim /setlog ke saluran\n"
+                " - meneruskan /setlog ke grup\n"
             )
 
     @user_admin
@@ -160,15 +144,15 @@ if is_module_loaded(FILENAME):
         if log_channel:
             context.bot.send_message(
                 log_channel,
-                "Channel has been unlinked from {}".format(chat.title),
+                "Tautan saluran telah dibatalkan dari {}".format(chat.title),
             )
-            message.reply_text("Log channel has been un-set.")
+            message.reply_text("Saluran log telah dilepas.")
 
         else:
-            message.reply_text("No log channel has been set yet!")
+            message.reply_text("Belum ada saluran log yang disetel!")
 
     def __stats__():
-        return "× {} log channels have been set.".format(db.num_logchannels())
+        return "× {} saluran log telah terlihat.".format(db.num_logchannels())
 
     def __migrate__(old_chat_id, new_chat_id):
         db.migrate_chat(old_chat_id, new_chat_id)
@@ -177,27 +161,27 @@ if is_module_loaded(FILENAME):
         log_channel = db.get_chat_log_channel(chat_id)
         if log_channel:
             log_channel_info = dispatcher.bot.get_chat(log_channel)
-            return "This group has all it's logs sent to: {} (`{}`)".format(
+            return "Grup ini memiliki semua log yang dikirim ke: {} (`{}`)".format(
                 escape_markdown(log_channel_info.title), log_channel
             )
-        return "No log channel is set for this group!"
+        return "Tidak ada saluran log yang disetel untuk grup ini!"
 
     __help__ = """
-Recent actions are nice, but they don't help you log every action taken by the bot. This is why you need log channels!
+Tindakan terbaru memang bagus, tetapi tidak membantu Anda mencatat setiap tindakan yang dilakukan oleh bot. Inilah mengapa Anda membutuhkan saluran log!
 
-Log channels can help you keep track of exactly what the other admins are doing. \
-Bans, Mutes, warns, notes - everything can be moderated.
+Saluran log dapat membantu Anda melacak dengan tepat apa yang dilakukan admin lain. \
+Bans, Mutes, warns, notes - semuanya bisa dimoderasi.
 
-*Admin only:*
-× /logchannel: Get log channel info
-× /setlog: Set the log channel.
-× /unsetlog: Unset the log channel.
+*khusus Admin:*
+× /logchannel: Dapatkan info saluran log
+× /setlog: Atur saluran log.
+× /unsetlog: Batalkan pengaturan saluran log.
 
-Setting the log channel is done by:
-× Add the bot to your channel, as an admin. This is done via the "add administrators" tab.
-× Send /setlog to your channel.
-× Forward the /setlog command to the group you wish to be logged.
-× Congratulations! All is set!
+Pengaturan saluran log dilakukan dengan:
+× Tambahkan bot ke saluran Anda, sebagai admin. Ini dilakukan melalui tab "tambahkan administrator".
+× Kirim /setlog ke saluran Anda
+× Meneruskan /setlog perintah ke grup yang Anda ingin login.
+× Selamat! Semua sudah siap!
 """
 
     __mod_name__ = "Logger"
