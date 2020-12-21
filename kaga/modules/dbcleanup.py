@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 from time import sleep
 
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -100,17 +84,17 @@ def get_invalid_gban(bot: Bot, update: Update, remove: bool = False):
 def dbcleanup(update, context):
     msg = update.effective_message
 
-    msg.reply_text("Getting invalid chat count ...")
+    msg.reply_text("Mendapatkan jumlah obrolan yang tidak valid ...")
     invalid_chat_count = get_invalid_chats(context.bot, update)
 
-    msg.reply_text("Getting invalid gbanned count ...")
+    msg.reply_text("Mendapatkan jumlah larangan yang tidak valid ...")
     invalid_gban_count = get_invalid_gban(context.bot, update)
 
-    reply = f"Total invalid chats - {invalid_chat_count}\n"
-    reply += f"Total invalid gbanned users - {invalid_gban_count}"
+    reply = f"Total obrolan tidak valids - {invalid_chat_count}\n"
+    reply += f"Total pengguna gbanned yang tidak valid - {invalid_gban_count}"
 
     buttons = [
-        [InlineKeyboardButton("Cleanup DB", callback_data="db_cleanup")]
+        [InlineKeyboardButton("Membersihkan DB", callback_data="db_cleanup")]
     ]
 
     update.effective_message.reply_text(
@@ -171,15 +155,15 @@ def get_muted_chats(bot: Bot, update: Update, leave: bool = False):
 
 def leave_muted_chats(update, context):
     message = update.effective_message
-    progress_message = message.reply_text("Getting chat count ...")
+    progress_message = message.reply_text("Mendapatkan jumlah obrolan ...")
     muted_chats = get_muted_chats(context.bot, update)
 
     buttons = [
-        [InlineKeyboardButton("Leave chats", callback_data="db_leave_chat")]
+        [InlineKeyboardButton("Tinggalkan obrolan", callback_data="db_leave_chat")]
     ]
 
     update.effective_message.reply_text(
-        f"I am muted in {muted_chats} chats.",
+        f"Saya dibungkam dalam {muted_chats} obrolan.",
         reply_markup=InlineKeyboardMarkup(buttons),
     )
     progress_message.delete()
@@ -197,25 +181,25 @@ def callback_button(update, context):
     if query_type == "db_leave_chat":
         if query.from_user.id in DEV_USERS:
             bot.editMessageText(
-                "Leaving chats ...", chat_id, message.message_id
+                "Meninggalkan obrolan ...", chat_id, message.message_id
             )
             chat_count = get_muted_chats(bot, update, True)
-            bot.sendMessage(chat_id, f"Left {chat_count} chats.")
+            bot.sendMessage(chat_id, f"Keluar dari {chat_count} chat.")
         else:
-            query.answer("You are not allowed to use this.")
+            query.answer("Anda tidak diperbolehkan menggunakan ini.")
     elif query_type == "db_cleanup":
         if query.from_user.id in DEV_USERS:
             bot.editMessageText(
-                "Cleaning up DB ...", chat_id, message.message_id
+                "Membersihkan DB ...", chat_id, message.message_id
             )
             invalid_chat_count = get_invalid_chats(bot, update, True)
             invalid_gban_count = get_invalid_gban(bot, update, True)
-            reply = "Cleaned up {} chats and {} gbanned users from db.".format(
+            reply = "Membersihkan {} obrolan dan {} gban pengguna dari db.".format(
                 invalid_chat_count, invalid_gban_count
             )
             bot.sendMessage(chat_id, reply)
         else:
-            query.answer("You are not allowed to use this.")
+            query.answer("Anda tidak diperbolehkan menggunakan ini.")
 
 
 DB_CLEANUP_HANDLER = CommandHandler(
