@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import time
 
 from bs4 import BeautifulSoup
@@ -82,7 +66,7 @@ def device(update, context):
     args = context.args
     if len(args) == 0:
         reply = (
-            "No codename provided, write a codename for fetching informations."
+            "Tidak ada codename yang disediakan, tulis codename untuk mengambil informasi."
         )
         del_msg = update.effective_message.reply_text(
             "{}".format(reply),
@@ -113,7 +97,7 @@ def device(update, context):
             f"Codename: <code>{codename}</code>\n\n"
         )
     except KeyError:
-        reply = f"Couldn't find info about {device}!\n"
+        reply = f"Tidak dapat menemukan info tentang {device}!\n"
         del_msg = update.effective_message.reply_text(
             "{}".format(reply),
             parse_mode=ParseMode.MARKDOWN,
@@ -140,7 +124,7 @@ def twrp(update, context):
     args = context.args
     if len(args) == 0:
         reply = (
-            "No codename provided, write a codename for fetching informations."
+            "Tidak ada codename yang disediakan, tulis codename untuk mengambil informasi."
         )
         del_msg = update.effective_message.reply_text(
             "{}".format(reply),
@@ -158,7 +142,7 @@ def twrp(update, context):
     device = " ".join(args)
     url = get(f"https://eu.dl.twrp.me/{device}/")
     if url.status_code == 404:
-        reply = f"Couldn't find twrp downloads for {device}!\n"
+        reply = f"Tidak dapat menemukan unduhan twrp untuk {device}!\n"
         del_msg = update.effective_message.reply_text(
             "{}".format(reply),
             parse_mode=ParseMode.MARKDOWN,
@@ -174,7 +158,7 @@ def twrp(update, context):
             ):
                 return
     else:
-        reply = f"*Latest Official TWRP for {device}*\n"
+        reply = f"*TWRP Resmi terbaru untuk {device}*\n"
         db = get(DEVICES_DATA).json()
         newdevice = (
             device.strip("lte") if device.startswith("beyond") else device
@@ -216,7 +200,7 @@ def los(update, context) -> str:
 
     if device == "":
         reply_text = (
-            "*Please Type Your Device Codename*\nExample : `/los lavender`"
+            "*Silakan Ketikkan codename Perangkat Anda*\nContoh : `/los lavender`"
         )
         message.reply_text(
             reply_text,
@@ -243,7 +227,7 @@ def los(update, context) -> str:
         keyboard = [
             [
                 InlineKeyboardButton(
-                    text="Click Here To Downloads", url=f"{url}"
+                    text="Klik Di Sini Untuk Mengunduh", url=f"{url}"
                 )
             ]
         ]
@@ -257,7 +241,7 @@ def los(update, context) -> str:
 
     else:
         message.reply_text(
-            "`Couldn't find any results matching your query.`",
+            "`Tidak dapat menemukan hasil apa pun yang cocok dengan kueri Anda.`",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
         )
@@ -271,7 +255,7 @@ def gsi(update, context):
     usr = get(
         f"https://api.github.com/repos/phhusson/treble_experimentations/releases/latest"
     ).json()
-    reply_text = "*Gsi'S Latest release*\n"
+    reply_text = "*Rilis terbaru Gsi*\n"
     for i in range(len(usr)):
         try:
             name = usr["assets"][i]["name"]
@@ -294,7 +278,7 @@ def bootleg(update, context) -> str:
 
     if codename == "":
         message.reply_text(
-            "*Please Type Your Device Codename*\nExample : `/bootleg lavender`",
+            "*Silakan Ketikkan codename Perangkat Anda*\nContoh : `/bootleg lavender`",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
         )
@@ -324,7 +308,7 @@ def bootleg(update, context) -> str:
                 mirrorlink = None
         except KeyError:
             message.reply_text(
-                "`Couldn't find any results matching your query.`",
+                "`Tidak dapat menemukan hasil apa pun yang cocok dengan kueri Anda.`",
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
             )
@@ -333,14 +317,14 @@ def bootleg(update, context) -> str:
         reply_text = f"*BootlegersROM for {fullname}*\n"
         reply_text += f"*Download :* [{filename}]({downloadlink})\n"
         reply_text += f"*Size :* `{buildsize}`\n"
-        reply_text += f"*Build Date :* `{buildate}`\n"
+        reply_text += f"*Tanggal Build :* `{buildate}`\n"
         if mirrorlink is not None:
             reply_text += f"[Mirror link]({mirrorlink})"
 
         keyboard = [
             [
                 InlineKeyboardButton(
-                    text="Click Here To Downloads", url=f"{downloadlink}"
+                    text="Klik Di Sini Untuk Mengunduh", url=f"{downloadlink}"
                 )
             ]
         ]
@@ -363,14 +347,14 @@ def bootleg(update, context) -> str:
 
 
 __help__ = """
-Get Latest magisk relese, Twrp for your device or info about some device using its codename, Directly from Bot!
+Dapatkan relese magisk terbaru, Twrp untuk perangkat Anda atau info tentang beberapa perangkat yang menggunakan codename-nya, Langsung dari Bot!
 
-*Android related commands:*
+*Perintah terkait Android:*
 
- × /magisk - Gets the latest magisk release for Stable/Beta/Canary.
- × /device <codename> - Gets android device basic info from its codename.
- × /twrp <codename> -  Gets latest twrp for the android device using the codename.
- × /los <codename> - Gets Latest los build.
+ × /magisk - Mendapat rilis magisk terbaru untuk Stable/Beta/Canary.
+ × /device <codename> - Mendapat info dasar perangkat android dari codename-nya.
+ × /twrp <codename> -  Mendapat twrp terbaru untuk perangkat android menggunakan codename.
+ × /los <codename> - Mendapat build los terbaru.
 """
 
 __mod_name__ = "Android"
