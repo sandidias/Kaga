@@ -359,14 +359,14 @@ def manga(update: Update, context: CallbackContext):
 
 
 __help__ = """
-*AniList*
-Get information about anime, manga or characters with the help of this module! All data is fetched from [AniList](anilist.co).
-*Available commands:*
- - /anime <anime>: returns information about the anime.
- - /character <character>: returns information about the character.
- - /manga <manga>: returns information about the manga.
+*Anime*
+Dapatkan informasi tentang anime, manga, atau karakter dengan bantuan modul ini! Semua data diambil dari [AniList](anilist.co).
+*Perintah yang tersedia:*
+ - /anime <anime>: memberikan informasi tentang anime.
+ - /character <character>:  memberikan informasi tentang karakter tersebut.
+ - /manga <manga>:  memberikan informasi tentang manga.
 """
-__mod_name__ = "AniList"
+__mod_name__ = "Anime"
 
 
 AIRING_HANDLER = DisableAbleCommandHandler("airing", airing, run_async=True)
