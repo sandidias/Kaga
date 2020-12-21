@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import json
 import time
 
@@ -32,7 +16,7 @@ from kaga.modules.helper_funcs.alternate import typing_action
 def weather(update, context):
     args = context.args
     if len(args) == 0:
-        reply = "Write a location to check the weather."
+        reply = "Tulis lokasi untuk memeriksa cuaca."
         del_msg = update.effective_message.reply_text(
             "{}".format(reply),
             parse_mode=ParseMode.MARKDOWN,
@@ -55,7 +39,7 @@ def weather(update, context):
     request = requests.get(url)
     result = json.loads(request.text)
     if request.status_code != 200:
-        reply = "Location not valid."
+        reply = "Lokasi tidak valid."
         del_msg = update.effective_message.reply_text(
             "{}".format(reply),
             parse_mode=ParseMode.MARKDOWN,
@@ -84,7 +68,7 @@ def weather(update, context):
         conddet = weath["description"]
         country_name = cname[f"{result['sys']['country']}"]
     except KeyError:
-        update.effective_message.reply_text("Invalid Location!")
+        update.effective_message.reply_text("Lokasi Tidak Valid!")
         return
 
     if icon <= 232:  # Rain storm
@@ -122,7 +106,7 @@ def weather(update, context):
         temp = str(round(tF))
         return temp
 
-    reply = f"*Current weather for {cityname}, {country_name} is*:\n\n*Temperature:* `{celsius(curtemp)}°C ({fahr(curtemp)}ºF), feels like {celsius(feels_like)}°C ({fahr(feels_like)}ºF) \n`*Condition:* `{condmain}, {conddet}` {icon}\n*Humidity:* `{humidity}%`\n*Wind:* `{kmph[0]} km/h`\n"
+    reply = f"*Cuaca saat ini untuk {cityname}, {country_name} adalah*:\n\n*Temperatur:* `{celsius(curtemp)}°C ({fahr(curtemp)}ºF), terasa seperti {celsius(feels_like)}°C ({fahr(feels_like)}ºF) \n`*Kondisi:* `{condmain}, {conddet}` {icon}\n*Kelembaban:* `{humidity}%`\n*Angin:* `{kmph[0]} km/h`\n"
     del_msg = update.effective_message.reply_text(
         "{}".format(reply),
         parse_mode=ParseMode.MARKDOWN,
@@ -140,11 +124,11 @@ def weather(update, context):
 
 
 __help__ = """
-Weather module:
+Modul cuaca:
 
- × /weather <city>: Gets weather information of particular place!
+ × /weather <city>: Mendapat informasi cuaca dari tempat tertentu!
 
- \* To prevent spams weather command and the output will be deleted after 30 seconds
+ \* Untuk mencegah perintah cuaca spam dan hasilnya akan dihapus setelah 30 detik
 """
 
 __mod_name__ = "Weather"
