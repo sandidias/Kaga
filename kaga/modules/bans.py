@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import html
 
 from telegram import ParseMode
@@ -50,32 +34,32 @@ def ban(update, context):
     args = context.args
 
     if user_can_ban(chat, user, context.bot.id) is False:
-        message.reply_text("You don't have enough rights to ban users!")
+        message.reply_text("Anda tidak memiliki cukup hak untuk melarang pengguna!")
         return ""
 
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("Dude atleast refer some user to ban!")
+        message.reply_text("Setidaknya merujuk beberapa pengguna untuk melarang!")
         return ""
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("Saya tampaknya tidak dapat menemukan pengguna ini")
             return ""
         else:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
         message.reply_text(
-            "I'm not gonna ban an admin, don't make fun of yourself!"
+            "Saya tidak akan melarang admin, jangan mengejek diri sendiri!"
         )
         return ""
 
     if user_id == context.bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy or wot?")
+        message.reply_text("Saya tidak akan melarang diri saya sendiri, apakah Anda gila atau tidak?")
         return ""
 
     log = (
@@ -98,7 +82,7 @@ def ban(update, context):
         # sticker
         context.bot.sendMessage(
             chat.id,
-            "let {} walk the plank.".format(
+            "biarkan {} berjalan di papan.".format(
                 mention_html(member.user.id, member.user.first_name)
             ),
             parse_mode=ParseMode.HTML,
@@ -119,7 +103,7 @@ def ban(update, context):
                 chat.id,
                 excp.message,
             )
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("Sial, saya tidak bisa mencekal pengguna itu.")
 
     return ""
 
@@ -137,36 +121,36 @@ def temp_ban(update, context):
 
     if user_can_ban(chat, user, context.bot.id) is False:
         message.reply_text(
-            "You don't have enough rights to temporarily ban someone!"
+            "Anda tidak memiliki cukup hak untuk memblokir seseorang untuk sementara!"
         )
         return ""
 
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("Dude! atleast refer some user to ban...")
+        message.reply_text("Hai kawan! setidaknya rujuk beberapa pengguna untuk dicekal...")
         return ""
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("Sepertinya saya tidak dapat menemukan pengguna ini")
             return ""
         else:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("Wow! let's start banning Admins themselves?...")
+        message.reply_text("Wow! mari kita mulai memblokir Admin sendiri?...")
         return ""
 
     if user_id == context.bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy or wot?")
+        message.reply_text("Saya tidak akan melarang diri saya sendiri, apakah Anda gila atau tidak?")
         return ""
 
     if not reason:
         message.reply_text(
-            "You haven't specified a time to ban this user for!"
+            "Anda belum menentukan waktu untuk mencekal pengguna ini!"
         )
         return ""
 
@@ -204,15 +188,15 @@ def temp_ban(update, context):
         # context.bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie
         # sticker
         message.reply_text(
-            "Banned! User will be banned for {}.".format(time_val)
+            "Dilarang! Pengguna akan diblokir {}.".format(time_val)
         )
         return log
 
     except BadRequest as excp:
-        if excp.message == "Reply message not found":
+        if excp.message == "Pesan balasan tidak ditemukan":
             # Do not reply
             message.reply_text(
-                "Goodbye.. we'll meet after {}.".format(time_val), quote=False
+                "Selamat tinggal .. kita akan bertemu setelah {}.".format(time_val), quote=False
             )
             return log
         else:
@@ -224,7 +208,7 @@ def temp_ban(update, context):
                 chat.id,
                 excp.message,
             )
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("Sial, saya tidak bisa mencekal pengguna itu.")
 
     return ""
 
@@ -241,7 +225,7 @@ def kick(update, context):
     args = context.args
 
     if user_can_ban(chat, user, context.bot.id) is False:
-        message.reply_text("You don't have enough rights to kick users!")
+        message.reply_text("Anda tidak memiliki cukup hak untuk menendang pengguna!")
         return ""
 
     user_id, reason = extract_user_and_text(message, args)
@@ -253,17 +237,17 @@ def kick(update, context):
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("Sepertinya saya tidak dapat menemukan pengguna ini")
             return ""
         else:
             raise
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text("Yeahh... let's start kicking admins?")
+        message.reply_text("Yeahh ... mari kita mulai menendang admin?")
         return ""
 
     if user_id == context.bot.id:
-        message.reply_text("Yeahhh I'm not gonna do that")
+        message.reply_text("Yah aku tidak akan melakukan itu")
         return ""
 
     res = chat.unban_member(user_id)  # unban on current user = kick
@@ -272,7 +256,7 @@ def kick(update, context):
         # sticker
         context.bot.sendMessage(
             chat.id,
-            "Untill we meet again {}.".format(
+            "Sampai kita bertemu lagi {}.".format(
                 mention_html(member.user.id, member.user.first_name)
             ),
             parse_mode=ParseMode.HTML,
@@ -308,12 +292,12 @@ def banme(update, context):
     chat = update.effective_chat
     user = update.effective_user
     if is_user_admin(update.effective_chat, user_id):
-        update.effective_message.reply_text("Yeahhh.. not gonna ban an admin.")
+        update.effective_message.reply_text("Yeahhh .. tidak akan melarang admin.")
         return
 
     res = update.effective_chat.kick_member(user_id)
     if res:
-        update.effective_message.reply_text("Yes, you're right! GTFO..")
+        update.effective_message.reply_text("Ya kau benar! Kawan..")
         log = (
             "<b>{}:</b>"
             "\n#BANME"
@@ -327,7 +311,7 @@ def banme(update, context):
         return log
 
     else:
-        update.effective_message.reply_text("Huh? I can't :/")
+        update.effective_message.reply_text("Hah? Aku tidak bisa :/")
 
 
 @bot_admin
@@ -337,7 +321,7 @@ def kickme(update, context):
     user_id = update.effective_message.from_user.id
     if is_user_admin(update.effective_chat, user_id):
         update.effective_message.reply_text(
-            "Yeahhh.. not gonna kick an admin."
+            "Yeahhh .. tidak akan menendang admin."
         )
         return
 
@@ -345,9 +329,9 @@ def kickme(update, context):
         user_id
     )  # unban on current user = kick
     if res:
-        update.effective_message.reply_text("Yeah, you're right Get Out!..")
+        update.effective_message.reply_text("Ya, Anda benar. Keluar!..")
     else:
-        update.effective_message.reply_text("Huh? I can't :/")
+        update.effective_message.reply_text("Hah? Aku tidak bisa :/")
 
 
 @bot_admin
@@ -363,7 +347,7 @@ def unban(update, context):
 
     if user_can_ban(chat, user, context.bot.id) is False:
         message.reply_text(
-            "You don't have enough rights to unban people here!"
+            "Anda tidak memiliki cukup hak untuk membatalkan pelarangan orang di sini!"
         )
         return ""
 
@@ -376,23 +360,23 @@ def unban(update, context):
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("Sepertinya saya tidak dapat menemukan pengguna ini")
             return ""
         else:
             raise
 
     if user_id == context.bot.id:
-        message.reply_text("How would I unban myself if I wasn't here...?")
+        message.reply_text("Bagaimana saya akan membatalkan pelarangan diri saya sendiri jika saya tidak ada di sini...?")
         return ""
 
     if is_user_in_chat(chat, user_id):
         message.reply_text(
-            "Why are you trying to unban someone who's already in this chat?"
+            "Mengapa Anda mencoba membatalkan pelarangan seseorang yang sudah ada di obrolan ini?"
         )
         return ""
 
     chat.unban_member(user_id)
-    message.reply_text("Done, they can join again!")
+    message.reply_text("Selesai, mereka bisa bergabung lagi!")
 
     log = (
         "<b>{}:</b>"
@@ -413,19 +397,18 @@ def unban(update, context):
 
 __help__ = """
 
-Some people need to be publicly banned; spammers, annoyances, or just trolls.
-This module allows you to do that easily, by exposing some common actions, so everyone will see!
+Beberapa orang perlu dilarang secara publik; spammer, gangguan, atau hanya troll.
+Modul ini memungkinkan Anda melakukannya dengan mudah, dengan mengekspos beberapa tindakan umum, sehingga semua orang akan melihatnya!
+ × /kickme: Menendang pengguna yang mengeluarkan perintah
+ × /banme: Larang pengguna yang mengeluarkan perintah
+*Khusus Admin:*
+ × /ban <userhandle>: Larang pengguna. (melalui pegangan, atau balasan)
+ × /tban <userhandle> x(m/h/d): Memblokir pengguna selama x waktu. (melalui pegangan, atau balasan). m = menit, h = jam, d = hari.
+ × /unban <userhandle>: Membatalkan pemblokiran pengguna. (melalui pegangan, atau balasan)
+ × /kick <userhandle>: Menendang pengguna, (melalui pegangan, atau balasan)
 
- × /kickme: Kicks the user who issued the command
- × /banme: Bans the user who issued the command
-*Admin only:*
- × /ban <userhandle>: Bans a user. (via handle, or reply)
- × /tban <userhandle> x(m/h/d): Bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
- × /unban <userhandle>: Unbans a user. (via handle, or reply)
- × /kick <userhandle>: Kicks a user, (via handle, or reply)
-
-An example of temporarily banning someone:
-`/tban @username 2h`; this bans a user for 2 hours.
+Contoh pelarangan sementara seseorang:
+`/tban @username 2h`; ini melarang pengguna selama 2 jam.
 """
 
 __mod_name__ = "Bans"
