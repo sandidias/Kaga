@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import re
 import time
 
@@ -43,18 +27,18 @@ def allow_connections(update, context) -> str:
                 sql.set_allow_connect_to_chat(chat.id, False)
                 send_message(
                     update.effective_message,
-                    "Connection has been disabled for this chat",
+                    "Sambungan untuk obrolan ini telah dinonaktifkan",
                 )
             elif var == "yes":
                 sql.set_allow_connect_to_chat(chat.id, True)
                 send_message(
                     update.effective_message,
-                    "Connection has been enabled for this chat",
+                    "Koneksi telah diaktifkan untuk obrolan ini",
                 )
             else:
                 send_message(
                     update.effective_message,
-                    "Please enter `yes` or `no`!",
+                    "Silahkan masukkan `yes` atau `no`!",
                     parse_mode=ParseMode.MARKDOWN,
                 )
         else:
@@ -62,19 +46,19 @@ def allow_connections(update, context) -> str:
             if get_settings:
                 send_message(
                     update.effective_message,
-                    "Connections to this group are *Allowed* for members!",
+                    "Koneksi ke grup ini *Diizinkan* untuk anggota!",
                     parse_mode=ParseMode.MARKDOWN,
                 )
             else:
                 send_message(
                     update.effective_message,
-                    "Connection to this group are *Not Allowed* for members!",
+                    "Koneksi ke grup ini *Tidak Diizinkan* untuk anggota!",
                     parse_mode=ParseMode.MARKDOWN,
                 )
     else:
         send_message(
             update.effective_message,
-            "This command is for group only. Not in PM!",
+            "Perintah ini hanya untuk grup. Tidak di PM!",
         )
 
 
@@ -96,9 +80,9 @@ def connection_chat(update, context):
         chat_name = update.effective_message.chat.title
 
     if conn:
-        message = "You are currently connected to {}.\n".format(chat_name)
+        message = "Anda saat ini terhubung ke {}.\n".format(chat_name)
     else:
-        message = "You are currently not connected in any group.\n"
+        message = "Anda saat ini tidak terhubung ke grup mana pun.\n"
     send_message(update.effective_message, message, parse_mode="markdown")
 
 
@@ -125,10 +109,10 @@ def connect_chat(update, context):
                         connect_chat, update.effective_message.from_user.id
                     )
                 except BadRequest:
-                    send_message(update.effective_message, "Invalid Chat ID!")
+                    send_message(update.effective_message, "ID Obrolan Tidak Valid!")
                     return
             except BadRequest:
-                send_message(update.effective_message, "Invalid Chat ID!")
+                send_message(update.effective_message, "ID Obrolan Tidak Valid!")
                 return
 
             isadmin = getstatusadmin.status in ("administrator", "creator")
@@ -157,7 +141,7 @@ def connect_chat(update, context):
                     chat_name = conn_chat.title
                     send_message(
                         update.effective_message,
-                        "Successfully connected to *{}*. \nUse /helpconnect to check available commands.".format(
+                        "Berhasil terhubung ke *{}*. \nGunakan /helpconnect untuk memeriksa perintah yang tersedia.".format(
                             chat_name
                         ),
                         parse_mode=ParseMode.MARKDOWN,
@@ -165,22 +149,22 @@ def connect_chat(update, context):
                     sql.add_history_conn(user.id, str(conn_chat.id), chat_name)
                 else:
                     send_message(
-                        update.effective_message, "Connection failed!"
+                        update.effective_message, "Koneksi gagal!"
                     )
             else:
                 send_message(
                     update.effective_message,
-                    "Connection to this chat is not allowed!",
+                    "Koneksi ke obrolan ini tidak diperbolehkan!",
                 )
         else:
             gethistory = sql.get_history_conn(user.id)
             if gethistory:
                 buttons = [
                     InlineKeyboardButton(
-                        text="❎ Close button", callback_data="connect_close"
+                        text="❎ Tutup", callback_data="connect_close"
                     ),
                     InlineKeyboardButton(
-                        text="🧹 Clear history", callback_data="connect_clear"
+                        text="🧹 Hapus riwayat", callback_data="connect_clear"
                     ),
                 ]
             else:
@@ -190,7 +174,7 @@ def connect_chat(update, context):
             )
             if conn:
                 connectedchat = dispatcher.bot.getChat(conn)
-                text = "You are currently connected to *{}* (`{}`)".format(
+                text = "Anda saat ini terhubung ke *{}* (`{}`)".format(
                     connectedchat.title, conn
                 )
                 buttons.append(
@@ -199,7 +183,7 @@ def connect_chat(update, context):
                     )
                 )
             else:
-                text = "Write the chat ID or tag to connect!"
+                text = "Tulis ID atau tag obrolan untuk terhubung!"
             if gethistory:
                 text += "\n\n*Connection history:*\n"
                 text += "╒═══「 *Info* 」\n"
@@ -261,14 +245,14 @@ def connect_chat(update, context):
                 chat_name = dispatcher.bot.getChat(chat.id).title
                 send_message(
                     update.effective_message,
-                    "Successfully connected to *{}*.".format(chat_name),
+                    "Berhasil terhubung ke *{}*.".format(chat_name),
                     parse_mode=ParseMode.MARKDOWN,
                 )
                 try:
                     sql.add_history_conn(user.id, str(chat.id), chat_name)
                     context.bot.send_message(
                         update.effective_message.from_user.id,
-                        "You are connected to *{}*. \nUse `/helpconnect` to check available commands.".format(
+                        "Anda terhubung ke *{}*. \nUse `/helpconnect` untuk memeriksa perintah yang tersedia.".format(
                             chat_name
                         ),
                         parse_mode="markdown",
@@ -278,11 +262,11 @@ def connect_chat(update, context):
                 except Unauthorized:
                     pass
             else:
-                send_message(update.effective_message, "Connection failed!")
+                send_message(update.effective_message, "Koneksi gagal!")
         else:
             send_message(
                 update.effective_message,
-                "Connection to this chat is not allowed!",
+                "Koneksi ke obrolan ini tidak diperbolehkan!",
             )
 
 
@@ -294,13 +278,13 @@ def disconnect_chat(update, context):
         )
         if disconnection_status:
             sql.disconnected_chat = send_message(
-                update.effective_message, "Disconnected from chat!"
+                update.effective_message, "Terputus dari obrolan!"
             )
         else:
-            send_message(update.effective_message, "You're not connected!")
+            send_message(update.effective_message, "Anda tidak terhubung!")
     else:
         send_message(
-            update.effective_message, "This command is only available in PM."
+            update.effective_message, "Perintah ini hanya tersedia di PM."
         )
 
 
@@ -333,14 +317,14 @@ def connected(bot, update, chat, user_id, need_admin=True):
                 else:
                     send_message(
                         update.effective_message,
-                        "You must be an admin in the connected group!",
+                        "Anda harus menjadi admin di grup yang terhubung!",
                     )
             else:
                 return conn_id
         else:
             send_message(
                 update.effective_message,
-                "The group changed the connection rights or you are no longer an admin.\nI've disconnected you.",
+                "Grup mengubah hak koneksi atau Anda bukan lagi admin.\nSaya telah memutuskan Anda.",
             )
             disconnect_chat(update, bot)
     else:
@@ -348,24 +332,24 @@ def connected(bot, update, chat, user_id, need_admin=True):
 
 
 CONN_HELP = """
- Actions are available with connected groups:
- • View and edit Notes.
- • View and edit Filters.
- • Get invite link of chat.
- • Set and control AntiFlood settings.
- • Set and control Blacklist settings.
- • Set Locks and Unlocks in chat.
- • Set Warn setting of chat.
- • Enable and Disable commands in chat.
- • Export and Imports of chat backup.
- • More in future!"""
+Tindakan tersedia dengan grup yang terhubung:
+ • Lihat dan edit Catatan.
+ • Lihat dan edit Filter.
+ • Dapatkan tautan undangan obrolan.
+ • Atur dan kontrol pengaturan AntiFlood.
+ • Mengatur dan mengontrol pengaturan Daftar Hitam.
+ • Setel Kunci dan Buka dalam obrolan.
+ • Setel Peringatkan pengaturan obrolan.
+ • Aktifkan dan Nonaktifkan perintah dalam obrolan.
+ • Ekspor dan Impor cadangan obrolan.
+ • Lebih banyak lagi!"""
 
 
 def help_connect_chat(update, context):
 
     if update.effective_message.chat.type != "private":
         send_message(
-            update.effective_message, "PM me with that command to get help."
+            update.effective_message, "PM saya dengan perintah itu untuk mendapatkan bantuan."
         )
         return
     else:
@@ -410,35 +394,35 @@ def connect_button(update, context):
                 )
                 chat_name = conn_chat.title
                 query.message.edit_text(
-                    "Successfully connected to *{}*. \nUse `/helpconnect` to check available commands.".format(
+                    "Berhasil terhubung ke *{}*. \nGunakan `/helpconnect` untuk memeriksa perintah yang tersedia.".format(
                         chat_name
                     ),
                     parse_mode=ParseMode.MARKDOWN,
                 )
                 sql.add_history_conn(user.id, str(conn_chat.id), chat_name)
             else:
-                query.message.edit_text("Connection failed!")
+                query.message.edit_text("Koneksi gagal!")
         else:
             context.bot.answer_callback_query(
                 query.id,
-                "Connection to this chat is not allowed!",
+                "Koneksi ke obrolan ini tidak diperbolehkan!",
                 show_alert=True,
             )
     elif disconnect_match:
         disconnection_status = sql.disconnect(query.from_user.id)
         if disconnection_status:
             sql.disconnected_chat = query.message.edit_text(
-                "Disconnected from chat!"
+                "Terputus dari obrolan!"
             )
         else:
             context.bot.answer_callback_query(
-                query.id, "You're not connected!", show_alert=True
+                query.id, "Anda tidak terhubung!", show_alert=True
             )
     elif clear_match:
         sql.clear_history_conn(query.from_user.id)
-        query.message.edit_text("History connected has been cleared!")
+        query.message.edit_text("Histori yang terhubung telah dihapus!")
     elif connect_close:
-        query.message.edit_text("Closed.\nTo open again, type /connect")
+        query.message.edit_text("Tutup.\nUntuk membuka kembali, ketik /connect")
     else:
         connect_chat(update, context)
 
@@ -447,16 +431,16 @@ __mod_name__ = "Connection"
 
 
 __help__ = """
-Sometimes, you just want to add some notes and filters to a group chat, but you don't want everyone to see; This is where connections come in...
-This allows you to connect to a chat's database, and add things to it without the commands appearing in chat! For obvious reasons, you need to be an admin to add things; but any member in the group can view your data.
+Terkadang, Anda hanya ingin menambahkan beberapa catatan dan filter ke obrolan grup, tetapi Anda tidak ingin semua orang melihatnya; Di sinilah koneksi masuk...
+Ini memungkinkan Anda untuk terhubung ke database obrolan, dan menambahkan sesuatu ke dalamnya tanpa perintah yang muncul dalam obrolan! Untuk alasan yang jelas, Anda perlu menjadi admin untuk menambahkan sesuatu; tetapi setiap anggota dalam grup dapat melihat data Anda.
 
- × /connect: Connects to chat (Can be done in a group by /connect or /connect <chat id> in PM)
- × /connection: List connected chats
- × /disconnect: Disconnect from a chat
- × /helpconnect: List available commands that can be used remotely
+ × /connect: Tersambung ke obrolan (Dapat dilakukan dalam grup dengan /connect atau /connect <chat id> di PM)
+ × /connection: Buat daftar obrolan yang terhubung
+ × /disconnect: Putuskan hubungan dari obrolan
+ × /helpconnect: Buat daftar perintah yang tersedia yang dapat digunakan dari jarak jauh
 
-*Admin only:*
- × /allowconnect <yes/no>: allow a user to connect to a chat
+*Khusus Admin:*
+ × /allowconnect <yes/no>: izinkan pengguna untuk terhubung ke obrolan
 """
 
 CONNECT_CHAT_HANDLER = CommandHandler(
