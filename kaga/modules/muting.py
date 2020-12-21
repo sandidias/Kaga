@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import html
 from typing import Optional
 
@@ -51,19 +35,19 @@ def mute(update, context):
 
     if user_can_ban(chat, user, context.bot.id) == False:
         message.reply_text(
-            "You don't have enough rights to restrict someone from talking!"
+            "Anda tidak memiliki cukup hak untuk membatasi seseorang agar tidak berbicara!"
         )
         return ""
 
     user_id = extract_user(message, args)
     if not user_id:
         message.reply_text(
-            "You'll need to either give me a username to mute, or reply to someone to be muted."
+            "Anda harus memberi saya nama pengguna untuk membungkam, atau membalas seseorang untuk dibungkam."
         )
         return ""
 
     if user_id == context.bot.id:
-        message.reply_text("Yeahh... I'm not muting myself!")
+        message.reply_text("Yah... Aku tidak membungkam diriku sendiri!")
         return ""
 
     member = chat.get_member(int(user_id))
@@ -71,7 +55,7 @@ def mute(update, context):
     if member:
         if is_user_admin(chat, user_id, member=member):
             message.reply_text(
-                "Well i'm not gonna stop an admin from talking!"
+                "Yah, saya tidak akan menghentikan admin untuk berbicara!"
             )
 
         elif member.can_send_messages is None or member.can_send_messages:
@@ -80,7 +64,7 @@ def mute(update, context):
                 user_id,
                 permissions=ChatPermissions(can_send_messages=False),
             )
-            message.reply_text("👍🏻 muted! 🤐")
+            message.reply_text("👍🏻 dibisukan! 🤐")
             return (
                 "<b>{}:</b>"
                 "\n#MUTE"
@@ -93,9 +77,9 @@ def mute(update, context):
             )
 
         else:
-            message.reply_text("This user is already taped 🤐")
+            message.reply_text("Pengguna ini sudah dibisukan 🤐")
     else:
-        message.reply_text("This user isn't in the chat!")
+        message.reply_text("Pengguna ini tidak sedang mengobrol!")
 
     return ""
 
@@ -111,13 +95,13 @@ def unmute(update, context):
     args = context.args
 
     if user_can_ban(chat, user, context.bot.id) == False:
-        message.reply_text("You don't have enough rights to unmute people")
+        message.reply_text("Anda tidak memiliki cukup hak untuk menyuarakan orang")
         return ""
 
     user_id = extract_user(message, args)
     if not user_id:
         message.reply_text(
-            "You'll need to either give me a username to unmute, or reply to someone to be unmuted."
+            "Anda harus memberi saya nama pengguna untuk menyuarakan, atau membalas seseorang untuk dibungkam."
         )
         return ""
 
@@ -130,7 +114,7 @@ def unmute(update, context):
             and member.can_send_other_messages
             and member.can_add_web_page_previews
         ):
-            message.reply_text("This user already has the right to speak.")
+            message.reply_text("Pengguna ini sudah memiliki hak untuk berbicara.")
         else:
             context.bot.restrict_chat_member(
                 chat.id,
@@ -146,7 +130,7 @@ def unmute(update, context):
                     can_add_web_page_previews=True,
                 ),
             )
-            message.reply_text("Yep! this user can start talking again...")
+            message.reply_text("Ya! pengguna ini dapat mulai berbicara lagi...")
             return (
                 "<b>{}:</b>"
                 "\n#UNMUTE"
@@ -159,8 +143,8 @@ def unmute(update, context):
             )
     else:
         message.reply_text(
-            "This user isn't even in the chat, unmuting them won't make them talk more than they "
-            "already do!"
+            "Pengguna ini bahkan tidak ada dalam obrolan, mengaktifkannya tidak akan membuat mereka berbicara lebih banyak daripada mereka "
+            "sudah lakukan!"
         )
 
     return ""
@@ -179,36 +163,36 @@ def temp_mute(update, context):
 
     if user_can_ban(chat, user, context.bot.id) == False:
         message.reply_text(
-            "You don't have enough rights to restrict someone from talking!"
+            "Anda tidak memiliki cukup hak untuk membatasi seseorang agar tidak berbicara!"
         )
         return ""
 
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("Anda sepertinya tidak mengacu pada pengguna.")
         return ""
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user")
+            message.reply_text("Sepertinya saya tidak dapat menemukan pengguna ini")
             return ""
         else:
             raise
 
     if is_user_admin(chat, user_id, member):
-        message.reply_text("I really wish I could mute admins...")
+        message.reply_text("Saya benar-benar berharap dapat menonaktifkan admin...")
         return ""
 
     if user_id == context.bot.id:
-        message.reply_text("I'm not gonna MUTE myself, are you crazy?")
+        message.reply_text("Saya tidak akan BISUKAN diri saya sendiri, apakah Anda sudah gila?")
         return ""
 
     if not reason:
         message.reply_text(
-            "You haven't specified a time to mute this user for!"
+            "Anda belum menentukan waktu untuk menonaktifkan pengguna ini!"
         )
         return ""
 
@@ -238,7 +222,7 @@ def temp_mute(update, context):
         )
     )
     if reason:
-        log += "\n<b>Reason:</b> {}".format(reason)
+        log += "\n<b>Alasan:</b> {}".format(reason)
 
     try:
         if member.can_send_messages is None or member.can_send_messages:
@@ -248,16 +232,16 @@ def temp_mute(update, context):
                 until_date=mutetime,
                 permissions=ChatPermissions(can_send_messages=False),
             )
-            message.reply_text("shut up! 🤐 Taped for {}!".format(time_val))
+            message.reply_text("diam! 🤐 Dibisukan untuk {}!".format(time_val))
             return log
         else:
-            message.reply_text("This user is already muted.")
+            message.reply_text("Pengguna ini telah dibungkam.")
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
             message.reply_text(
-                "shut up! 🤐 Taped for {}!".format(time_val), quote=False
+                "diam! 🤐 Dibisukan untuk {}!".format(time_val), quote=False
             )
             return log
         else:
@@ -269,22 +253,22 @@ def temp_mute(update, context):
                 chat.id,
                 excp.message,
             )
-            message.reply_text("Well damn, I can't mute that user.")
+            message.reply_text("Sial, saya tidak bisa menonaktifkan pengguna itu.")
 
     return ""
 
 
 __help__ = """
-Some people need to be publicly muted; spammers, annoyances, or just trolls.
+Beberapa orang perlu dibungkam secara publik; spammer, gangguan, atau hanya troll.
 
-This module allows you to do that easily, by exposing some common actions, so everyone will see!
+Modul ini memungkinkan Anda melakukannya dengan mudah, dengan mengekspos beberapa tindakan umum, sehingga semua orang akan melihatnya!
 
-*Admin only:*
- × /mute <userhandle>: Silences a user. Can also be used as a reply, muting the replied to user.
- × /tmute <userhandle> x(m/h/d): Mutes a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
- × /unmute <userhandle>: Unmutes a user. Can also be used as a reply, muting the replied to user.
-An example of temporarily mute someone:
-`/tmute @username 2h`; This mutes a user for 2 hours.
+*Khusus Admin:*
+ × /mute <userhandle>: Membungkam pengguna. Bisa juga digunakan sebagai balasan, membungkam pengguna yang dibalas.
+ × /tmute <userhandle> x(m/h/d): Membungkam pengguna selama x waktu. (melalui pegangan, atau balasan). m = menit, h = jam, d = hari.
+ × /unmute <userhandle>: Menampilkan pengguna. Bisa juga digunakan sebagai balasan, membungkam pengguna yang dibalas.
+Contoh membisukan sementara seseorang:
+`/tmute @username 2h`; Ini membungkam pengguna selama 2 jam.
 """
 
 __mod_name__ = "Muting"
