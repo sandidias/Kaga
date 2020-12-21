@@ -1,19 +1,3 @@
-# UserindoBot
-# Copyright (C) 2020  UserindoBot Team, <https://github.com/MoveAngel/UserIndoBot.git>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import json
 import os
 
@@ -40,7 +24,7 @@ def gtrans(update, context):
             msg.reply_to_message.text or msg.reply_to_message.caption
         )
     except AttributeError:
-        return msg.reply_text("Give me the text to translate!")
+        return msg.reply_text("Beri aku teks untuk diterjemahkan!")
 
     ignore_text = UNICODE_EMOJI.keys()
     for emoji in ignore_text:
@@ -53,12 +37,12 @@ def gtrans(update, context):
         source_lan = translator.detect(translate_text)[1].title()
         des_lan = LANGUAGES.get(lang).title()
         msg.reply_text(
-            "Translated from {} to {}.\n {}".format(
+            "Diterjemahkan dari {} ke {}.\n {}".format(
                 source_lan, des_lan, translated
             )
         )
     except BaseException:
-        msg.reply_text("Error! invalid language code.")
+        msg.reply_text("Kesalahan! kode bahasa tidak valid.")
 
 
 @send_action(ChatAction.RECORD_AUDIO)
@@ -70,18 +54,18 @@ def gtts(update, context):
             reply = msg.reply_to_message.text
         else:
             return msg.reply_text(
-                "Reply to some message or enter some text to convert it into audio format!"
+                "Balas beberapa pesan atau masukkan beberapa teks untuk mengubahnya menjadi format audio!"
             )
         for x in "\n":
             reply = reply.replace(x, "")
     try:
         tts = gTTS(reply)
-        tts.save("ubotindo.mp3")
-        with open("ubotindo.mp3", "rb") as speech:
+        tts.save("kagarobot.mp3")
+        with open("kagarobot.mp3", "rb") as speech:
             msg.reply_audio(speech)
     finally:
-        if os.path.isfile("ubotindo.mp3"):
-            os.remove("ubotindo.mp3")
+        if os.path.isfile("kagarobot.mp3"):
+            os.remove("kagarobot.mp3")
 
 
 # Open API key
@@ -117,14 +101,14 @@ def spellcheck(update, context):
         update.effective_message.reply_text(curr_string)
     else:
         update.effective_message.reply_text(
-            "Reply to some message to get grammar corrected text!"
+            "Balas beberapa pesan untuk mendapatkan teks koreksi tata bahasa!"
         )
 
 
 __help__ = """
-× /tr or /tl: - To translate to your language, by default language is set to english, use `/tr <lang code>` for some other language!
-× /spell: - As a reply to get grammar corrected text of gibberish message.
-× /tts: - To some message to convert it into audio format!
+× /tr atau /tl: - Untuk menerjemahkan ke bahasa Anda, secara default bahasa diatur ke bahasa Inggris, gunakan `/tr <lang code>` untuk beberapa bahasa lain!
+× /spell: - Sebagai balasan untuk mendapatkan koreksi tata bahasa teks pesan nonsens.
+× /tts: - Untuk beberapa pesan untuk mengubahnya menjadi format audio!
 """
 __mod_name__ = "Translate"
 
