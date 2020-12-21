@@ -22,7 +22,7 @@ def purge(update, context):
         user = update.effective_user  # type: Optional[User]
         chat = update.effective_chat  # type: Optional[Chat]
         if user_can_delete(chat, user, context.bot.id) == False:
-           msg.reply_text("You don't have enough rights to delete message!")
+           msg.reply_text("Anda tidak memiliki cukup hak untuk menghapus pesan!")
            return ""
         if can_delete(chat, context.bot.id):
             message_id = msg.reply_to_message.message_id
@@ -38,23 +38,23 @@ def purge(update, context):
                     context.bot.deleteMessage(chat.id, m_id)
                 except BadRequest as err:
                     if err.message == "Message can't be deleted":
-                        context.bot.send_message(chat.id, "Cannot delete all messages. The messages may be too old, I might "
-                                                  "not have delete rights, or this might not be a supergroup.")
+                        context.bot.send_message(chat.id, "Tidak dapat menghapus semua pesan. Pesannya mungkin terlalu lama, saya mungkin "
+                                                  "tidak memiliki hak hapus, atau ini mungkin bukan grup super.")
 
                     elif err.message != "Message to delete not found":
-                        LOGGER.exception("Error while purging chat messages.")
+                        LOGGER.exception("Kesalahan saat membersihkan pesan obrolan.")
 
             try:
                 msg.delete()
             except BadRequest as err:
                 if err.message == "Message can't be deleted":
-                    context.bot.send_message(chat.id, "Cannot delete all messages. The messages may be too old, I might "
-                                              "not have delete rights, or this might not be a supergroup.")
+                    context.bot.send_message(chat.id, "Tidak dapat menghapus semua pesan. Pesannya mungkin terlalu lama, saya mungkin "
+                                              "tidak memiliki hak hapus, atau ini mungkin bukan grup super.")
 
                 elif err.message != "Message to delete not found":
-                    LOGGER.exception("Error while purging chat messages.")
+                    LOGGER.exception("Kesalahan saat membersihkan pesan obrolan.")
 
-            del_msg = context.bot.send_message(chat.id, "Purge complete.")
+            del_msg = context.bot.send_message(chat.id, "Pembersihan selesai.")
             time.sleep(2)
 
             try:
@@ -71,7 +71,7 @@ def purge(update, context):
                                                                delete_to - message_id)
 
     else:
-        msg.reply_text("Reply to a message to select where to start purging from.")
+        msg.reply_text("Balas pesan untuk memilih dari mana mulai membersihkan.")
 
     return ""
 
@@ -84,7 +84,7 @@ def del_message(update, context) -> str:
         chat = update.effective_chat  # type: Optional[Chat]
         message = update.effective_message  # type: Optional[Message]
         if user_can_delete(chat, user, context.bot.id) == False:
-           message.reply_text("You don't have enough rights to delete message!")
+           message.reply_text("Anda tidak memiliki cukup hak untuk menghapus pesan!")
            return ""
         if can_delete(chat, context.bot.id):
             update.effective_message.reply_to_message.delete()
@@ -95,19 +95,19 @@ def del_message(update, context) -> str:
                    "\nMessage deleted.".format(html.escape(chat.title),
                                                mention_html(user.id, user.first_name))
     else:
-        update.effective_message.reply_text("Whadya want to delete?")
+        update.effective_message.reply_text("Walah, ingin menghapus?")
 
     return ""
 
 
 __help__ = """
-Deleting messages made easy with this command. Bot purges \
-messages all together or individually.
+Menghapus pesan menjadi mudah dengan perintah ini. Pembersihan bot \
+pesan semua bersama-sama atau satu per satu.
 
-*Admin only:*
- × /del: Deletes the message you replied to
- × /purge: Deletes all messages between this and the replied to message.
- × /purge <integer X>: Deletes the replied message, and X messages following it.
+*Khusus Admin:*
+ × /del: Menghapus pesan yang Anda balas
+ × /purge: Menghapus semua pesan antara ini dan pesan yang dibalas.
+ × /purge <integer X>: Menghapus pesan yang dibalas, dan X pesan mengikutinya.
 """
 
 __mod_name__ = "Purges"
