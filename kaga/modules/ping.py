@@ -69,7 +69,7 @@ def ping_func(to_ping: List[str]) -> List[str]:
 
 
 @typing_action
-def ping(update: Update, context: CallbackContext):
+def ping(update, context):
     msg = update.effective_message
 
     start_time = time.time()
@@ -86,7 +86,7 @@ def ping(update: Update, context: CallbackContext):
     
 
 @typing_action
-def pingall(update: Update, context: CallbackContext):
+def pingall(update, context):
     to_ping = ["Kaizoku", "Kayo", "Telegram", "Jikan"]
     pinged_list = ping_func(to_ping)
     pinged_list.insert(2, '')
