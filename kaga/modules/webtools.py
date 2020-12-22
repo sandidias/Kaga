@@ -16,9 +16,9 @@ from telegram import ParseMode, __version__
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
 
-from kaga import MESSAGE_DUMP, OWNER_ID, dispatcher, updater
-from kaga.modules.helper_funcs.alternate import typing_action
-from kaga.modules.helper_funcs.filters import CustomFilters
+from ubotindo import MESSAGE_DUMP, OWNER_ID, dispatcher, updater
+from ubotindo.modules.helper_funcs.alternate import typing_action
+from ubotindo.modules.helper_funcs.filters import CustomFilters
 
 
 @typing_action
@@ -36,7 +36,7 @@ def leavechat(update, context):
     else:
         update.effective_message.reply_text("Beri saya id obrolan yang valid")
 
-        
+
 @typing_action
 def ping(update, context):
     msg = update.effective_message
@@ -46,8 +46,9 @@ def ping(update, context):
     ping_time = round((end_time - start_time) * 1000, 3)
     message.edit_text(
         "*Pong!!!*\n`{}ms`".format(ping_time), parse_mode=ParseMode.MARKDOWN
-        
-       
+    )
+
+
 @typing_action
 def get_bot_ip(update, context):
     """Mengirimkan alamat IP bot, agar dapat melakukan ssh jika perlu.
@@ -60,7 +61,7 @@ def get_bot_ip(update, context):
 @typing_action
 def speedtst(update, context):
     message = update.effective_message
-    ed_msg = message.reply_text("Menjalankan tes kecepatan tinggi . . .")
+    ed_msg = message.reply_text("Menjalankan tes speed test . . .")
     test = speedtest.Speedtest()
     test.get_best_server()
     test.download()
@@ -112,7 +113,7 @@ def system_status(update, context):
 
 
 def speed_convert(size):
-    """Hai manusia, Anda tidak bisa membaca byte?"""
+    """Hi human, you can't read bytes?"""
     power = 2 ** 10
     zero = 0
     units = {0: "", 1: "Kb/s", 2: "Mb/s", 3: "Gb/s", 4: "Tb/s"}
@@ -127,11 +128,11 @@ def gitpull(update, context):
     sent_msg = update.effective_message.reply_text(
         "Menarik semua perubahan dari jarak jauh..."
     )
-    subprocess.Popen("git pull", stdout=subprocess.PIPE, shell=True)
+    subprocess.Popen("git reset --hard origin/main && git clean -fd && git pull", stdout=subprocess.PIPE, shell=True)
 
     sent_msg_text = (
         sent_msg.text
-        + "\n\nPerubahan ditarik ... Kurasa..\nLanjutkan untuk memulai ulang dengan /reboot "
+        + "\n\nPerubahan ditarik... Sepertinya.\nLanjutkan untuk memulai ulang /reboot "
     )
     sent_msg.edit_text(sent_msg_text)
 
@@ -143,7 +144,7 @@ def stop_and_restart():
 
 
 def restart(update, context):
-        update.message.reply_text('Bot sedang memulai ulang...')
+        update.message.reply_text('Bot is restarting...')
         Thread(target=stop_and_restart).start()
 
 
