@@ -16,7 +16,7 @@ pillow
 psutil
 psycopg2-binary
 pymongo[srv]
-python-telegram-bot==12.8
+python-telegram-bot==13.1
 pytz
 python-dotenv
 requests
