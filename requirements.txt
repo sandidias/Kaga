@@ -26,6 +26,7 @@ sqlalchemy
 telegraph
 wget
 wikipedia
+hurry
 hurry.filesize
 jikanpy>=4.2.2
 telethon
@@ -33,3 +34,7 @@ pyrogram
 uptime
 datetime
 pythonping
+py-cpuinfo
+animu-cf
+gtts
+aiohttp
