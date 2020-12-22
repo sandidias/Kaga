@@ -210,7 +210,7 @@ def user_not_admin(func):
 def sudo_plus(func):
 
     @wraps(func)
-    def is_sudo_plus_func(update: Update, context: CallbackContext, *args,
+    def is_sudo_plus_func(update, context, *args,
                           **kwargs):
         bot = context.bot
         user = update.effective_user
