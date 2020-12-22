@@ -16,12 +16,12 @@ def dare(bot: Bot, update: Update):
     update.effective_message.reply_text(random.choice(truth_and_dare_string.DARE))
 
 __help__ = """
- • `/truth`*:* untuk truth acak
- • `/dare`*:* untuk dare acak
+ • /truth : untuk truth acak
+ • /dare : untuk dare acak
 """
 
-TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth)
-DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
+TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth, run_async=True)
+DARE_HANDLER = DisableAbleCommandHandler("dare", dare, run_async=True)
 
 
 dispatcher.add_handler(TRUTH_HANDLER)
