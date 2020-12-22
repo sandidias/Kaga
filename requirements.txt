@@ -32,5 +32,4 @@ telethon
 pyrogram
 uptime
 datetime
-speedtest-cli
 pythonping
