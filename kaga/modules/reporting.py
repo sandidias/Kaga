@@ -57,8 +57,7 @@ def report_setting(update, context):
                     {"$set": {'should_report': False}},
                     upsert=True)
                 msg.reply_text(
-                    "Nonaktifkan pelaporan! Anda tidak akan mendapatkan laporan apapun
-."
+                    "Nonaktifkan pelaporan! Anda tidak akan mendapatkan laporan apapun."
                 )
         else:
             msg.reply_text(
