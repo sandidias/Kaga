@@ -1,6 +1,7 @@
 from functools import wraps
 from telegram import User, Chat, ChatMember
 from telegram.error import BadRequest, Unauthorized
+from telegram.ext import CallbackContext, run_async
 
 from kaga import (
     DEL_CMDS,
