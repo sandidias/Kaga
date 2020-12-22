@@ -9,14 +9,14 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HayakaRyu/KagaRobot/graphs/commit-activity)
 ![Logo](https://telegra.ph/file/6cb06b87a648599b081d3.png)
 
-A modular telegram Python bot running on python3 with sqlalchemy database.
+Bot Python telegram modular yang berjalan di python3 dengan database sqlalchemy.
 
-Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and
-simple to use. Note that this project uses a well-known Telegram-bot of its time @BanhammerMarie_bot from Paul Larson as its base.
+Awalnya bot manajemen grup sederhana dengan beberapa fitur admin, itu telah berkembang, menjadi sangat modular dan
+mudah digunakan. Perhatikan bahwa proyek ini menggunakan bot Telegram terkenal pada masanya @BanhammerMarie_bot dari Paul Larson sebagai basisnya.
 
-Can be found on telegram as [Kaga](https://t.me/KagaRobot).
+Dapat ditemukan di telegram sebagai [Kaga](https://t.me/KagaRobot).
 
-Join the [Group Support](https://t.me/ZeroBotSupport) if you just want to stay in the loop about new features or announcements.
+Bergabunglah dengan [Dukungan Grup](https://t.me/ZeroBotSupport) jika Anda hanya ingin mengikuti info terbaru tentang fitur atau pengumuman baru.
 
 ## Deploy to Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
@@ -43,28 +43,28 @@ Any other missing Credits can be seen in commits!
 
 ## Starting the bot
 
-Once you've set up your database and your configuration (see below) is complete, simply run:
+Setelah Anda mengatur database Anda dan konfigurasi Anda (lihat di bawah) selesai, jalankan saja:
 
 `python3 -m kaga`
 
-## Setting up the bot Read this before trying to use
+## Menyiapkan bot Baca ini sebelum mencoba menggunakan
 
-Please make sure to use python3.6 above, as I cannot guarantee everything will work as expected on older Python versions!
-This is because markdown parsing is done by iterating through a dict, which is ordered by default in 3.6.
+Harap pastikan untuk menggunakan python3.6 di atas, karena saya tidak dapat menjamin semuanya akan berfungsi seperti yang diharapkan pada versi Python yang lebih lama!
+Ini karena penguraian penurunan harga dilakukan dengan iterasi melalui dict, yang diurutkan secara default di 3.6.
 
-### Configuration
+### Konfigurasi
 
-There are two possible ways of configuring your bot: a config.py file, or ENV variables.
+Ada dua cara yang mungkin untuk mengonfigurasi bot Anda: file config.py, atau variabel ENV.
 
-The preferred version is to use a `config.py` file, as it makes it easier to see all your settings together.
-This file should be placed in your `UserindoBot` folder, alongside the `__main__.py` file.
-This is where your bot token will be loaded from, as well as your database URI (if you're using a database), and most of
-your other settings.
+Versi yang disukai adalah menggunakan file `config.py`, karena ini lebih memudahkan untuk melihat semua pengaturan Anda secara bersamaan.
+File ini harus ditempatkan di folder `UserindoBot` Anda, di samping file` __main__. Py`.
+Di sinilah token bot Anda akan dimuat, serta URI database Anda (jika Anda menggunakan database), dan sebagian besar
+pengaturan Anda yang lain.
 
-It is recommended to import sample_config and extend the Config class, as this will ensure your config contains all
-defaults set in the sample_config, hence making it easier to upgrade.
+Direkomendasikan untuk mengimpor sample_config dan memperluas kelas Config, karena ini akan memastikan konfigurasi Anda berisi semuanya
+default diatur di sample_config, sehingga membuatnya lebih mudah untuk ditingkatkan.
 
-An example `config.env` file could be:
+Contoh file `config.env` bisa jadi:
 
 ```python
     API_KEY = "" # your bot Token from BotFather
@@ -80,93 +80,93 @@ An example `config.env` file could be:
 
 ### Python dependencies
 
-Install the necessary Python dependencies by moving to the project directory and running:
+Instal dependensi Python yang diperlukan dengan berpindah ke direktori proyek dan menjalankan:
 
-`pip3 install -r requirements.txt`.
+`pip3 install -r requirement.txt`.
 
-This will install all the necessary python packages.
+Ini akan menginstal semua paket python yang diperlukan.
 
 ### Database
 
 #### MongoDB
 
-[MongoDB](https://cloud.mongodb.com/) here is used to store users, chats, afk status, blacklist, global bans, data.
+[MongoDB] (https://cloud.mongodb.com/) di sini digunakan untuk menyimpan pengguna, obrolan, status afk, daftar hitam, larangan global, data.
 
 #### SQL
 
-If you wish to use a database-dependent module (eg: locks, notes, filters, welcomes),
-you'll need to have a database installed on your system. I use Postgres, so I recommend using it for optimal compatibility.
+Jika Anda ingin menggunakan modul yang bergantung pada database (misalnya: kunci, catatan, filter, selamat datang),
+Anda harus memiliki database yang terpasang di sistem Anda. Saya menggunakan Postgres, jadi saya sarankan menggunakannya untuk kompatibilitas optimal.
 
-In the case of Postgres, this is how you would set up a database on a Debian/Ubuntu system. Other distributions may vary.
+Dalam kasus Postgres, inilah cara Anda mengatur database pada sistem Debian / Ubuntu. Distribusi lain mungkin berbeda.
 
-- install PostgreSQL:
+- instal PostgreSQL:
 
 `sudo apt-get update && sudo apt-get install postgresql`
 
-- change to the Postgres user:
+- ubah ke pengguna Postgres:
 
 `sudo su - postgres`
 
-- create a new database user (change YOUR_USER appropriately):
+- buat pengguna database baru (ubah YOUR_USER dengan benar):
 
 `createuser -P -s -e YOUR_USER`
 
-This will be followed by you need to input your password.
+Ini akan diikuti oleh Anda perlu memasukkan kata sandi Anda.
 
-- create a new database table:
+- buat tabel database baru:
 
-`createdb -O YOUR_USER YOUR_DB_NAME`
+`Createdb -O YOUR_USER YOUR_DB_NAME`
 
-Change YOUR_USER and YOUR_DB_NAME appropriately.
+Ubah YOUR_USER dan YOUR_DB_NAME dengan benar.
 
-- finally:
+- akhirnya:
 
 `psql YOUR_DB_NAME -h YOUR_HOST YOUR_USER`
 
-This will allow you to connect to your database via your terminal.
-By default, YOUR_HOST should be 0.0.0.0:5432.
+Ini akan memungkinkan Anda untuk terhubung ke database Anda melalui terminal Anda.
+Secara default, YOUR_HOST harus 0.0.0.0:5432.
 
-You should now be able to build your database URI. This will be:
+Anda sekarang harus dapat membangun URI database Anda. Ini akan menjadi:
 
 `sqldbtype://username:pw@hostname:port/db_name`
 
-Replace SqlDbType with whichever DB you're using (eg Postgres, MySQL, SQLite, etc)
-repeat for your username, password, hostname (localhost?), port (5432?), and DB name.
+Ganti SqlDbType dengan DB mana pun yang Anda gunakan (mis. Postgres, MySQL, SQLite, dll)
+ulangi untuk nama pengguna, kata sandi, nama host (localhost?), port (5432?), dan nama DB Anda.
 
 ## Modules
 
 ### Setting load order
 
-The module load order can be changed via the `LOAD` and `NO_LOAD` configuration settings.
-These should both represent lists.
+Urutan pemuatan modul dapat diubah melalui pengaturan konfigurasi `LOAD` dan` NO_LOAD`.
+Keduanya harus mewakili daftar.
 
-If `LOAD` is an empty list, all modules in `modules/` will be selected for loading by default.
+Jika `LOAD` adalah daftar kosong, semua modul dalam` modules / `akan dipilih untuk dimuat secara default.
 
-If `NO_LOAD` is not present or is an empty list, all modules selected for loading will be loaded.
+Jika `NO_LOAD` tidak ada atau merupakan daftar kosong, semua modul yang dipilih untuk dimuat akan dimuat.
 
-If a module is in both `LOAD` and `NO_LOAD`, the module will not be loaded - `NO_LOAD` takes priority.
+Jika modul ada di `LOAD` dan` NO_LOAD`, modul tidak akan dimuat - `NO_LOAD` diprioritaskan.
 
-### Creating your own modules
+### Membuat modul Anda sendiri
 
-Creating a module has been simplified as much as possible - but do not hesitate to suggest further simplification.
+Membuat modul telah disederhanakan semaksimal mungkin - tetapi jangan ragu untuk menyarankan penyederhanaan lebih lanjut.
 
-All that is needed is that your .py file is in the modules folder.
+Yang diperlukan hanyalah file .py Anda ada di folder modul.
 
-To add commands, make sure to import the dispatcher via
+Untuk menambahkan perintah, pastikan untuk mengimpor petugas operator melalui
 
 `from kaga import dispatcher`.
 
-You can then add commands using the usual
+Anda kemudian dapat menambahkan perintah menggunakan biasa
 
 `dispatcher.add_handler()`.
 
-Assigning the `__help__` variable to a string describing this modules' available
-commands will allow the bot to load it and add the documentation for
-your module to the `/help` command. Setting the `__mod_name__` variable will also allow you to use a nicer,
-user-friendly name for a module.
+Menetapkan variabel `__help__` ke string yang menjelaskan ketersediaan modul ini
+perintah akan memungkinkan bot memuatnya dan menambahkan dokumentasinya
+modul Anda ke perintah `/help`. Menyetel variabel `__mod_name__` juga akan memungkinkan Anda menggunakan variabel yang lebih bagus,
+nama yang mudah digunakan untuk modul.
 
-The `__migrate__()` function is used for migrating chats - when a chat is upgraded to a supergroup, the ID changes, so
-it is necessary to migrate it in the DB.
+Fungsi `__migrate __ ()` digunakan untuk memigrasi obrolan - saat obrolan ditingkatkan ke supergrup, ID berubah, jadi
+perlu untuk memigrasikannya di DB.
 
-The `__stats__()` function is for retrieving module statistics, eg number of users, number of chats. This is accessed
-through the `/stats` command, which is only available to the bot owner.
+Fungsi `__stats__ ()` adalah untuk mengambil statistik modul, misalnya jumlah pengguna, jumlah obrolan. Ini diakses
+melalui perintah `/stats`, yang hanya tersedia untuk pemilik bot.
