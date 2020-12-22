@@ -207,30 +207,6 @@ def user_not_admin(func):
 
     return is_not_admin
 
-def dev_plus(func):
-
-    @wraps(func)
-    def is_dev_plus_func(update: Update, context: CallbackContext, *args,
-                         **kwargs):
-        bot = context.bot
-        user = update.effective_user
-
-        if user.id in DEV_USERS:
-            return func(update, context, *args, **kwargs)
-        elif not user:
-            pass
-        elif DEL_CMDS and " " not in update.effective_message.text:
-            try:
-                update.effective_message.delete()
-            except:
-                pass
-        else:
-            update.effective_message.reply_text(
-                "Ini adalah perintah terbatas pengembang."
-                " Anda tidak memiliki izin untuk menjalankan ini.")
-
-    return is_dev_plus_func
-
 
 def sudo_plus(func):
 
@@ -255,42 +231,3 @@ def sudo_plus(func):
                 "Siapa non-admin yang memberitahuku apa yang harus dilakukan??")
 
     return is_sudo_plus_func
-
-
-def support_plus(func):
-
-    @wraps(func)
-    def is_support_plus_func(update: Update, context: CallbackContext, *args,
-                             **kwargs):
-        bot = context.bot
-        user = update.effective_user
-        chat = update.effective_chat
-
-        if user and is_support_plus(chat, user.id):
-            return func(update, context, *args, **kwargs)
-        elif DEL_CMDS and " " not in update.effective_message.text:
-            try:
-                update.effective_message.delete()
-            except:
-                pass
-
-    return is_support_plus_func
-
-
-def whitelist_plus(func):
-
-    @wraps(func)
-    def is_whitelist_plus_func(update: Update, context: CallbackContext, *args,
-                               **kwargs):
-        bot = context.bot
-        user = update.effective_user
-        chat = update.effective_chat
-
-        if user and is_whitelist_plus(chat, user.id):
-            return func(update, context, *args, **kwargs)
-        else:
-            update.effective_message.reply_text(
-                f"Anda tidak memiliki akses untuk menggunakan ini.\nKunjungi @{SUPPORT_CHAT}")
-
-    return is_whitelist_plus_func
-
