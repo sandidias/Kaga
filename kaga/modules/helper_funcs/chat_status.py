@@ -1,7 +1,7 @@
 from functools import wraps
-from telegram import User, Chat, ChatMember
+from telegram import User, Chat, ChatMember, ParseMode, Update
 from telegram.error import BadRequest, Unauthorized
-from telegram.ext import CallbackContext, run_async
+from telegram.ext import CallbackContext
 
 from kaga import (
     DEL_CMDS,
@@ -208,10 +208,8 @@ def user_not_admin(func):
 
 
 def sudo_plus(func):
-
     @wraps(func)
-    def is_sudo_plus_func(update, context, *args,
-                          **kwargs):
+    def is_sudo_plus_func(update, CallbackContext, *args, **kwargs):
         bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
