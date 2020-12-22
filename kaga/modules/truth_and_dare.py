@@ -4,14 +4,15 @@ import kaga.modules.truth_and_dare_string as truth_and_dare_string
 from kaga import dispatcher
 from telegram import ParseMode, Update, Bot
 from kaga.modules.disable import DisableAbleCommandHandler
+from kaga.modules.helper_funcs.alternate import typing_action
 from telegram.ext import run_async
 
 
-@run_async
+@typing_action
 def truth(bot: Bot, update: Update):
     update.effective_message.reply_text(random.choice(truth_and_dare_string.TRUTH))
 
-@run_async
+@typing_action
 def dare(bot: Bot, update: Update):
     update.effective_message.reply_text(random.choice(truth_and_dare_string.DARE))
 
