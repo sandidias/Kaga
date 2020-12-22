@@ -265,13 +265,6 @@ def holo(update, context):
     target = "holo"
     msg.reply_photo(nekos.img(target))
 
-    
-@typing_action
-def keta(update, context):
-    msg = update.effective_message
-    target = "keta"
-    msg.reply_photo(nekos.img(target))
-
 
 @typing_action
 def pussygif(update, context):
@@ -408,62 +401,6 @@ def dva(update, context):
         return
     msg.reply_photo(url)
 
-
-@typing_action
-def hug(update, context):
-    msg = update.effective_message
-    target = "hug"
-    msg.reply_video(nekos.img(target))
- 
-
-@typing_action
-def pat(update, context):
-    msg = update.effective_message
-    target = "pat"
-    msg.reply_photo(nekos.img(target))
-
-
-@typing_action
-def pwankg(update, context):
-    msg = update.effective_message
-    target = "pwankg"
-    msg.reply_photo(nekos.img(target))
-    
-    
-@typing_action
-def smallboobs(update, context):
-    msg = update.effective_message
-    target = "smallboobs"
-    msg.reply_photo(nekos.img(target))
-
-    
-@typing_action
-def gecg(update, context):
-    msg = update.effective_message
-    target = "gecg"
-    msg.reply_photo(nekos.img(target))
-    
-    
-@typing_action
-def goose(update, context):
-    msg = update.effective_message
-    target = "goose"
-    msg.reply_photo(nekos.img(target))
-    
-    
-@typing_action
-def woof(update, context):
-    msg = update.effective_message
-    target = "woof"
-    msg.reply_video(nekos.img(target))
-    
-    
-@typing_action
-def spank(update, context):
-    msg = update.effective_message
-    target = "spank"
-    msg.reply_photo(nekos.img(target))
-    
     
 __help__ = """
  - /neko: Sends Random SFW Neko source Images.
@@ -537,14 +474,6 @@ ERO_HANDLER = DisableAbleCommandHandler("ero", ero, run_async=True)
 SMUG_HANDLER = DisableAbleCommandHandler("smug", smug, run_async=True)
 BAKA_HANDLER = DisableAbleCommandHandler("baka", baka, run_async=True)
 DVA_HANDLER = DisableAbleCommandHandler("dva", dva, run_async=True)
-HUG_HANDLER = DisableAbleCommandHandler("hug", hug, run_async=True)
-PAT_HANDLER = DisableAbleCommandHandler("pat", pat, run_async=True)
-PWANKG_HANDLER = DisableAbleCommandHandler("pwankg", pwankg, run_async=True)
-SMALLBOOBS_HANDLER = DisableAbleCommandHandler("smallboobs", smallboobs, run_async=True)
-GECG_HANDLER = DisableAbleCommandHandler("gecg", gecg, run_async=True)
-GOOSE_HANDLER = DisableAbleCommandHandler("goose", goose, run_async=True)
-WOOF_HANDLER = DisableAbleCommandHandler("woof", woof, run_async=True)
-SPANK_HANDLER = DisableAbleCommandHandler("spank", spank, run_async=True)
 
 dispatcher.add_handler(LEWDKEMO_HANDLER)
 dispatcher.add_handler(NEKO_HANDLER)
@@ -598,14 +527,6 @@ dispatcher.add_handler(ERO_HANDLER)
 dispatcher.add_handler(SMUG_HANDLER)
 dispatcher.add_handler(BAKA_HANDLER)
 dispatcher.add_handler(DVA_HANDLER)
-dispatcher.add_handler(HUG_HANDLER)
-dispatcher.add_handler(PAT_HANDLER)
-dispatcher.add_handler(PWANKG_HANDLER)
-dispatcher.add_handler(SMALLBOOBS_HANDLER)
-dispatcher.add_handler(GECG_HANDLER)
-dispatcher.add_handler(GOOSE_HANDLER)
-dispatcher.add_handler(WOOF_HANDLER)
-dispatcher.add_handler(SPANK_HANDLER)
    
 __handlers__ = [
     NEKO_HANDLER,
@@ -660,12 +581,4 @@ __handlers__ = [
     SMUG_HANDLER,
     BAKA_HANDLER,
     DVA_HANDLER,
-    HUG_HANDLER,
-    PAT_HANDLER,
-    PWANKG_HANDLER,
-    SMALLBOOBS_HANDLER,
-    GECG_HANDLER,
-    GOOSE_HANDLER,
-    WOOF_HANDLER,
-    SPANK_HANDLER,
 ]
