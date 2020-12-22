@@ -23,6 +23,7 @@ from kaga import (
     DEV_USERS,
     SUDO_USERS,
     WHITELIST_USERS,
+    SUPPORT_CHAT
     dispatcher,
 )
 from cachetools import TTLCache
@@ -45,6 +46,7 @@ def is_user_ban_protected(
         or user_id in DEV_USERS
         or user_id in SUDO_USERS
         or user_id in WHITELIST_USERS
+        or user_id in SUPPORT_CHAT
         or chat.all_members_are_administrators
         or user_id in (777000, 1087968824)
     ):
@@ -60,6 +62,7 @@ def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
         chat.type == "private"
         or user_id in DEV_USERS
         or user_id in SUDO_USERS
+        or user_id in SUPPORT_USER
         or user_id in (777000, 1087968824)
         or chat.all_members_are_administrators
     ):
@@ -220,3 +223,91 @@ def user_not_admin(func):
             return func(update, context, *args, **kwargs)
 
     return is_not_admin
+
+def dev_plus(func):
+
+    @wraps(func)
+    def is_dev_plus_func(update: Update, context: CallbackContext, *args,
+                         **kwargs):
+        bot = context.bot
+        user = update.effective_user
+
+        if user.id in DEV_USERS:
+            return func(update, context, *args, **kwargs)
+        elif not user:
+            pass
+        elif DEL_CMDS and " " not in update.effective_message.text:
+            try:
+                update.effective_message.delete()
+            except:
+                pass
+        else:
+            update.effective_message.reply_text(
+                "This is a developer restricted command."
+                " You do not have permissions to run this.")
+
+    return is_dev_plus_func
+
+
+def sudo_plus(func):
+
+    @wraps(func)
+    def is_sudo_plus_func(update: Update, context: CallbackContext, *args,
+                          **kwargs):
+        bot = context.bot
+        user = update.effective_user
+        chat = update.effective_chat
+
+        if user and is_sudo_plus(chat, user.id):
+            return func(update, context, *args, **kwargs)
+        elif not user:
+            pass
+        elif DEL_CMDS and " " not in update.effective_message.text:
+            try:
+                update.effective_message.delete()
+            except:
+                pass
+        else:
+            update.effective_message.reply_text(
+                "Who dis non-admin telling me what to do? You want a punch?")
+
+    return is_sudo_plus_func
+
+
+def support_plus(func):
+
+    @wraps(func)
+    def is_support_plus_func(update: Update, context: CallbackContext, *args,
+                             **kwargs):
+        bot = context.bot
+        user = update.effective_user
+        chat = update.effective_chat
+
+        if user and is_support_plus(chat, user.id):
+            return func(update, context, *args, **kwargs)
+        elif DEL_CMDS and " " not in update.effective_message.text:
+            try:
+                update.effective_message.delete()
+            except:
+                pass
+
+    return is_support_plus_func
+
+
+def whitelist_plus(func):
+
+    @wraps(func)
+    def is_whitelist_plus_func(update: Update, context: CallbackContext, *args,
+                               **kwargs):
+        bot = context.bot
+        user = update.effective_user
+        chat = update.effective_chat
+
+        if user and is_whitelist_plus(chat, user.id):
+            return func(update, context, *args, **kwargs)
+        else:
+            update.effective_message.reply_text(
+                f"Anda tidak memiliki akses untuk menggunakan ini.\nKunjungi @{SUPPORT_CHAT}")
+
+    return is_whitelist_plus_func
+
