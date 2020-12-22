@@ -5,11 +5,11 @@ GDNIGHT = [
     "`Semoga malam penuh dengan bintang-bintang untukmu. Semoga menghitung setiap orang, memberi Anda puas!`",
     "`Berharap anda nyaman, bahagia, dan tidur nyenyak!`",
     "`Sekarang santai saja. Hari sudah berakhir. Anda melakukan yang terbaik. Dan besok anda akan melakukan yang lebih baik. Selamat malam!`",
-    "`Selamat malam untuk teman yang terbaik! Dapatkan empat puluh kedi mata Anda!`",
+    "`Selamat malam untuk teman yang terbaik! Coba lakukan empat puluh kedipan mata Anda!`",
     "`Semoga bantalmu lembut, dan istirahatmu panjang! Selamat malam, teman!`",
     "`Biar tidak ada masalah, teman tersayang! Selamat malam!`",
     "`Istirahatlah dengan nyenyak malam ini, teman!`",
-    "Tidurlah malam terbaik, teman! Tidur nyenyak!`",
+    "`Tidurlah malam terbaik, teman! Tidur nyenyak!`",
     "`Semoga malammu menyenangkan, teman! Anda luar biasa!`",
     "`Relaksasi adalah dalam rangka untuk Anda! Selamat malam, teman!`",
     "`Selamat malam. Semoga Anda memiliki mimpi indah malam ini.`",
@@ -22,7 +22,7 @@ GDNIGHT = [
     "`Selamat malam, teman! Semoga anda dipenuhi dengan ketenangan!`",
     "`Berharap malam yang tenang, teman! Saya berharap itu baik!`",
     "`Berharap Anda malam di mana Anda dapat mengisi ulang untuk besok!`",
-    "Tertidur malam ini, teman baik, dan merasa beristirahat dengan baik, besok!`",
+    "`Tertidur malam ini, teman baik, dan beristirahat lah dengan baik, sampai besok!`",
     "`Berharap teman baik saya lega dari kerja keras seharian! Selamat malam!`",
     "`Selamat malam, teman! Semoga Anda memiliki keheningan untuk tidur!`",
     "`Tidurlah malam ini, teman dan sehat! Ketahuilah bahwa Anda telah melakukan yang terbaik hari ini, dan bahwa Anda akan melakukan yang terbaik, besok!`",
@@ -397,7 +397,7 @@ GBUN = (
     "Bersiaplah untuk palu roti global!",
 )
 
-DECIDE = ("Ya.", "Tidak.", "Mungkin.", "Tidak.")
+DECIDE = ("Ya.", "Tidak.", "Mungkin.", "Nggak.")
 
 # AFK strings credits: PaperPlaneExtended!
 AFKRPL = (
@@ -431,7 +431,7 @@ AFK = (
     "Sampai nanti {}!",
     "Selamat tinggal {}!",
     "Kembalilah segera {}!",
-    "Kthnxbye {}..",
+    "Selamat jalan {}..",
 )
 
 SHGS = (
