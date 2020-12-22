@@ -67,7 +67,6 @@ def ping_func(to_ping: List[str]) -> List[str]:
     return ping_result
 
 
-@run_async
 def ping(bot: Bot, update: Update):
     telegram_ping = ping_func(["Telegram"])[0].split(": ", 1)[1]
     uptime = get_readable_time((time.time() - StartTime))
@@ -79,7 +78,6 @@ def ping(bot: Bot, update: Update):
     update.effective_message.reply_text(reply_msg, parse_mode=ParseMode.HTML)
 
 
-@run_async
 def pingall(bot: Bot, update: Update):
     to_ping = ["Kaizoku", "Kayo", "Telegram", "Jikan"]
     pinged_list = ping_func(to_ping)
