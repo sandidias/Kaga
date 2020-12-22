@@ -1,7 +1,6 @@
 from functools import wraps
-from telegram import User, Chat, ChatMember, ParseMode, Update
+from telegram import User, Chat, ChatMember
 from telegram.error import BadRequest, Unauthorized
-from telegram.ext import CallbackContext
 
 from kaga import (
     DEL_CMDS,
@@ -206,25 +205,3 @@ def user_not_admin(func):
 
     return is_not_admin
 
-
-def sudo_plus(func):
-    @wraps(func)
-    def is_sudo_plus_func(update, CallbackContext, *args, **kwargs):
-        bot = context.bot
-        user = update.effective_user
-        chat = update.effective_chat
-
-        if user and is_sudo_plus(chat, user.id):
-            return func(update, context, *args, **kwargs)
-        elif not user:
-            pass
-        elif DEL_CMDS and " " not in update.effective_message.text:
-            try:
-                update.effective_message.delete()
-            except:
-                pass
-        else:
-            update.effective_message.reply_text(
-                "Siapa non-admin yang memberitahuku apa yang harus dilakukan??")
-
-    return is_sudo_plus_func
