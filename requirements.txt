@@ -31,3 +31,6 @@ jikanpy>=4.2.2
 telethon
 pyrogram
 uptime
+datetime
+speedtest-cli
+pythonping
