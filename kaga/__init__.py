@@ -3,9 +3,12 @@
 import logging
 import os
 import sys
+import time
 import spamwatch
 import telegram.ext as tg
 from dotenv import load_dotenv
+
+StartTime = time.time()
 
 # enable logging
 logging.basicConfig(
