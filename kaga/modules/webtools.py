@@ -38,18 +38,6 @@ def leavechat(update, context):
 
 
 @typing_action
-def ping(update, context):
-    msg = update.effective_message
-    start_time = time.time()
-    message = msg.reply_text("Pinging...")
-    end_time = time.time()
-    ping_time = round((end_time - start_time) * 1000, 3)
-    message.edit_text(
-        "*Pong!!!*\n`{}ms`".format(ping_time), parse_mode=ParseMode.MARKDOWN
-    )
-
-
-@typing_action
 def get_bot_ip(update, context):
     """Mengirimkan alamat IP bot, agar dapat melakukan ssh jika perlu.
     HANYA PEMILIK.
@@ -151,9 +139,6 @@ def restart(update, context):
 IP_HANDLER = CommandHandler(
     "ip", get_bot_ip, filters=Filters.chat(OWNER_ID), run_async=True
 )
-PING_HANDLER = CommandHandler(
-    "ping", ping, filters=CustomFilters.sudo_filter, run_async=True
-)
 SPEED_HANDLER = CommandHandler(
     "speedtest", speedtst, filters=CustomFilters.sudo_filter, run_async=True
 )
@@ -176,7 +161,6 @@ RESTART_HANDLER = CommandHandler(
 
 dispatcher.add_handler(IP_HANDLER)
 dispatcher.add_handler(SPEED_HANDLER)
-dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(SYS_STATUS_HANDLER)
 dispatcher.add_handler(LEAVECHAT_HANDLER)
 dispatcher.add_handler(GITPULL_HANDLER)
