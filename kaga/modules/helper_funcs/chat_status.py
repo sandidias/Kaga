@@ -7,7 +7,7 @@ from kaga import (
     DEV_USERS,
     SUDO_USERS,
     WHITELIST_USERS,
-    SUPPORT_CHAT
+    SUPPORT_CHAT,
     dispatcher,
 )
 from cachetools import TTLCache
@@ -46,6 +46,7 @@ def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
         chat.type == "private"
         or user_id in DEV_USERS
         or user_id in SUDO_USERS
+        or user_id in SUPPORT_CHAT
         or user_id in (777000, 1087968824)
         or chat.all_members_are_administrators
     ):
