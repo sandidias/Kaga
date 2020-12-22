@@ -68,7 +68,7 @@ def ping_func(to_ping: List[str]) -> List[str]:
     return ping_result
 
 
-@rtyping_action
+@typing_action
 def ping(bot: Bot, update: Update):
     telegram_ping = ping_func(["Telegram"])[0].split(": ", 1)[1]
     uptime = get_readable_time((time.time() - StartTime))
