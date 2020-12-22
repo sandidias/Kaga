@@ -310,7 +310,7 @@ def markdown_help(update, context):
         MARKDOWN_HELP, parse_mode=ParseMode.HTML
     )
     update.effective_message.reply_text(
-        "Coba teruskan pesan berikut kepada saya, dan Anda akan melihat!"
+        "Coba teruskan pesan berikut kepada saya, dan Anda akan melihatnya!"
     )
     update.effective_message.reply_text(
         "/save tes Ini adalah tes markdown. _italics_, --underline--, *bold*, `code`, ~strike~ "
