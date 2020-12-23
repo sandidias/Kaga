@@ -94,7 +94,7 @@ buttons += [
             text="Support 🎗️", url="https://t.me/ZeroBotSupport"
         ),
         InlineKeyboardButton(
-            text="Source 💻", url="https://github.com/HayakaRyu/KagaRobot"
+            text="Source 💻", url="telegra.ph/Source-Closed-12-23"
         ),
         InlineKeyboardButton(
             text="Channel 📢", url="https://t.me/HayakaRyuUpdates"
@@ -340,7 +340,7 @@ def error_handler(update, context):
     # Finally, send the message
     context.bot.send_message(
         chat_id=MESSAGE_DUMP,
-        text="an error has been found here !!!",
+        text="kesalahan telah ditemukan di sini !!!",
         reply_markup=markup,
     )
 
