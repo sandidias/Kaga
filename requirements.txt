@@ -40,3 +40,4 @@ gtts
 aiohttp
 nekos.py
 fontTools
+coffeehouse
