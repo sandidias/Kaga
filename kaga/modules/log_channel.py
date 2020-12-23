@@ -50,7 +50,7 @@ if is_module_loaded(FILENAME):
     def gloggable(func):
 
         @wraps(func)
-        def glog_action(update: Update, context: CallbackContext, *args,
+        def glog_action(update, context, *args,
                         **kwargs):
             result = func(update, context, *args, **kwargs)
             chat = update.effective_chat
