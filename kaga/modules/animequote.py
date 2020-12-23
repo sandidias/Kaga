@@ -13,6 +13,6 @@ def aq(update, context):
     args = context.args
     update.effective_message.reply_text(random.choice(animequote_string.ANIMEQUOTE))
 
-AQ_HANDLER = DisableAbleCommandHandler("aq", aq)
+AQ_HANDLER = DisableAbleCommandHandler("aq", aq, run_async=True)
 
 dispatcher.add_handler(AQ_HANDLER)
