@@ -1,5 +1,5 @@
 import html
-from typing import Optional
+import re
 
 import kaga.modules.no_sql.blsticker_sql as sql
 from kaga import LOGGER, dispatcher
