@@ -95,6 +95,7 @@ else:
 
 # Everything Init with this
 updater = tg.Updater(TOKEN, workers=WORKERS)
+telethn = TelegramClient("KagaRobot", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 # Declare user rank
