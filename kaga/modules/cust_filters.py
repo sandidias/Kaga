@@ -217,7 +217,7 @@ def filters(update, context):
     if add:
         send_message(
             update.effective_message,
-            "Filter tersimpan '{}' di *{}*!".format(keyword, chat_name),
+            "Filter '{}' tersimpan di *{}*!".format(keyword, chat_name),
             parse_mode=telegram.ParseMode.MARKDOWN,
         )
     raise DispatcherHandlerStop
@@ -257,7 +257,7 @@ def stop_filter(update, context):
             sql.remove_filter(chat_id, args[1])
             send_message(
                 update.effective_message,
-                "Oke, saya akan berhenti membalas filter itu *{}*.".format(
+                "Oke, saya akan berhenti membalas filter *{}* itu.".format(
                     chat_name
                 ),
                 parse_mode=telegram.ParseMode.MARKDOWN,
