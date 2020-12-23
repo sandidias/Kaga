@@ -2,7 +2,7 @@ from telethon import events
 from kaga import telethn
 
 """Triggers start command in pm and in groupchats"""
-def Cutiepii_Robot(**args):
+def KagaRobot(**args):
     """New message."""
     pattern = args.get('pattern', None)
     r_pattern = r'^[/!]'
