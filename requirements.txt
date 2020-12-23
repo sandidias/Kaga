@@ -39,3 +39,4 @@ animu-cf
 gtts
 aiohttp
 nekos.py
+fontTools
