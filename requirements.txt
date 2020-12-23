@@ -12,7 +12,7 @@ git+https://github.com/TomyPrs/python-markdown2.git
 google_trans_new
 gtts
 lxml
-pillow
+Pillow>=4.2.0
 psutil
 psycopg2-binary
 pymongo[srv]
