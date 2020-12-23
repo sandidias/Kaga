@@ -325,7 +325,6 @@ def clear(update, context):
         if sql.rm_note(chat_id, notename):
             update.effective_message.reply_text(
                 "Berhasil menghapus '`{note_name}`' dari {chat_name}!".format(
-                    note_name=note_name, chat_name=chat_name
                     note_name=notename, chat_name=chat_name
                 ),
                 parse_mode=ParseMode.MARKDOWN,
