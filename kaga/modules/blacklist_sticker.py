@@ -1,7 +1,7 @@
 import html
 from typing import Optional
 
-import kaga.modules.no_sql import blsticker_sql
+from kaga.modules.no_sql import blsticker_sql
 from kaga import LOGGER, dispatcher
 from kaga.modules.connection import connected
 from kaga.modules.disable import DisableAbleCommandHandler
