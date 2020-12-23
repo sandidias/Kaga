@@ -38,7 +38,7 @@ def blackliststicker(update, context):
             chat_id = update.effective_chat.id
             chat_name = chat.title
 
-    sticker_list = "<b>List blacklisted stickers currently in {}:</b>\n".format(
+    sticker_list = "<b>Buat daftar stiker daftar hitam yang saat ini ada di {}:</b>\n".format(
         chat_name)
 
     all_stickerlist = sql.get_chat_stickers(chat_id)
@@ -52,11 +52,11 @@ def blackliststicker(update, context):
 
     split_text = split_message(sticker_list)
     for text in split_text:
-        if sticker_list == "<b>List blacklisted stickers currently in {}:</b>\n".format(
+        if sticker_list == "<b>LBuat daftar stiker daftar hitam yang saat ini ada di {}:</b>\n".format(
                 chat_name).format(html.escape(chat_name)):
             send_message(
                 update.effective_message,
-                "There are no blacklist stickers in <b>{}</b>!".format(
+                "Tidak ada stiker daftar hitam di <b>{}</b>!".format(
                     html.escape(chat_name)),
                 parse_mode=ParseMode.HTML)
             return
@@ -98,7 +98,7 @@ def add_blackliststicker(update, context):
             except BadRequest:
                 send_message(
                     update.effective_message,
-                    "Sticker `{}` can not be found!".format(trigger),
+                    "Stiker `{}` tidak dapat ditemukan!".format(trigger),
                     parse_mode="markdown")
 
         if added == 0:
