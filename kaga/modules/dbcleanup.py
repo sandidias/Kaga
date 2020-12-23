@@ -20,7 +20,7 @@ def get_invalid_chats(bot: Bot, update: Update, remove: bool = False):
     for chat in chats:
 
         if ((100 * chats.index(chat)) / len(chats)) > progress:
-            progress_bar = f"{progress}% completed in getting invalid chats."
+            progress_bar = f"{progress}% selesai dalam mendapatkan obrolan yang tidak valid."
             if progress_message:
                 try:
                     bot.editMessageText(
@@ -112,7 +112,7 @@ def get_muted_chats(bot: Bot, update: Update, leave: bool = False):
     for chat in chats:
 
         if ((100 * chats.index(chat)) / len(chats)) > progress:
-            progress_bar = f"{progress}% completed in getting muted chats."
+            progress_bar = f"{progress}% selesai dalam mendapatkan obrolan yang dibisukan."
             if progress_message:
                 try:
                     bot.editMessageText(
@@ -184,7 +184,7 @@ def callback_button(update, context):
                 "Meninggalkan obrolan ...", chat_id, message.message_id
             )
             chat_count = get_muted_chats(bot, update, True)
-            bot.sendMessage(chat_id, f"Keluar dari {chat_count} chat.")
+            bot.sendMessage(chat_id, f"Keluar dari obrolan {chat_count}.")
         else:
             query.answer("Anda tidak diperbolehkan menggunakan ini.")
     elif query_type == "db_cleanup":
