@@ -553,85 +553,63 @@ def left_member(update, context):
 @user_admin
 @typing_action
 def welcome(update, context):
-    chat = update.effective_chat
     args = context.args
-    reply = update.message.message_id
+    chat = update.effective_chat
     # if no args, show current replies.
-    if len(args) == 0 or args[0].lower() == "noformat":
-        noformat = args and args[0].lower() == "noformat"
-        pref, welcome_m, cust_content, welcome_type = sql.get_welc_pref(
-            chat.id
-        )
+    if not args or args[0].lower() == "noformat":
+        noformat = True
+        pref, welcome_m, cust_content, welcome_type = sql.get_welc_pref(chat.id)
         update.effective_message.reply_text(
-            "Obrolan ini memiliki setelan selamat datang yang disetel ke: `{}`.\n*Pengaturan saat ini "
-            "(tidak mengisi {{}}):*".format(pref),
+            f"This chat has it's welcome setting set to: `{pref}`.\n"
+            f"*The welcome message (not filling the {{}}) is:*",
             parse_mode=ParseMode.MARKDOWN,
         )
 
-        buttons = sql.get_welc_buttons(chat.id)
-        if (
-            welcome_type == sql.Types.BUTTON_TEXT
-            or welcome_type == sql.Types.TEXT
-        ):
+        if welcome_type == sql.Types.BUTTON_TEXT or welcome_type == sql.Types.TEXT:
+            buttons = sql.get_welc_buttons(chat.id)
             if noformat:
                 welcome_m += revert_buttons(buttons)
-                send_message(update.effective_message, welcome_m)
+                update.effective_message.reply_text(welcome_m)
 
             else:
-                if buttons:
-                    keyb = build_keyboard(buttons)
-                    keyboard = InlineKeyboardMarkup(keyb)
-                else:
-                    keyboard = None
+                keyb = build_keyboard(buttons)
+                keyboard = InlineKeyboardMarkup(keyb)
 
                 send(update, welcome_m, keyboard, sql.DEFAULT_WELCOME)
-
         else:
+            buttons = sql.get_welc_buttons(chat.id)
             if noformat:
                 welcome_m += revert_buttons(buttons)
                 ENUM_FUNC_MAP[welcome_type](
-                    chat.id, cust_content, caption=welcome_m
-                )
+                    chat.id, cust_content, caption=welcome_m)
 
             else:
-                if buttons:
-                    keyb = build_keyboard_parser(context.bot, chat.id, buttons)
-                    keyboard = InlineKeyboardMarkup(keyb)
-                else:
-                    keyboard = None
-
-                if ENUM_FUNC_MAP[welcome_type] == dispatcher.bot.send_sticker:
-                    ENUM_FUNC_MAP[welcome_type](
-                        chat.id,
-                        cust_content,
-                        reply_to_message_id=reply,
-                        reply_markup=keyboard,
-                    )
-                else:
-                    ENUM_FUNC_MAP[welcome_type](
-                        chat.id,
-                        cust_content,
-                        caption=welcome_m,
-                        reply_markup=keyboard,
-                        parse_mode=ParseMode.MARKDOWN,
-                    )
+                keyb = build_keyboard(buttons)
+                keyboard = InlineKeyboardMarkup(keyb)
+                ENUM_FUNC_MAP[welcome_type](
+                    chat.id,
+                    cust_content,
+                    caption=welcome_m,
+                    reply_markup=keyboard,
+                    parse_mode=ParseMode.MARKDOWN,
+                    disable_web_page_preview=True,
+                )
 
     elif len(args) >= 1:
         if args[0].lower() in ("on", "yes"):
             sql.set_welc_preference(str(chat.id), True)
-            update.effective_message.reply_text("Saya akan bersikap sopan!")
+            update.effective_message.reply_text(
+                "Okay! I'll greet members when they join.")
 
         elif args[0].lower() in ("off", "no"):
             sql.set_welc_preference(str(chat.id), False)
             update.effective_message.reply_text(
-                "Aku akan diam, tidak akan menyapa lagi."
-            )
+                "I'll go loaf around and not welcome anyone then.")
 
         else:
-            # idek what you're writing, say yes or no
             update.effective_message.reply_text(
-                "Saya hanya mengerti 'on/yes' atau 'off/no' saja!"
-            )
+                "I understand 'on/yes' or 'off/no' only!")
+
 
 
 @user_admin
