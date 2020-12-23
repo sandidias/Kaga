@@ -293,7 +293,7 @@ def save(update, context):
     )
 
     msg.reply_text(
-        "Menyimpan '`{note_name}`' di *{chat_name}*.\nDapatkan dengan`/get {note_name}`, atau`#{note_name}`!".format(
+        "Menyimpan '`{note_name}`' di *{chat_name}*.\nDapatkan dengan `/get {note_name}`, atau`#{note_name}`!".format(
             note_name=note_name, chat_name=chat_name
         ),
         parse_mode=ParseMode.MARKDOWN,
