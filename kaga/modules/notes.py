@@ -326,6 +326,7 @@ def clear(update, context):
             update.effective_message.reply_text(
                 "Berhasil menghapus '`{note_name}`' dari {chat_name}!".format(
                     note_name=note_name, chat_name=chat_name
+                    note_name=notename, chat_name=chat_name
                 ),
                 parse_mode=ParseMode.MARKDOWN,
             )
@@ -336,7 +337,7 @@ def clear(update, context):
                 )
             )
     else:
-        msg.reply_text("Yeah let me clear nothing...")
+        msg.reply_text("Ya biarkan aku tidak menjelaskan apapun...")
         return
     
 
