@@ -107,20 +107,20 @@ def add_blackliststicker(update, context):
         if len(to_blacklist) == 1:
             send_message(
                 update.effective_message,
-                "Sticker <code>{}</code> added to blacklist stickers in <b>{}</b>!"
+                "Stiker <code>{}</code> ditambahkan ke stiker daftar hitam di <b>{}</b>!"
                 .format(html.escape(to_blacklist[0]), html.escape(chat_name)),
                 parse_mode=ParseMode.HTML)
         else:
             send_message(
                 update.effective_message,
-                "<code>{}</code> stickers added to blacklist sticker in <b>{}</b>!"
+                "<code>{}</code> stiker ditambahkan ke stiker daftar hitam di <b>{}</b>!"
                 .format(added, html.escape(chat_name)),
                 parse_mode=ParseMode.HTML)
     elif msg.reply_to_message:
         added = 0
         trigger = msg.reply_to_message.sticker.set_name
         if trigger is None:
-            send_message(update.effective_message, "Sticker is invalid!")
+            send_message(update.effective_message, "Stiker tidak valid!")
             return
         try:
             get = bot.getStickerSet(trigger)
@@ -129,7 +129,7 @@ def add_blackliststicker(update, context):
         except BadRequest:
             send_message(
                 update.effective_message,
-                "Sticker `{}` can not be found!".format(trigger),
+                "Stiker `{}` tidak dapat ditemukan!".format(trigger),
                 parse_mode="markdown")
 
         if added == 0:
@@ -137,12 +137,12 @@ def add_blackliststicker(update, context):
 
         send_message(
             update.effective_message,
-            "Sticker <code>{}</code> added to blacklist stickers in <b>{}</b>!"
+            "Stiker <code>{}</code> ditambahkan ke stiker daftar hitam di <b>{}</b>!"
             .format(trigger, html.escape(chat_name)),
             parse_mode=ParseMode.HTML)
     else:
         send_message(update.effective_message,
-                     "Tell me what stickers you want to add to the blacklist.")
+                     "Beri tahu saya stiker apa yang ingin Anda tambahkan ke daftar hitam.")
 
 
 @typing_action
@@ -181,25 +181,25 @@ def unblackliststicker(update, context):
             if successful:
                 send_message(
                     update.effective_message,
-                    "Sticker <code>{}</code> deleted from blacklist in <b>{}</b>!"
+                    "Stiker <code>{}</code> dihapus dari daftar hitam di <b>{}</b>!"
                     .format(
                         html.escape(to_unblacklist[0]), html.escape(chat_name)),
                     parse_mode=ParseMode.HTML)
             else:
                 send_message(update.effective_message,
-                             "This sticker is not on the blacklist...!")
+                             "Stiker ini tidak ada di daftar hitam...!")
 
         elif successful == len(to_unblacklist):
             send_message(
                 update.effective_message,
-                "Sticker <code>{}</code> deleted from blacklist in <b>{}</b>!"
+                "Stiker <code>{}</code> dihapus dari daftar hitam di <b>{}</b>!"
                 .format(successful, html.escape(chat_name)),
                 parse_mode=ParseMode.HTML)
 
         elif not successful:
             send_message(
                 update.effective_message,
-                "None of these stickers exist, so they cannot be removed."
+                "Tak satu pun dari stiker ini ada, jadi tidak bisa dilepas."
                 .format(successful,
                         len(to_unblacklist) - successful),
                 parse_mode=ParseMode.HTML)
@@ -207,30 +207,30 @@ def unblackliststicker(update, context):
         else:
             send_message(
                 update.effective_message,
-                "Sticker <code>{}</code> deleted from blacklist. {} did not exist, so it's not deleted."
+                "Stiker <code>{}</code> dihapus dari daftar hitam. {} tidak ada, jadi tidak dihapus."
                 .format(successful,
                         len(to_unblacklist) - successful),
                 parse_mode=ParseMode.HTML)
     elif msg.reply_to_message:
         trigger = msg.reply_to_message.sticker.set_name
         if trigger is None:
-            send_message(update.effective_message, "Sticker is invalid!")
+            send_message(update.effective_message, "Stiker tidak valid!")
             return
         success = sql.rm_from_stickers(chat_id, trigger.lower())
 
         if success:
             send_message(
                 update.effective_message,
-                "Sticker <code>{}</code> deleted from blacklist in <b>{}</b>!"
+                "Stiker <code>{}</code> dihapus dari daftar hitam di <b>{}</b>!"
                 .format(trigger, chat_name),
                 parse_mode=ParseMode.HTML)
         else:
             send_message(
                 update.effective_message,
-                "{} not found on blacklisted stickers...!".format(trigger))
+                "{} tidak ditemukan di stiker daftar hitam...!".format(trigger))
     else:
         send_message(update.effective_message,
-                     "Tell me what stickers you want to add to the blacklist.")
+                     "Beri tahu saya stiker apa yang ingin Anda tambahkan ke daftar hitam.")
 
 
 @typing_action
@@ -249,7 +249,7 @@ def blacklist_mode(update, context):
     else:
         if update.effective_message.chat.type == "private":
             send_message(update.effective_message,
-                         "You can do this command in groups, not PM")
+                         "Anda dapat melakukan perintah ini dalam grup, bukan PM")
             return ""
         chat = update.effective_chat
         chat_id = update.effective_chat.id
@@ -277,8 +277,8 @@ def blacklist_mode(update, context):
             sql.set_blacklist_strength(chat_id, 5, "0")
         elif args[0].lower() == 'tban':
             if len(args) == 1:
-                teks = """It looks like you are trying to set a temporary value to blacklist, but has not determined the time; use `/blstickermode tban <timevalue>`.
-                                          Examples of time values: 4m = 4 minute, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
+                teks = """Sepertinya Anda mencoba menyetel nilai sementara ke daftar hitam, tetapi belum menentukan waktunya; gunakan `/blstickermode tban <timevalue>`.
+                                          Contoh nilai waktu: 4m = 4 menit, 3h = 3 jam, 6d = 6 hari, 5w = 5 minggu."""
                 send_message(
                     update.effective_message, teks, parse_mode="markdown")
                 return
@@ -286,8 +286,8 @@ def blacklist_mode(update, context):
             sql.set_blacklist_strength(chat_id, 6, str(args[1]))
         elif args[0].lower() == 'tmute':
             if len(args) == 1:
-                teks = """It looks like you are trying to set a temporary value to blacklist, but has not determined the time; use `/blstickermode tmute <timevalue>`.
-                                          Examples of time values: 4m = 4 minute, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."""
+                teks = """Sepertinya Anda mencoba menyetel nilai sementara ke daftar hitam, tetapi belum menentukan waktunya; gunakan`/blstickermode tmute <timevalue>`.
+                                          Contoh nilai waktu: 4m = 4 menit, 3h = 3 jam, 6d = 6 hari, 5w = 5 minggu."""
                 send_message(
                     update.effective_message, teks, parse_mode="markdown")
                 return
@@ -296,21 +296,21 @@ def blacklist_mode(update, context):
         else:
             send_message(
                 update.effective_message,
-                "I only understand off/del/warn/ban/kick/mute/tban/tmute!")
+                "Saya hanya mengerti off/del/warn/ban/kick/mute/tban/tmute!")
             return
         if conn:
-            text = "Blacklist sticker mode changed, users will be `{}` at *{}*!".format(
+            text = "Mode stiker daftar hitam diubah, pengguna akan `{}` di *{}*!".format(
                 settypeblacklist, chat_name)
         else:
-            text = "Blacklist sticker mode changed, users will be `{}`!".format(
+            text = "Mode stiker daftar hitam diubah, pengguna akan menjadi `{}`!".format(
                 settypeblacklist)
         send_message(update.effective_message, text, parse_mode="markdown")
         return "<b>{}:</b>\n" \
           "<b>Admin:</b> {}\n" \
-          "Changed sticker blacklist mode. users will be {}.".format(html.escape(chat.title),
+          "Mode daftar hitam stiker diubah. pengguna akan {}.".format(html.escape(chat.title),
                          mention_html(user.id, html.escape(user.first_name)), settypeblacklist)
     else:
-        getmode, getvalue = sql.get_blacklist_setting(chat.id)
+        getmode, getvalue = no_sql.get_blacklist_setting(chat.id)
         if getmode == 0:
             settypeblacklist = "not active"
         elif getmode == 1:
@@ -328,10 +328,10 @@ def blacklist_mode(update, context):
         elif getmode == 7:
             settypeblacklist = "temporarily muted for {}".format(getvalue)
         if conn:
-            text = "Blacklist sticker mode is currently set to *{}* in *{}*.".format(
+            text = "Mode stiker daftar hitam saat ini disetel ke *{}* dalam *{}*.".format(
                 settypeblacklist, chat_name)
         else:
-            text = "Blacklist sticker mode is currently set to *{}*.".format(
+            text = "Mode stiker daftar hitam saat ini disetel ke *{}*.".format(
                 settypeblacklist)
         send_message(
             update.effective_message, text, parse_mode=ParseMode.MARKDOWN)
@@ -349,9 +349,9 @@ def del_blackliststicker(update, context):
     if not to_match:
         return
     bot = context.bot
-    getmode, value = sql.get_blacklist_setting(chat.id)
+    getmode, value = no_sql.get_blacklist_setting(chat.id)
 
-    chat_filters = sql.get_chat_stickers(chat.id)
+    chat_filters = no_sql.get_chat_stickers(chat.id)
     for trigger in chat_filters:
         if to_match.set_name.lower() == trigger.lower():
             try:
@@ -364,7 +364,7 @@ def del_blackliststicker(update, context):
                     warn(
                         update.effective_user,
                         chat,
-                        "Using sticker '{}' which in blacklist stickers".format(
+                        "Menggunakan stiker '{}' yang masuk daftar hitam stiker".format(
                             trigger),
                         message,
                         update.effective_user,
@@ -378,7 +378,7 @@ def del_blackliststicker(update, context):
                         permissions=ChatPermissions(can_send_messages=False))
                     bot.sendMessage(
                         chat.id,
-                        "{} muted because using '{}' which in blacklist stickers"
+                        "{} dibisukan karena menggunakan '{}' yang ada dalam stiker daftar hitam"
                         .format(
                             mention_markdown(user.id, user.first_name),
                             trigger),
@@ -390,7 +390,7 @@ def del_blackliststicker(update, context):
                     if res:
                         bot.sendMessage(
                             chat.id,
-                            "{} kicked because using '{}' which in blacklist stickers"
+                            "{} ditendang karena menggunakan '{}' yang ada di stiker daftar hitam"
                             .format(
                                 mention_markdown(user.id, user.first_name),
                                 trigger),
@@ -401,7 +401,7 @@ def del_blackliststicker(update, context):
                     chat.kick_member(user.id)
                     bot.sendMessage(
                         chat.id,
-                        "{} banned because using '{}' which in blacklist stickers"
+                        "{} dilarang karena menggunakan '{}' yang ada di stiker daftar hitam"
                         .format(
                             mention_markdown(user.id, user.first_name),
                             trigger),
@@ -413,7 +413,7 @@ def del_blackliststicker(update, context):
                     chat.kick_member(user.id, until_date=bantime)
                     bot.sendMessage(
                         chat.id,
-                        "{} banned for {} because using '{}' which in blacklist stickers"
+                        "{} dilarang untuk {} karena menggunakan '{}' yang ada di stiker daftar hitam"
                         .format(
                             mention_markdown(user.id, user.first_name), value,
                             trigger),
@@ -429,7 +429,7 @@ def del_blackliststicker(update, context):
                             can_send_messages=False, until_date=mutetime))
                     bot.sendMessage(
                         chat.id,
-                        "{} muted for {} because using '{}' which in blacklist stickers"
+                        "{} dibisukan untuk {} karena menggunakan '{}' yang ada dalam stiker daftar hitam"
                         .format(
                             mention_markdown(user.id, user.first_name), value,
                             trigger),
@@ -439,7 +439,7 @@ def del_blackliststicker(update, context):
                 if excp.message == "Message to delete not found":
                     pass
                 else:
-                    LOGGER.exception("Error while deleting blacklist message.")
+                    LOGGER.exception("Kesalahan saat menghapus pesan daftar hitam.")
                 break
 
 
@@ -456,25 +456,25 @@ def __migrate__(old_chat_id, new_chat_id):
 
 def __chat_settings__(chat_id, user_id):
     blacklisted = sql.num_stickers_chat_filters(chat_id)
-    return "There are `{} `blacklisted stickers.".format(blacklisted)
+    return "Ada `{}` stiker masuk daftar hitam.".format(blacklisted)
 
 
 def __stats__():
-    return "• {} blacklist stickers, across {} chats.".format(
+    return "• {} stiker daftar hitam, di {} obrolan.".format(
         sql.num_stickers_filters(), sql.num_stickers_filter_chats())
 
 
 __help__ = """
-Blacklist sticker is used to stop certain stickers. Whenever a sticker is sent, the message will be deleted immediately.
-*NOTE:* Blacklist stickers do not affect the group admin.
- • `/blsticker`*:* See current blacklisted sticker.
-*Only admin:*
- • `/addblsticker <sticker link>`*:* Add the sticker trigger to the black list. Can be added via reply sticker.
- • `/unblsticker <sticker link>`*:* Remove triggers from blacklist. The same newline logic applies here, so you can delete multiple triggers at once.
- • `/rmblsticker <sticker link>`*:* Same as above.
- • `/blstickermode <ban/tban/mute/tmute>`*:* sets up a default action on what to do if users use blacklisted stickers. (`tmute seems broken right now`)
-Note:
- • `<sticker link>` can be `https://t.me/addstickers/<sticker>` or just `<sticker>` or reply to the sticker message.
+Stiker daftar hitam digunakan untuk menghentikan stiker tertentu. Setiap kali stiker dikirim, pesan tersebut akan segera dihapus.
+*CATATAN:* Stiker Blacklist tidak mempengaruhi admin grup.
+ • `/blsticker`*:* Lihat stiker daftar hitam saat ini.
+*Khusus Admin:*
+ • `/addblsticker <sticker link>`*:* Tambahkan pemicu stiker ke daftar hitam. Dapat ditambahkan melalui stiker balasan.
+ • `/unblsticker <sticker link>`*:* Hapus pemicu dari daftar hitam. Logika baris baru yang sama berlaku di sini, jadi Anda bisa menghapus beberapa pemicu sekaligus.
+ • `/rmblsticker <sticker link>`*:* Sama seperti di atas.
+ • `/blstickermode <ban/tban/mute/tmute>`*:* smenyiapkan tindakan default tentang apa yang harus dilakukan jika pengguna menggunakan stiker daftar hitam. (`tmute tampaknya rusak sekarang`)
+Catatan:
+ • `<sticker link>` dapat berupa `https://t.me/addstickers/<sticker>` atau hanya `<sticker>` atau membalas pesan stiker.
 """
 
 __mod_name__ = "Stickers Blacklist"
