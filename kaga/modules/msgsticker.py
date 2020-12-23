@@ -13,11 +13,13 @@ import json
 import os
 import re
 from kaga.kaga import KagaRobot
+from kaga.modules.helper_funcs.alternate import typing_action
 
 COLORS = [
     "#F07975", "#F49F69", "#F9C84A", "#8CC56E", "#6CC7DC", "#80C1FA", "#BCB3F9", "#E181AC"]
 
-async def process(msg, user, client, reply, replied=None):
+@typing_action
+def process(msg, user, client, reply, replied=None):
         if not os.path.isdir("resources"):
             os.mkdir("resources", 0o755)
             urllib.request.urlretrieve(
@@ -259,7 +261,8 @@ async def process(msg, user, client, reply, replied=None):
             x = pfpbg.width + 30
         return True, canvas
 
-async def drawer(width, height):
+@typing_action
+def drawer(width, height):
         # Top part
         top = Image.new('RGBA', (width, 20), (0,0,0,0))
         draw = ImageDraw.Draw(top)
@@ -274,14 +277,16 @@ async def drawer(width, height):
         bottom = ImageOps.flip(top)
 
         return top, middle, bottom
-
-async def fontTest(letter):
+    
+@typing_action
+def fontTest(letter):
         test = TTFont("resources/Roboto-Medium.ttf")
         for table in test['cmap'].tables:
             if ord(letter) in table.cmap.keys():
                 return True
 
-async def get_entity(msg):
+@typing_action
+def get_entity(msg):
         bold = {0: 0}
         italic = {0: 0}
         mono = {0: 0}
@@ -303,7 +308,8 @@ async def get_entity(msg):
                 link[entity.offset] = entity.offset + entity.length
         return bold, mono, italic, link
 
-async def doctype(name, size, type, canvas):
+@typing_action
+def doctype(name, size, type, canvas):
         font = ImageFont.truetype("resources/Roboto-Medium.ttf", 38)
         doc = Image.new("RGBA", (130, 130), (29, 29, 29, 255))
         draw = ImageDraw.Draw(doc)
@@ -329,7 +335,8 @@ async def no_photo(reply, tot):
         pen.text((32, 17), letter, font=font, fill="white")
         return pfp, color
 
-async def emoji_fetch(emoji):
+@typing_action
+def emoji_fetch(emoji):
         emojis = json.loads(
             urllib.request.urlopen("https://github.com/erenmetesar/modules-repo/raw/master/emojis.txt").read().decode())
         if emoji in emojis:
@@ -338,8 +345,9 @@ async def emoji_fetch(emoji):
         else:
             img = emojis["⛔"]
             return await transparent(urllib.request.urlretrieve(img, "resources/emoji.png")[0])
-        
-async def transparent(emoji):
+
+@typing_action
+def transparent(emoji):
         emoji = Image.open(emoji).convert("RGBA")
         emoji.thumbnail((40, 40))
         
@@ -349,7 +357,8 @@ async def transparent(emoji):
         draw.ellipse((0, 0, 40, 40), fill=255)
         return emoji, mask
 
-async def replied_user(draw, tot, text, maxlength, title):
+@typing_action
+def replied_user(draw, tot, text, maxlength, title):
         namefont = ImageFont.truetype("resources/Roboto-Medium.ttf", 38)
         namefallback= ImageFont.truetype("resources/Quivira.otf", 38)
         textfont = ImageFont.truetype("resources/Roboto-Regular.ttf", 32)
@@ -375,7 +384,8 @@ async def replied_user(draw, tot, text, maxlength, title):
                 space += textfont.getsize(letter)[0]
                 
 @KagaRobot(pattern="^/q")
-async def _(event):
+@typing_action
+def _(event):
     if event.fwd_from:
         return
     reply = await event.get_reply_message()
