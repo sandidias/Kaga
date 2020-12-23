@@ -482,7 +482,7 @@ __mod_name__ = "Memes"
 
 SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug, run_async=True)
 DECIDE_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(kaga)"), decide, friendly="decide", run_async=True
+    Filters.regex(r"(?i)(kagarobot)"), decide, friendly="decide", run_async=True
 )
 SNIPE_HANDLER = CommandHandler(
     "snipe",
