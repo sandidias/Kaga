@@ -1,7 +1,7 @@
 import html
 from typing import Optional
 
-from kaga.modules.no_sql import blsticker_sql
+import kaga.modules.sql.blsticker_sql as sql
 from kaga import LOGGER, dispatcher
 from kaga.modules.connection import connected
 from kaga.modules.disable import DisableAbleCommandHandler
@@ -310,7 +310,7 @@ def blacklist_mode(update, context):
           "Mode daftar hitam stiker diubah. pengguna akan {}.".format(html.escape(chat.title),
                          mention_html(user.id, html.escape(user.first_name)), settypeblacklist)
     else:
-        getmode, getvalue = no_sql.get_blacklist_setting(chat.id)
+        getmode, getvalue = sql.get_blacklist_setting(chat.id)
         if getmode == 0:
             settypeblacklist = "not active"
         elif getmode == 1:
@@ -349,9 +349,9 @@ def del_blackliststicker(update, context):
     if not to_match:
         return
     bot = context.bot
-    getmode, value = no_sql.get_blacklist_setting(chat.id)
+    getmode, value = sql.get_blacklist_setting(chat.id)
 
-    chat_filters = no_sql.get_chat_stickers(chat.id)
+    chat_filters = sql.get_chat_stickers(chat.id)
     for trigger in chat_filters:
         if to_match.set_name.lower() == trigger.lower():
             try:
