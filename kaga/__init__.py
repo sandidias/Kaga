@@ -6,6 +6,7 @@ import sys
 import time
 import spamwatch
 import telegram.ext as tg
+from telethon import TelegramClient
 from dotenv import load_dotenv
 
 StartTime = time.time()
