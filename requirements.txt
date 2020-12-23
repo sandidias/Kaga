@@ -29,7 +29,7 @@ wikipedia
 hurry
 hurry.filesize
 jikanpy>=4.2.2
-telethon
+telethon==1.16.4
 pyrogram
 uptime
 datetime
