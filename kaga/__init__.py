@@ -75,6 +75,7 @@ API_HASH = os.environ.get('API_HASH', None)
 DONATION_LINK = os.environ.get("DONATION_LINK") or None
 LOAD = os.environ.get("LOAD", "").split()
 NO_LOAD = os.environ.get("NO_LOAD", "").split()
+SUPPORT_CHAT = os.environ.get('SUPPORT_CHAT', None)
 AI_API_KEY = os.environ.get('AI_API_KEY', None)
 DEL_CMDS = bool(os.environ.get("DEL_CMDS")) or False
 STRICT_GBAN = bool(os.environ.get("STRICT_GBAN")) or False
