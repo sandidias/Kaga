@@ -186,36 +186,6 @@ def new_member(update, context):
                 )
                 continue
 
-            # Welcome Sudos
-            elif new_mem.id in DRAGONS:
-                update.effective_message.reply_text(
-                    "Cutie Cutie! the Red Dragon emperor is here! Issei-kun, you should continue practicing to focus your magic. ",
-                    reply_to_message_id=reply,
-                )
-                continue
-
-            # Welcome Support
-            elif new_mem.id in DEMONS:
-                update.effective_message.reply_text(
-                    "A member of Gremory family just arrived!",
-                    reply_to_message_id=reply,
-                )
-                continue
-
-            # Welcome Whitelisted
-            elif new_mem.id in TIGERS:
-                update.effective_message.reply_text(
-                    "You're the new club member, right?. You know about our president Rias?",
-                    reply_to_message_id=reply)
-                continue
-
-            # Welcome Tigers
-            elif new_mem.id in WOLVES:
-                update.effective_message.reply_text(
-                    "You should be grateful to Rias-sama, her sympathy is upon you!",
-                    reply_to_message_id=reply)
-                continue
-
             # Welcome yourself
             elif new_mem.id == bot.id:
                 creator = None
