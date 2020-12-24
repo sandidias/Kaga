@@ -7,12 +7,12 @@ from kaga.modules.disable import DisableAbleCommandHandler
 from kaga.modules.helper_funcs.alternate import typing_action
 
 @typing_action
-def truth(update: Update, context: CallbackContext):
+def truth(update, context):
     args = context.args
     update.effective_message.reply_text(random.choice(truth_and_dare_string.TRUTH))
 
 @typing_action
-def dare(update: Update, context: CallbackContext):
+def dare(update, context):
     args = context.args
     update.effective_message.reply_text(random.choice(truth_and_dare_string.DARE))
 
