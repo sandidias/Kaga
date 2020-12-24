@@ -14,39 +14,39 @@ DEFAULT_WELCOME_MESSAGES = [
     "{first} ada di sini!", #Discord selamat datang disalin
     "Pemain siap {first}",
     "Genos, {first} ada di sini.",
-    "A liar {first} muncul.",
-    "{pertama} datang seperti Singa!",
+    "Selamat datng, {first}. Kami harap kamu bisa betah disini.",
+    "{first} datang seperti Singa!",
     "{first} telah bergabung dengan partai Anda.",
-    "{pertama} baru bergabung. Dapatkah saya mendapatkan penyembuhan?",
+    "{first} baru bergabung. Dapatkah saya mendapatkan penyembuhan?",
     "{first} baru saja bergabung dengan obrolan - asdgfhak!",
-    "{pertama} baru bergabung. Semuanya, terlihat sibuk!",
+    "{first} baru bergabung. Semuanya, terlihat sibuk!",
     "Selamat datang, {first}. Tinggal sebentar dan mendengarkan .",
     "Selamat datang, {first}. Kami mengharapkan Anda ( ͡° ͜ʖ ͡°) ",
     "Selamat datang, {first}. Kami harap Anda membawa pizza.",
     "Selamat datang, {first}. Tinggalkan senjata anda di dekat pintu.",
-    "Swoooosh. [pertama] baru saja mendarat.",
+    "Swoooosh. [first] baru saja mendarat.",
     "Persiapkan diri kalian. {first} baru saja bergabung dengan obrolan.",
-    "{pertama} baru bergabung. Sembunyikan pisang Anda.",
-    "{pertama} baru saja tiba. Tampaknya OP - silakan nerf.",
+    "{first} baru bergabung. Sembunyikan pisang Anda.",
+    "{first} baru saja tiba. Tampaknya OP - silakan nerf.",
     "{first} baru saja meluncur ke obrolan.",
     "{first} telah muncul dalam obrolan.",
     "Big {first} muncul!",
     "Dimana {first}? Dalam obrolan!",
     "{first} melompat ke obrolan. Kanguru!!",
-    "{pertama} baru saja muncul. Pegang birku.",
-    "Penantang mendekat! [pertama} telah muncul!",
+    "{first} baru saja muncul. Pegang birku.",
+    "Penantang mendekat! [first} telah muncul!",
     "Ini burung! Ini pesawat! Nevermind, itu hanya {first}.",
     "Ini {first}! Pujilah matahari! o/",
     "Jangan pernah memberikan {first} up. Tidak akan pernah membiarkan {first} turun.",
-    "Ha! [pertama} telah bergabung! Anda mengaktifkan kartu perangkap saya !",
+    "Ha! [first} telah bergabung! Anda mengaktifkan kartu perangkap saya!",
     "Hei! Mendengarkan! {first} telah bergabung!",
     "Kami sudah menunggumu {first}",
     "Sangat berbahaya untuk pergi sendiri, ambil {first}!",
     "{first} telah bergabung dengan obrolan! Ini sangat efektif!",
-    "Bersurak-sorai, cinta! [pertama} ada di sini!",
+    "Bersurak-sorai, cinta! [first} ada di sini!",
     "{first} ada di sini, seperti ramalan yang diramalkan.",
     "{first} telah tiba. Pestanya sudah berakhir.",
-    "{pertama} di sini untuk menendang pantat dan mengunyah gelembung. Dan [pertama} adalah semua keluar dari permen karet.",
+    "{first} di sini untuk menendang pantat dan mengunyah gelembung. Dan [first} adalah semua keluar dari permen karet.",
     "Halo. Apakah {first} Anda cari?",
     "{first} telah bergabung. Tinggal sebentar dan mendengarkan!",
     "Mawar berwarna merah, violet berwarna biru, {first} bergabung dengan obrolan ini denganmu",
@@ -54,166 +54,166 @@ DEFAULT_WELCOME_MESSAGES = [
     "Ini burung! Ini pesawat! - Tidak, itu {first}!",
     "{first} Bergabung! - Ok.", #Discord selamat datang berakhir.
     "All Hail {first}!",
-    "Hai, {pertama}. Jangan mengintai, hanya Villans yang melakukan itu.",
+    "Hai, {first}. Jangan mengintai, hanya Villans yang melakukan itu.",
     "{first} telah bergabung dengan bus pertempuran.",
     "Penantang baru masuk!", #Tekken
     "Ok!",
-    "{pertama} baru saja jatuh ke dalam obrolan!*",
-    "Sesuatu baru saja jatuh dari langit! - Oh, itu {first}.*",
-    "{first} Baru saja diteleportasi ke dalam obrolan!*",
-    "Hai, {first}, tunjukkan Lisensi Hunter-mu!*", #Hunter Hunter
-    "Aku cari Garo, oh tunggu nvm itu {first}.*", #One Punch man s2
-    "Selamat datang {first}, pergi bukanlah pilihan!*",
-    "Jalankan Hutan! .. Maksudku... [pertama}.*",
-    "{first} lakukan 100 push-up, 100 sit-up, 100 squat, dan 10km berjalan SETIAP HARI!!! *", #One Punch ma
-    "Huh?nDid seseorang dengan tingkat bencana baru saja bergabung?nOh tunggu, itu hanya {first}.*", #One Punch ma
-    "Hei, {first}, pernah mendengar King Engine?*", #One Punch ma
-    "Hei, {first}, kosongkan kantongmu.*",
-    "Hei, {first}!, apakah anda kuat?*",
-    "Panggil Avengers! - [pertama} baru saja bergabung dengan obrolan.*",
-    "{first} bergabung. Anda harus membangun tiang tambahan.*",
-    "Ermagherd. [pertama} ada di sini.*",
-    "Datanglah untuk Balap Siput, Tetap untuk Chimichangas!*",
-    "Siapa yang butuh Google? Anda adalah segala sesuatu yang kami cari .*",
-    "Tempat ini harus memiliki WiFi gratis, karena saya merasakan koneksi.*",
-    "Bicaralah dengan teman dan masuklah.*",
-    "Selamat datang anda*",
-    "Selamat datang {first}, putrimu ada di kastil lain.*",
-    "Hai {first}, selamat datang di sisi gelap.*",
-    "Hola {first}, waspadalah terhadap orang-orang dengan tingkat bencana*",
-    "Hei {first}, kami memiliki droid yang Anda cari.*",
-    "Hai {first}nIni bukan tempat yang aneh, ini adalah rumah saya, itu adalah orang-orang yang aneh.*",
-    "Oh, hei {first} apa kata sandinya?*",
-    "Hei {first}, aku tahu apa yang akan kita lakukan hari ini*",
-    "{first} baru saja bergabung, waspadalah mereka bisa menjadi mata-mata.*",
-    "{first} bergabung dengan grup, dibaca oleh Mark Zuckerberg, CIA dan 35 lainnya.*",
-    "Selamat datang {first}, hati-hati dengan monyet yang jatuh.*",
-    "Semua orang menghentikan apa yang Anda lakukan, Kami sekarang berada di hadapan {first}.*",
-    "Hei {first}, apakah Anda ingin tahu bagaimana saya mendapatkan bekas luka ini?*",
-    "Selamat datang {first}, jatuhkan senjata anda dan lanjutkan ke pemindai mata-mata.*",
-    "Tetap aman {first}, Jaga jarak sosial 3 meter di antara pesan anda.*", #Corona meme lmao
-    "Hei {first}, Kau tahu aku pernah satu pukulan meteorit?*",
-    "Anda di sini sekarang {first}, Perlawanan sia-sia*",
-    "{first} baru saja tiba, kekuatannya kuat dengan yang satu ini.*",
-    "{first} baru saja bergabung atas perintah presiden.*",
-    "Hai {first}, apakah gelas setengah penuh atau setengah kosong?*",
-    "Yipee Kayaye {first} tiba.*",
-    "*Welcome {first}, if you’re a secret agent press 1, otherwise start a conversation*",
-    "*{first}, I have a feeling we’re not in Kansas anymore.*",
-    "*They may take our lives, but they’ll never take our {first}.*",
-    "*Coast is clear! You can come out guys, it’s just {first}.*",
-    "*Welcome {first}, pay no attention to that guy lurking.*",
-    "*Welcome {first}, may the force be with you.*",
-    "*May the {first} be with you.*",
-    "*{first} just joined. Hey, where's Perry?*",
-    "*{first} just joined. Oh, there you are, Perry.*",
-    "*Ladies and gentlemen, I give you ...  {first}.*",
-    "*Behold my new evil scheme, the {first}-Inator.*",
-    "*Ah, {first} the Platypus, you're just in time... to be trapped.*",
-    "*snaps fingers and teleports {first} here*",
-    "*{first}! What is a fish and a rabbit combined?*",  #Lifereload - kaizoku member.
-    "*{first} just arrived. Diable Jamble!*",  #One Piece Sanji
-    "*{first} just arrived. Aschente!*",  #No Game No Life
-    "*{first} say Aschente to swear by the pledges.*",  #No Game No Life
-    "*{first} just joined. El Psy congroo!*",  #Steins Gate
-    "*Irasshaimase {first}!*",  #weeabo shit
-    "*Hi {first}, what is 1000-7?*",  #tokyo ghoul
-    "*Come. I don't want to destroy this place*",  #hunter x hunter
-    "*I... am... Whitebeard!...wait..wrong anime.*",  #one Piece
-    "*Hey {first}...have you ever heard these words?*",  #BNHA
-    "*Can't a guy get a little sleep around here?*",  #Kamina Falls – Gurren Lagann
-    "*It's time someone put you in your place, {first}.*",  #Hellsing
-    "*Unit-01's reactivated..*",  #Neon Genesis: Evangelion
-    "*Prepare for trouble...And make it double*",  #Pokemon
-    "*Hey {first}, are You Challenging Me?*",  #Shaggy
-    "*Oh? You're Approaching Me?*",  #jojo
-    "*{first} just warped into the group!*",
-    "*I..it's..it's just {first}.*",
-    "*Sugoi, Dekai. {first} Joined!*",
-    "*{first}, do you know gods of death love apples?*",  #Death Note owo
-    "*I'll take a potato chip.... and eat it*",  #Death Note owo
-    "*Oshiete oshiete yo sono shikumi wo!*",  #Tokyo Ghoul
-    "*Kaizoku ou ni...nvm wrong anime.*",  #op
-    "*{first} just joined! Gear.....second!*",  #Op
-    "*Omae wa mou....shindeiru*",
-    "*Hey {first}, the leaf village lotus blooms twice!*",  #Naruto stuff begins from here
-    "*{first} Joined! Omote renge!*",
-    "*{first} joined!, Gate of Opening...open!*",
-    "*{first} joined!, Gate of Healing...open!*",
-    "*{first} joined!, Gate of Life...open!*",
-    "*{first} joined!, Gate of Pain...open!*",
-    "*{first} joined!, Gate of Limit...open!*",
-    "*{first} joined!, Gate of View...open!*",
-    "*{first} joined!, Gate of Shock...open!*",
-    "*{first} joined!, Gate of Death...open!*",
-    "*{first}! I, Madara! declare you the strongest*",
-    "*{first}, this time I'll lend you my power.*",  #Kyuubi to naruto
-    "*{first}, welcome to the hidden leaf village!*",  # Naruto thingies end here
-    "*In the jungle, you must wait...until the dice read five or eight.*",  #Jumanji stuff
-    "*Dr.{first} Famed archeologist and international explorer,\nWelcome to Jumanji!\nJumanji's Fate is up to you now.*",
-    "*{first}, this will not be an easy mission - monkeys slow the expedition.*",  #End of Jumanji stuff
+    "{first} baru saja jatuh ke dalam obrolan!",
+    "Sesuatu baru saja jatuh dari langit! - Oh, itu {first}.",
+    "{first} Baru saja diteleportasi ke dalam obrolan!",
+    "Hai, {first}, tunjukkan Lisensi Hunter-mu!", #Hunter Hunter
+    "Aku cari Garo, oh tunggu nvm itu {first}.", #One Punch man s2
+    "Selamat datang {first}, pergi bukanlah pilihan!",
+    "Jalankan Hutan! .. Maksudku... [first}.",
+    "{first} lakukan 100 push-up, 100 sit-up, 100 squat, dan 10km berjalan SETIAP HARI!!! ", #One Punch ma
+    "Huh?nDid seseorang dengan tingkat bencana baru saja bergabung?nOh tunggu, itu hanya {first}.", #One Punch ma
+    "Hei, {first}, pernah mendengar King Engine?", #One Punch ma
+    "Hei, {first}, kosongkan kantongmu.",
+    "Hei, {first}!, apakah anda kuat?",
+    "Panggil Avengers! - [first} baru saja bergabung dengan obrolan.",
+    "{first} bergabung. Anda harus membangun tiang tambahan.",
+    "Ermagherd. [first} ada di sini.",
+    "Datanglah untuk Balap Siput, Tetap untuk Chimichangas!",
+    "Siapa yang butuh Google? Anda adalah segala sesuatu yang kami cari .",
+    "Tempat ini harus memiliki WiFi gratis, karena saya merasakan koneksi.",
+    "Bicaralah dengan teman dan masuklah.",
+    "Selamat datang anda",
+    "Selamat datang {first}, putrimu ada di kastil lain.",
+    "Hai {first}, selamat datang di sisi gelap.",
+    "Hola {first}, waspadalah terhadap orang-orang dengan tingkat bencana",
+    "Hei {first}, kami memiliki droid yang Anda cari.",
+    "Hai {first}nIni bukan tempat yang aneh, ini adalah rumah saya, itu adalah orang-orang yang aneh.",
+    "Oh, hei {first} apa kata sandinya?",
+    "Hei {first}, aku tahu apa yang akan kita lakukan hari ini",
+    "{first} baru saja bergabung, waspadalah mereka bisa menjadi mata-mata.",
+    "{first} bergabung dengan grup, dibaca oleh Mark Zuckerberg, CIA dan 35 lainnya.",
+    "Selamat datang {first}, hati-hati dengan monyet yang jatuh.",
+    "Semua orang menghentikan apa yang Anda lakukan, Kami sekarang berada di hadapan {first}.",
+    "Hei {first}, apakah Anda ingin tahu bagaimana saya mendapatkan bekas luka ini?",
+    "Selamat datang {first}, jatuhkan senjata anda dan lanjutkan ke pemindai mata-mata.",
+    "Tetap aman {first}, Jaga jarak sosial 3 meter di antara pesan anda.", #Corona meme lmao
+    "Hei {first}, Kau tahu aku pernah satu pukulan meteorit?",
+    "Anda di sini sekarang {first}, Perlawanan sia-sia",
+    "{first} baru saja tiba, kekuatannya kuat dengan yang satu ini.",
+    "{first} baru saja bergabung atas perintah presiden.",
+    "Hai {first}, apakah gelas setengah penuh atau setengah kosong?",
+    "Yipee Kayaye {first} tiba.",
+    "Selamat datang {first}, jika Anda agen rahasia tekan 1, jika tidak, mulailah percakapan",
+    "{first}, aku merasa kita tidak berada di Kansas lagi.",
+    "Mereka mungkin mengambil nyawa kita, tapi mereka tidak akan pernah mengambil {first} kita.",
+    "Coast is clear! Kalian bisa keluar guys, itu hanya {first}.",
+    "Selamat datang {pertama}, jangan perhatikan orang yang mengintai.",
+    "Selamat datang {pertama}, semoga kekuatan menyertai Anda.",
+    "Semoga {first} bersamamu.",
+    "{first} baru saja bergabung. Hei, dimana Perry?",
+    "{first} baru saja bergabung. Oh, itu dia, Perry.",
+    "Ladies and gentlemen, saya berikan ... {first}.",
+    "Lihatlah skema jahat baru saya, {first} -Inator.",
+    "Ah, {pertama} Platipus, kamu tepat waktu ... untuk terjebak.",
+    "jentikan jari dan teleportasi {first} di sini",
+    "{first}! Apa yang dimaksud dengan kombinasi ikan dan kelinci?", #Lifereload - kaizoku member.
+    "{first} baru saja tiba. Diable Jamble!", #One Piece Sanji
+    "{first} baru saja tiba. Aschente!", #No Game No Life
+    "{first} ucapkan Aschente untuk bersumpah demi janji.", #No Game No Life
+    "{first} baru saja bergabung. El Psy congroo!", #Steins Gate
+    "Irasshaimase {first}!", #Weeabo shit
+    "Hai {first}, berapa 1000-7?", #Tokyo ghoul
+    "Ayo. Aku tidak ingin menghancurkan tempat ini", #hunter x hunter
+    "Aku ... adalah ... Whitebeard! ... tunggu.. anime salah.", #One Piece
+    "Hai {first} ... pernahkah kamu mendengar kata-kata ini?", #BNHA
+    "Tidak bisakah seorang pria tidur sedikit di sekitar sini?", #Kamina Falls - Gurren Lagann
+    "Sudah waktunya seseorang menempatkan Anda di tempat Anda, {first}.", #Hellsing
+    "Unit-01 diaktifkan kembali ..", #Neon Genesis: Evangelion
+    "Bersiap untuk masalah ... Dan jadikan ganda", #Pokemon
+    "Hai {first}, apakah Anda Menantang Saya?", #Shaggy
+    "Oh? Kamu Mendekati Aku?", #Jojo
+    "{first} baru saja berubah menjadi grup!",
+    "I.. in ini.. ini hanya {first}.",
+    "Sugoi, Dekai. {first} Bergabung!",
+    "{first}, tahukah kamu dewa kematian cinta apel?", #Death Note owo
+    "Aku akan mengambil keripik kentang .... dan memakannya", #Death Note owo
+    "Oshiete oshiete yo sono shikumi wo!", #Tokyo Ghoul
+    "Kaizoku ou ni ... nvm salah anime.", #Op
+    "{first} baru saja bergabung! Gear ..... kedua!", #Op
+    "Omae wa mou .... shindeiru",
+    "Hei {first}, teratai desa daun mekar dua kali!", #Naruto dimulai dari sini
+    "{first} Bergabung! Omote renge!",
+    "{first} bergabung!, Gerbang Pembukaan ... buka!",
+    "{first} bergabung!, Gerbang Penyembuhan ... buka!",
+    "{first} bergabung!, Gerbang Kehidupan ... buka!",
+    "{first} bergabung!, Gate of Pain ... buka!",
+    "{first} bergabung!, Gerbang Batas ... buka!",
+    "{first} bergabung!, Gerbang Pandang ... buka!",
+    "{first} bergabung!, Gerbang Kejutan ... buka!",
+    "{first} bergabung!, Gerbang Kematian ... buka!",
+    "{first}! Aku, Madara! menyatakanmu sebagai yang terkuat",
+    "{first}, kali ini aku akan meminjamkanmu kekuatanku.", #Kyuubi to naruto
+    "{first}, selamat datang di desa daun tersembunyi!", # Hal-hal Naruto berakhir di sini
+    "Di hutan, kamu harus menunggu ... sampai dadu bertuliskan lima atau delapan.", #Jumanji
+    "Dr. {First} Arkeolog terkenal dan penjelajah internasional,\nSelamat datang di Jumanji!\nTakdir Jumanji terserah kamu sekarang.",
+    "{first}, ini bukanlah misi yang mudah - monyet memperlambat ekspedisi.", #Akhir dari hal-hal Jumanji
 ]
 DEFAULT_GOODBYE_MESSAGES = [
-    "{first} will be missed.",
-    "{first} just went offline.",
-    "{first} has left the lobby.",
-    "{first} has left the clan.",
-    "{first} has left the game.",
-    "{first} has fled the area.",
-    "{first} is out of the running.",
-    "Nice knowing ya, {first}!",
-    "It was a fun time {first}.",
-    "We hope to see you again soon, {first}.",
-    "I donut want to say goodbye, {first}.",
-    "Goodbye {first}! Guess who's gonna miss you :')",
-    "Goodbye {first}! It's gonna be lonely without ya.",
-    "Please don't leave me alone in this place, {first}!",
-    "Good luck finding better shit-posters than us, {first}!",
-    "You know we're gonna miss you {first}. Right? Right? Right?",
-    "Congratulations, {first}! You're officially free of this mess.",
-    "{first}. You were an opponent worth fighting.",
-    "You're leaving, {first}? Yare Yare Daze.",
-    "Bring him the photo",
-    "Go outside!",
-    "Ask again later",
-    "Think for yourself",
-    "Question authority",
-    "You are worshiping a sun god",
-    "Don't leave the house today",
-    "Give up!",
-    "Marry and reproduce",
-    "Stay asleep",
-    "Wake up",
-    "Look to la luna",
-    "Steven lives",
-    "Meet strangers without prejudice",
-    "A hanged man will bring you no luck today",
-    "What do you want to do today?",
-    "You are dark inside",
-    "Have you seen the exit?",
-    "Get a baby pet it will cheer you up.",
-    "Your princess is in another castle.",
-    "You are playing it wrong give me the controller",
-    "Trust good people",
-    "Live to die.",
-    "When life gives you lemons reroll!",
-    "Well, that was worthless",
-    "I fell asleep!",
-    "May your troubles be many",
-    "Your old life lies in ruin",
-    "Always look on the bright side",
-    "It is dangerous to go alone",
-    "You will never be forgiven",
-    "You have nobody to blame but yourself",
-    "Only a sinner",
-    "Use bombs wisely",
-    "Nobody knows the troubles you have seen",
-    "You look fat you should exercise more",
-    "Follow the zebra",
-    "Why so blue?",
-    "The devil in disguise",
-    "Go outside",
-    "Always your head in the clouds",
+    "{first} akan terlewatkan.",
+    "{first} baru saja offline.",
+    "{first} telah meninggalkan lobi.",
+    "{first} telah meninggalkan klan."
+    "{first} telah meninggalkan permainan.",
+    "{first} telah melarikan diri dari daerah tersebut.",
+    "{first} sudah tidak berjalan.",
+    "Senang mengetahui ya, {first}!",
+    "Itu adalah waktu yang menyenangkan {first}.",
+    "Kami berharap dapat segera bertemu lagi, {first}.",
+    "Saya donut ingin mengucapkan selamat tinggal, {first}.",
+    "Selamat tinggal {first}! Tebak siapa yang akan merindukanmu :')",
+    "Selamat tinggal {first}! Ini akan menjadi kesepian tanpa ya."
+    "Tolong jangan tinggalkan aku sendirian di tempat ini, {first}!",
+    "Semoga beruntung menemukan shit-poster yang lebih baik dari kami, {first}!",
+    "Kau tahu kami akan merindukanmu {first}. Kanan? Kanan? Benar?",
+    "Selamat, {first}! Anda secara resmi bebas dari kekacauan ini."
+    "{first}. Anda adalah lawan yang layak diperjuangkan."
+    "Anda akan pergi, {first}? Yare Yare Daze.",
+    "Bawakan dia fotonya",
+    "Pergi ke luar!",
+    "Tanyakan lagi nanti",
+    "Pikirkan sendiri",
+    "Otoritas pertanyaan",
+    "Anda menyembah dewa matahari",
+    "Jangan tinggalkan rumah hari ini",
+    "Menyerah!",
+    "Menikah dan bereproduksi",
+    "Tetap tertidur",
+    "Bangun",
+    "Lihatlah ke la luna",
+    "Steven hidup",
+    "Temui orang asing tanpa prasangka",
+    "Seorang pria yang digantung tidak akan membawa anda keberuntungan hari ini",
+    "Apa yang ingin Anda lakukan hari ini?",
+    "Anda gelap di dalam",
+    "Pernahkah Anda melihat pintu keluar?",
+    "Dapatkan hewan peliharaan bayi itu akan menghibur Anda.",
+    "Putrimu ada di kastil lain.",
+    "Anda bermain salah memberi saya pengontrol",
+    "Percayalah pada orang baik",
+    "Hidup untuk mati.",
+    "Ketika hidup memberimu lemon reroll!",
+    "Yah, itu tidak berharga",
+    "Aku tertidur!",
+    "Semoga masalahmu banyak",
+    "Kehidupan lamamu terletak pada kehancuran",
+    "Selalu melihat sisi baiknya",
+    "Sangat berbahaya untuk pergi sendirian",
+    "Anda tidak akan pernah diampuni",
+    "Anda tidak punya siapa-siapa untuk disalahkan kecuali diri Anda sendiri",
+    "Hanya pendosa",
+    "Gunakan bom dengan bijak",
+    "Tidak ada yang tahu masalah yang telah Anda lihat",
+    "Anda terlihat gemuk Anda harus berolahraga lebih",
+    "Ikuti zebra",
+    "Mengapa begitu biru?",
+    "Setan yang menyamar",
+    "Pergi ke luar",
+    "Selalu kepalamu di awan",
 ]
 # Line 111 to 152 are references from https://bindingofisaac.fandom.com/wiki/Fortune_Telling_Machine
 
