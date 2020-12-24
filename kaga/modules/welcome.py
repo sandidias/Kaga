@@ -150,8 +150,8 @@ def new_member(update, context):
         welcome_bool = True
         media_wel = False
 
-        if sw != None:
-            sw_ban = sw.get_ban(new_mem.id)
+        if spamwtc != None:
+            sw_ban = spamwtc.get_ban(new_mem.id)
             if sw_ban:
                 return
 
@@ -465,8 +465,8 @@ def left_member(update, context):
         if left_mem:
 
             # Thingy for spamwatched users
-            if sw != None:
-                sw_ban = sw.get_ban(left_mem.id)
+            if spamwtc != None:
+                sw_ban = spamwtc.get_ban(left_mem.id)
                 if sw_ban:
                     return
 
