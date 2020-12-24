@@ -86,17 +86,17 @@ def send(update, message, keyboard, backup_message):
             msg = update.effective_message.reply_text(
                 markdown_parser(
                     backup_message +
-                    "\nNote: the current message has an invalid url "
-                    "in one of its buttons. Please update."),
+                    "\nCatatan: pesan saat ini memiliki url yang tidak valid "
+                    "di salah satu tombolnya. Harap perbarui."),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_to_message_id=reply,
             )
         elif excp.message == "Unsupported url protocol":
             msg = update.effective_message.reply_text(
                 markdown_parser(backup_message +
-                                "\nNote: the current message has buttons which "
-                                "use url protocols that are unsupported by "
-                                "telegram. Please update."),
+                                "\nCatatan: pesan saat ini memiliki tombol yang "
+                                "gunakan protokol url yang tidak didukung oleh "
+                                "telegram. Harap perbarui."),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_to_message_id=reply,
             )
@@ -104,8 +104,8 @@ def send(update, message, keyboard, backup_message):
             msg = update.effective_message.reply_text(
                 markdown_parser(
                     backup_message +
-                    "\nNote: the current message has some bad urls. "
-                    "Please update."),
+                    "\nCatatan: pesan saat ini memiliki beberapa url yang buruk. "
+                    "Harap perbarui."),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_to_message_id=reply,
             )
