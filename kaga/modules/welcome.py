@@ -988,10 +988,10 @@ NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members,
                                  new_member, run_async=True)
 LEFT_MEM_HANDLER = MessageHandler(Filters.status_update.left_chat_member,
                                   left_member, run_async=True)
-WELC_PREF_HANDLER = CommandHandler("welcome", welcome, filters=Filters.chat_type.groupsFilters.chat_type.groupsFilters.chat_type.groups, run_async=True)
-GOODBYE_PREF_HANDLER = CommandHandler("goodbye", goodbye, filters=Filters.chat_type.groupsFilters.chat_type.groups, run_async=True)
-SET_WELCOME = CommandHandler("setwelcome", set_welcome, filters=Filters.chat_type.groupsFilters.chat_type.groups, run_async=True)
-SET_GOODBYE = CommandHandler("setgoodbye", set_goodbye, filters=Filters.chat_type.groupsFilters.chat_type.groups, run_async=True)
+WELC_PREF_HANDLER = CommandHandler("welcome", welcome, filters=Filters.chat_type.groups, run_async=True)
+GOODBYE_PREF_HANDLER = CommandHandler("goodbye", goodbye, filters=Filters.chat_type.groups, run_async=True)
+SET_WELCOME = CommandHandler("setwelcome", set_welcome, filters=Filters.chat_type.groups, run_async=True)
+SET_GOODBYE = CommandHandler("setgoodbye", set_goodbye, filters=Filters.chat_type.groups, run_async=True)
 RESET_WELCOME = CommandHandler(
     "resetwelcome", reset_welcome, filters=Filters.chat_type.groups, run_async=True)
 RESET_GOODBYE = CommandHandler(
