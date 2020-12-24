@@ -5,8 +5,7 @@ import time
 from functools import partial
 
 import kaga.modules.sql.welcome_sql as sql
-from kaga import (DEV_USERS, LOGGER, OWNER_ID, DRAGONS, DEMONS, TIGERS,
-                          WOLVES, sw, dispatcher, JOIN_LOGGER)
+from kaga import (DEV_USERS, LOGGER, OWNER_ID, spamwtc, dispatcher, JOIN_LOGGER)
 from kaga.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     user_admin,
