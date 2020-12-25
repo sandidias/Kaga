@@ -322,7 +322,7 @@ def markdown_help(update, context):
 @typing_action
 def wiki(update, context):
     kueri = re.split(pattern="wiki", string=update.effective_message.text)
-    wikipedia.set_lang("en")
+    wikipedia.set_lang("id")
     if len(str(kueri[1])) == 0:
         update.effective_message.reply_text("Masukkan kata kunci!")
     else:
@@ -332,7 +332,7 @@ def wiki(update, context):
                 [
                     [
                         InlineKeyboardButton(
-                            text="🔧 More Info...",
+                            text="🔧 Info lebih lanjut...",
                             url=wikipedia.page(kueri).url,
                         )
                     ]
