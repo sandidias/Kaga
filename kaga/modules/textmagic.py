@@ -29,16 +29,9 @@ def weebify(update, context):
         message.reply_text(string)
 
 
-__help__ = """
- Originally Made By [Ayan Ansari](t.me/TechnoAyanOfficial)
- 
- - /blackout <text>: Apply Blackout Style to your text
- """
-
 WEEBIFY_HANDLER = DisableAbleCommandHandler("blackout", weebify, pass_args=True, run_async=True)
 
 dispatcher.add_handler(WEEBIFY_HANDLER)
 
-__mod_name__ = "Black Out"
 command_list = ["weebify"]
 handlers = [WEEBIFY_HANDLER]
