@@ -1,5 +1,8 @@
 from datetime import datetime
 from functools import wraps
+from kaga import (
+    EVENT_LOGS
+)
 
 from kaga.modules.helper_funcs.misc import is_module_loaded
 
