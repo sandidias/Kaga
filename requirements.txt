@@ -44,3 +44,4 @@ fontTools
 coffeehouse
 youtube_dl
 hachoir
+pybase64
