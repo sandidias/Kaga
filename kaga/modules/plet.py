@@ -12,7 +12,7 @@ from telegram.ext import Filters, MessageHandler, run_async
 from kaga.modules.helper_funcs.extraction import extract_user_and_text
 from kaga.modules.disable import DisableAbleCommandHandler
 from kaga import dispatcher
-from kagat.modules.thonkify_dict import thonkifydict
+from kaga.modules.thonkify_dict import thonkifydict
 from kaga.modules.helper_funcs.alternate import typing_action
 
 @typing_action
