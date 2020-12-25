@@ -228,6 +228,10 @@ def bot_admin(func):
 
     return is_admin
 
+    def is_user_in_chat(chat: Chat, user_id: int) -> bool:
+        member = chat.get_member(user_id)
+        return member.status not in ("left", "kicked")
+
 
 def bot_can_delete(func):
     @wraps(func)
