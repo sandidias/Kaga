@@ -42,3 +42,5 @@ aiohttp
 nekos.py
 fontTools
 coffeehouse
+youtube_dl
+hachoir
