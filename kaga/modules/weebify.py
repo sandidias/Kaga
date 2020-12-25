@@ -27,7 +27,7 @@ def weebify(update, context):
 
     if not string:
         message.reply_text(
-            "Usage is `/weebify <text>`", parse_mode=ParseMode.MARKDOWN)
+            "Gunakan `/weebify <text>`", parse_mode=ParseMode.MARKDOWN)
         return
 
     for normiecharacter in string:
