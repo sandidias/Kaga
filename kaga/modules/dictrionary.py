@@ -7,7 +7,7 @@ from kaga import dispatcher
 
 
 @typing_action
-def define(update, context):
+def define(update, context, args):
     msg = update.effective_message
     word = " ".join(args)
     res = requests.get(f"https://googledictionaryapi.id-gb.mybluemix.net/?define={word}")
