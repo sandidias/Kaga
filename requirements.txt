@@ -45,3 +45,4 @@ coffeehouse
 youtube_dl
 hachoir
 pybase64
+pySmartDL
