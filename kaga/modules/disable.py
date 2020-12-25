@@ -188,7 +188,7 @@ if is_module_loaded(FILENAME):
         else:
             update.effective_message.reply_text("What should I enable?")
 
-    @typing_actiontyping_action
+    @typing_action
     @connection_status
     @user_admin
     def enable_module(update, context):
