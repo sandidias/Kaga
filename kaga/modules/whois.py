@@ -14,7 +14,7 @@ import kaga.modules.helper_funcs.cas_api as cas
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
-from kaga.modules.helper_funcs.chat_status import user_admin, sudo_plus, is_user_admin
+from kaga.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from kaga import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, DEV_USERS, WHITELIST_USERS, BAN_STICKER
 from kaga.__main__ import STATS, USER_INFO, TOKEN
 from kaga.modules.disable import DisableAbleCommandHandler, DisableAbleRegexHandler
