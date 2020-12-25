@@ -72,6 +72,7 @@ DB_URI = os.environ.get("DATABASE_URL")
 MONGO_URI = os.environ.get("MONGO_DB_URI")
 API_ID = os.environ.get('API_ID', None)
 API_HASH = os.environ.get('API_HASH', None)
+EVENT_LOGS = os.environ.get('EVENT_LOGS', None)
 JOIN_LOGGER = os.environ.get('JOIN_LOGGER') or None
 DONATION_LINK = os.environ.get("DONATION_LINK") or None
 LOAD = os.environ.get("LOAD", "").split()
