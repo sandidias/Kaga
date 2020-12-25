@@ -6,20 +6,25 @@ from kaga.modules.helper_funcs.alternate import typing_action
 
 
 @typing_action
-def convert(update, context):
-    args = update.effective_message.text.split(" ")
+def convert(update, contextt):
+    args = update.effective_message.text.split(" ", 3)
+    if len(args) > 1:
 
-    if len(args) == 4:
+        orig_cur_amount = float(args[1])
+
         try:
-            orig_cur_amount = float(args[1])
-
-        except ValueError:
-            update.effective_message.reply_text("Jumlah Mata Uang Tidak benar")
+            orig_cur = args[2].upper()
+        except IndexError:
+            update.effective_message.reply_text(
+                "You forgot to mention the currency code.")
             return
 
-        orig_cur = args[2].upper()
-
-        new_cur = args[3].upper()
+        try:
+            new_cur = args[3].upper()
+        except IndexError:
+            update.effective_message.reply_text(
+                "You forgot to mention the currency code to convert into.")
+            return
 
         request_url = (f"https://www.alphavantage.co/query"
                        f"?function=CURRENCY_EXCHANGE_RATE"
@@ -31,20 +36,13 @@ def convert(update, context):
             current_rate = float(
                 response['Realtime Currency Exchange Rate']['5. Exchange Rate'])
         except KeyError:
-            update.effective_message.reply_text("Mata Uang Tidak Didukung.")
+            update.effective_message.reply_text("Currency Not Supported.")
             return
         new_cur_amount = round(orig_cur_amount * current_rate, 5)
         update.effective_message.reply_text(
             f"{orig_cur_amount} {orig_cur} = {new_cur_amount} {new_cur}")
-
-    elif len(args) == 1:
-        update.effective_message.reply_text(
-            parse_mode=ParseMode.MARKDOWN)
-
     else:
-        update.effective_message.reply_text(
-            f"*Invalid Args!!:* Required 3 But Passed {len(args) -1}",
-            parse_mode=ParseMode.MARKDOWN)
+        update.effective_message.reply_text(__help__)
 
 
 CONVERTER_HANDLER = CommandHandler('cash', convert, run_async=True)
