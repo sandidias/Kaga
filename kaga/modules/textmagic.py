@@ -12,7 +12,7 @@ weebyfont = ['🅐', '🅑', '🅒', '🅓', '🅔', '🅕', '🅖', '🅗', '�
               '🅥', '🅦', '🅧', '🅨', '🅩']
 
 
-@run_async
+@typing_action
 def weebify(update, context):
     bot = context.bot
     string = '  '.join(args).lower()
@@ -34,7 +34,7 @@ __help__ = """
  - /blackout <text>: Apply Blackout Style to your text
  """
 
-WEEBIFY_HANDLER = DisableAbleCommandHandler("blackout", weebify, pass_args=True)
+WEEBIFY_HANDLER = DisableAbleCommandHandler("blackout", weebify, pass_args=True, run_async=True)
 
 dispatcher.add_handler(WEEBIFY_HANDLER)
 
