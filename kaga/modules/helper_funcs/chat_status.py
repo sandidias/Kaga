@@ -4,8 +4,12 @@ from telegram import Bot, Chat, ChatMember, Update, ParseMode
 
 from kaga import dispatcher, DEL_CMDS, WHITELIST_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS
 
+from cachetools import TTLCache
+from threading import RLock
+
 # refresh cache 10m
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10)
+THREAD_LOCK = RLock()
 
 
 def is_whitelist_plus(_chat: Chat, user_id: int, _member: ChatMember = None) -> bool:
