@@ -42,3 +42,4 @@ aiohttp
 nekos.py
 fontTools
 coffeehouse
+geopy
