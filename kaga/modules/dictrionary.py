@@ -1,5 +1,6 @@
 import requests
 from telegram import Bot, Message, Update, ParseMode
+from telegram.ext import CommandHandler
 from kaga.modules.helper_funcs.alternate import typing_action
 
 from kaga import dispatcher
@@ -36,6 +37,6 @@ With this module, you can find the definitions of words without having to leave 
 __mod_name__ = "DICTIONARY"
         
         
-DEFINE_HANDLER = CommandHandler("define", define, pass_args=True)
+DEFINE_HANDLER = CommandHandler("define", define, pass_args=True, run_async=True)
 
 dispatcher.add_handler(DEFINE_HANDLER)
