@@ -18,7 +18,7 @@ def wiki(update, context):
         res = wikipedia.summary(search)
     except DisambiguationError as e:
         update.message.reply_text(
-            "Disambiguated pages found! Adjust your query accordingly.\n<i>{}</i>"
+            "Ditemukan halaman yang tidak ambigu! Sesuaikan kueri Anda.\n<i>{}</i>"
             .format(e),
             parse_mode=ParseMode.HTML)
     except PageError as e:
@@ -45,5 +45,5 @@ def wiki(update, context):
                 disable_web_page_preview=True)
 
 
-WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
+WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki, run_async=True)
 dispatcher.add_handler(WIKI_HANDLER)
