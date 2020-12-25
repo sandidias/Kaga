@@ -1,6 +1,6 @@
 import requests
-from Cutiepii_Robot import dispatcher
-from Cutiepii_Robot.modules.disable import DisableAbleCommandHandler
+from kaga import dispatcher
+from kaga.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from kaga.modules.helper_funcs.alternate import typing_action
 
