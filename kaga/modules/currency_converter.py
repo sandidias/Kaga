@@ -39,7 +39,7 @@ def convert(update, context):
 
     elif len(args) == 1:
         update.effective_message.reply_text(
-            __help__, parse_mode=ParseMode.MARKDOWN)
+            parse_mode=ParseMode.MARKDOWN)
 
     else:
         update.effective_message.reply_text(
