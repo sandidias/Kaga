@@ -1,6 +1,6 @@
 from functools import wraps
-
-from telegram import Bot, Chat, ChatMember, Update, ParseMode
+from telegram.error import BadRequest, Unauthorized
+from telegram import Bot, User, Chat, ChatMember, Update, ParseMode
 
 from kaga import dispatcher, DEL_CMDS, WHITELIST_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS
 
