@@ -13,6 +13,7 @@ URL = "http://services.gingersoftware.com/Ginger/correct/json/GingerTheText"
 
 
 def translate(update, context):
+    bot = context.bot
     if update.effective_message.reply_to_message:
         msg = update.effective_message.reply_to_message
 
