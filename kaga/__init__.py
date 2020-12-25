@@ -83,6 +83,7 @@ WORKERS = int(os.environ.get("WORKERS", 8))
 BAN_STICKER = os.environ.get("BAN_STICKER", "CAACAgQAAx0CSIsLDQACORpf4wqgqJc9c1TFa0Mi_mqItZE2KwACfgEAAj2wWQa-nzvcrdrGrR4E")
 CUSTOM_CMD = os.environ.get("CUSTOM_CMD") or False
 API_WEATHER = os.environ.get("API_OPENWEATHER") or None
+TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
 CASH_API_KEY = os.environ.get("CASH_API_KEY") or None
 WALL_API = os.environ.get("WALL_API") or None
 SPAMWATCH = os.environ.get("SPAMWATCH_API") or None
