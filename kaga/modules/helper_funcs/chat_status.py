@@ -6,7 +6,6 @@ from kaga import dispatcher, DEL_CMDS, WHITELIST_USERS, SUPPORT_USERS, SUDO_USER
 
 # refresh cache 10m
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10)
-THREAD_LOCK = RLock()is_user_ban_protected
 
 
 def is_whitelist_plus(_chat: Chat, user_id: int, _member: ChatMember = None) -> bool:
