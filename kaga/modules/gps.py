@@ -45,12 +45,6 @@ def gps(update, context):
         update.message.reply_text("Saya tidak dapat menemukannya")
 
 
-__help__ = """
-- /gps: <location> Dapatkan lokasi gps..
-"""
-
-__mod_name__ = "Gps"
-
-GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
+GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True, run_async=True)
 
 dispatcher.add_handler(GPS_HANDLER)
