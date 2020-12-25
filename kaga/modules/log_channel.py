@@ -13,7 +13,7 @@ if is_module_loaded(FILENAME):
 
     from kaga import LOGGER, dispatcher
     from kaga.modules.helper_funcs.chat_status import user_admin
-    from kaga.modules.no_sql import log_channel_db as db
+    from kaga.modules.sql import log_channel_sql as sql
 
     def loggable(func):
         @wraps(func)
