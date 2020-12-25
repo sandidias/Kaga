@@ -1,6 +1,6 @@
 import requests
 from telegram import Bot, Message, Update, ParseMode
-from ubotindo.modules.helper_funcs.alternate import typing_action
+from kaga.modules.helper_funcs.alternate import typing_action
 
 from kaga import dispatcher
 
