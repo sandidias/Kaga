@@ -72,6 +72,7 @@ SFW_STRINGS = (
 
 @typing_action
 def insult(update, context):
+    bot = context.bot
     bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
     message = update.effective_message
     if message.reply_to_message:
