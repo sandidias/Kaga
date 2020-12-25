@@ -12,7 +12,7 @@ SFW_STRINGS = (
     "Perintah tidak ditemukan. Sama seperti otak Anda.",
     "Apakah kamu sadar bahwa kamu membodohi dirimu sendiri? Ternyata tidak.",
     "Anda bisa mengetik lebih baik dari itu.",
-    "Bot aturan 544 bagian 9 mencegah saya membalas orang bodoh seperti Anda.",
+    "Aturan bot 544 bagian 9 mencegah saya membalas orang bodoh seperti Anda.",
     "Maaf, kami tidak menjual otak.",
     "Percayalah kamu tidak normal.",
     "Saya yakin otak Anda terasa seperti baru, mengingat Anda tidak pernah menggunakannya.",
