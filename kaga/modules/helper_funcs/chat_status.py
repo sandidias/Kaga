@@ -47,6 +47,11 @@ def is_bot_admin(chat: Chat, bot_id: int, bot_member: ChatMember = None) -> bool
     return bot_member.status in ('administrator', 'creator')
 
 
+def is_user_in_chat(chat: Chat, user_id: int) -> bool:
+        member = chat.get_member(user_id)
+        return member.status not in ("left", "kicked")
+
+
 def can_delete(chat: Chat, bot_id: int) -> bool:
     return chat.get_member(bot_id).can_delete_messages
 
@@ -228,9 +233,6 @@ def bot_admin(func):
 
     return is_admin
 
-    def is_user_in_chat(chat: Chat, user_id: int) -> bool:
-        member = chat.get_member(user_id)
-        return member.status not in ("left", "kicked")
 
 
 def bot_can_delete(func):
