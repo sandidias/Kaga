@@ -5,11 +5,11 @@ from telegram import Chat, ParseMode, Update
 from telegram.ext import CommandHandler, MessageHandler
 from telegram.utils.helpers import escape_markdown
 
-from kagakaga import dispatcher
-from kagakaga.modules.connection import connected
-from kagakaga.modules.helper_funcs.alternate import send_message, typing_action
-from kagakaga.modules.helper_funcs.handlers import CMD_STARTERS
-from kagakaga.modules.helper_funcs.misc import is_module_loaded
+from kaga import dispatcher
+from kaga.modules.connection import connected
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
+from kaga.modules.helper_funcs.handlers import CMD_STARTERS
+from kaga.modules.helper_funcs.misc import is_module_loaded
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
