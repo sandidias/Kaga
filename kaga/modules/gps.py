@@ -26,6 +26,7 @@ GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
 
 def gps(update, context):
     args = context.args
+    bot = context.bot
     message = update.effective_message
     if len(args) == 0:
         update.effective_message.reply_text("That was a funny joke, but no really, put in a location")
