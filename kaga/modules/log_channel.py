@@ -1,8 +1,7 @@
 from datetime import datetime
 from functools import wraps
-from kaga import (
-    EVENT_LOGS
-)
+
+from telegram.ext import CallbackContext
 
 from kaga.modules.helper_funcs.misc import is_module_loaded
 
@@ -14,7 +13,7 @@ if is_module_loaded(FILENAME):
     from telegram.ext import CommandHandler
     from telegram.utils.helpers import escape_markdown
 
-    from kaga import LOGGER, dispatcher
+    from kaga import LOGGER, EVENT_LOGS, dispatcher
     from kaga.modules.helper_funcs.chat_status import user_admin
     from kaga.modules.sql import log_channel_sql as sql
 
