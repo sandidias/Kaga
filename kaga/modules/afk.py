@@ -146,10 +146,12 @@ def reply_afk(update, context):
 def check_afk(update, context, user_id, fst_name, userc_id):
     if afk_db.is_afk(user_id):
         user = afk_db.check_afk_status(user_id)
+        if user is None:
+            return  # sanity check
         if not user["reason"]:
             if int(userc_id) == int(user_id):
                 return
-            res = "{} is afk".format(fst_name)
+            res = "{} sedang AFK".format(fst_name)
             replafk = update.effective_message.reply_text(res)
         else:
             if int(userc_id) == int(user_id):
@@ -183,7 +185,7 @@ AFK_REGEX_HANDLER = DisableAbleMessageHandler(
     Filters.regex("(?i)brb"), afk, friendly="afk", run_async=True
 )
 NO_AFK_HANDLER = MessageHandler(
-    Filters.all & Filters.chat_type.groups, no_longer_afk, run_async=True
+    Filters.all, no_longer_afk, run_async=True
 )
 AFK_REPLY_HANDLER = MessageHandler(
     Filters.all & Filters.chat_type.groups & ~Filters.update.edited_message,
