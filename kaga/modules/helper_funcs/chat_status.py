@@ -2,11 +2,11 @@ from functools import wraps
 
 from telegram import Bot, Chat, ChatMember, Update, ParseMode
 
-from kaga import dispatcher, DEL_CMDS, WHITELIST_USERS, SARDEGNA_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS
+from kaga import dispatcher, DEL_CMDS, WHITELIST_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS
 
 
 def is_whitelist_plus(_chat: Chat, user_id: int, _member: ChatMember = None) -> bool:
-    return any(user_id in user for user in [WHITELIST_USERS, SARDEGNA_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS])
+    return any(user_id in user for user in [WHITELIST_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS])
 
 
 def is_support_plus(_chat: Chat, user_id: int, _member: ChatMember = None) -> bool:
