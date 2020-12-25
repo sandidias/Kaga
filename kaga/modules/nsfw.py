@@ -59,7 +59,7 @@ def rem_nsfw(update, context):
         return message
 
 @typing_action
-def list_nsfw_chats(update: Update, context: CallbackContext):
+def list_nsfw_chats(update, context):
     chats = sql.get_all_nsfw_chats()
     text = "<b>NSFW sudak aktif di obrolan.</b>\n"
     for chat in chats:
@@ -875,4 +875,4 @@ Commands :
  - /dva: Sends Random D.VA source Images.
 """
 
-__mod_name__ = "NSFW"
+__mod_name__ = "Nekos"
