@@ -86,6 +86,18 @@ if is_module_loaded(FILENAME):
             super().__init__(pattern, callback, **kwargs)
             DISABLE_OTHER.append(friendly or pattern)
             self.friendly = friendly or pattern
+            
+    class DisableAbleRegexHandler(RegexHandler):
+        def __init__(
+                self,
+                pattern,
+                callback,
+                friendly="",
+                filters=None,
+                **kwargs):
+            super().__init__(pattern, callback, filters, **kwargs)
+            DISABLE_OTHER.append(friendly)
+            self.friendly = friendly
 
         def check_update(self, update):
             if isinstance(update, Update) and update.effective_message:
@@ -292,4 +304,5 @@ Ini juga akan memungkinkan Anda untuk menghapusnya secara otomatis, menghentikan
 
 else:
     DisableAbleCommandHandler = CommandHandler
+    DisableAbleRegexHandler = RegexHandler
     DisableAbleMessageHandler = MessageHandler
