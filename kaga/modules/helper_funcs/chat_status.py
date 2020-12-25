@@ -4,6 +4,10 @@ from telegram import Bot, Chat, ChatMember, Update, ParseMode
 
 from kaga import dispatcher, DEL_CMDS, WHITELIST_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS
 
+# refresh cache 10m
+ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10)
+THREAD_LOCK = RLock()is_user_ban_protected
+
 
 def is_whitelist_plus(_chat: Chat, user_id: int, _member: ChatMember = None) -> bool:
     return any(user_id in user for user in [WHITELIST_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS])
@@ -49,7 +53,7 @@ def is_user_ban_protected(chat: Chat, user_id: int, member: ChatMember = None) -
             or user_id in SUDO_USERS
             or user_id in DEV_USERS
             or user_id in WHITELIST_USERS
-            or user_id in SARDEGNA_USERS
+            or user_id in (777000, 1087968824)
             or chat.all_members_are_administrators):
         return True
 
@@ -59,9 +63,34 @@ def is_user_ban_protected(chat: Chat, user_id: int, member: ChatMember = None) -
     return member.status in ('administrator', 'creator')
 
 
-def is_user_in_chat(chat: Chat, user_id: int) -> bool:
-    member = chat.get_member(user_id)
-    return member.status not in ('left', 'kicked')
+def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
+    if (
+        chat.type == "private"
+        or user_id in DEV_USERS
+        or user_id in SUDO_USERS
+        or user_id in (777000, 1087968824)
+        or chat.all_members_are_administrators
+    ):
+        return True
+
+    if not member:
+        with THREAD_LOCK:
+            # try to fetch from cache first.
+            try:
+                return user_id in ADMIN_CACHE[chat.id]
+            except KeyError:
+                # keyerror happend means cache is deleted,
+                # so query bot api again and return user status
+                # while saving it in cache for future useage...
+                try:
+                    chat_admins = dispatcher.bot.getChatAdministrators(chat.id)
+                    admin_list = [x.user.id for x in chat_admins]
+                    ADMIN_CACHE[chat.id] = admin_list
+
+                    if user_id in admin_list:
+                        return True
+                except Unauthorized:
+                    return False
 
 
 def dev_plus(func):
