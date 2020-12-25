@@ -29,7 +29,7 @@ def gps(update, context):
     bot = context.bot
     message = update.effective_message
     if len(args) == 0:
-        update.effective_message.reply_text("That was a funny joke, but no really, put in a location")
+        update.effective_message.reply_text("Itu lelucon yang lucu, tapi tidak juga, taruh di lokasi")
     try:
         geolocator = Nominatim(user_agent="SkittBot")
         location = " ".join(args)
@@ -40,13 +40,13 @@ def gps(update, context):
         the_loc = Location(lon, lat) 
         gm = "https://www.google.com/maps/search/{},{}".format(lat,lon)
         bot.send_location(chat_id, location=the_loc)
-        update.message.reply_text("Open with: [Google Maps]({})".format(gm), parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+        update.message.reply_text("Buka di: [Google Maps]({})".format(gm), parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
     except AttributeError:
-        update.message.reply_text("I can't find that")
+        update.message.reply_text("Saya tidak dapat menemukannya")
 
 
 __help__ = """
-- /gps: <location> Get gps location..
+- /gps: <location> Dapatkan lokasi gps..
 """
 
 __mod_name__ = "Gps"
