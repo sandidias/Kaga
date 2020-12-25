@@ -46,3 +46,5 @@ youtube_dl
 hachoir
 pybase64
 pySmartDL
+validators
+pytz
