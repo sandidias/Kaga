@@ -15,6 +15,7 @@ weebyfont = ['🅐', '🅑', '🅒', '🅓', '🅔', '🅕', '🅖', '🅗', '�
 @typing_action
 def weebify(update, context):
     bot = context.bot
+    args = context.args
     string = '  '.join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
