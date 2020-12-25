@@ -1,34 +1,42 @@
-from typing import Union
+import importlib
+from typing import Union, List
 
 from future.utils import string_types
-from telegram import Chat, ParseMode, Update
-from telegram.ext import CommandHandler, MessageHandler
+from telegram import Bot, Update, ParseMode
+from telegram.ext import CommandHandler, RegexHandler, MessageHandler
 from telegram.utils.helpers import escape_markdown
 
 from kaga import dispatcher
-from kaga.modules.connection import connected
-from kaga.modules.helper_funcs.alternate import send_message, typing_action
-from kaga.modules.helper_funcs.handlers import CMD_STARTERS
+from kaga.modules.helper_funcs.handlers import CMD_STARTERS, CustomCommandHandler
 from kaga.modules.helper_funcs.misc import is_module_loaded
+from kaga.modules.helper_funcs.alternate import send_message, typing_action
 
 FILENAME = __name__.rsplit(".", 1)[-1]
 
 # If module is due to be loaded, then setup all the magical handlers
 if is_module_loaded(FILENAME):
-    from kaga.modules.helper_funcs.chat_status import (
-        is_user_admin,
-        user_admin,
-    )
-    from kaga.modules.no_sql import disable_db
+
+    from telegram.ext.dispatcher import run_async
+
+    from kaga.modules.helper_funcs.chat_status import user_admin, is_user_admin, connection_status
+    from kaga.modules.sql import disable_sql as sql
 
     DISABLE_CMDS = []
     DISABLE_OTHER = []
     ADMIN_CMDS = []
 
-    class DisableAbleCommandHandler(CommandHandler):
-        def __init__(self, command, callback, admin_ok=False, **kwargs):
+    class DisableAbleCommandHandler(CustomCommandHandler):
+
+        def __init__(
+                self,
+                command,
+                callback,
+                admin_ok=False,
+                filters=None,
+                **kwargs):
             super().__init__(command, callback, **kwargs)
             self.admin_ok = admin_ok
+            self.filters = filters
             if isinstance(command, string_types):
                 DISABLE_CMDS.append(command)
                 if admin_ok:
@@ -39,54 +47,37 @@ if is_module_loaded(FILENAME):
                     ADMIN_CMDS.extend(command)
 
         def check_update(self, update):
-            if isinstance(update, Update) and update.effective_message:
-                message = update.effective_message
+            chat = update.effective_chat
+            user = update.effective_user
 
-                if message.text and len(message.text) > 1:
-                    fst_word = message.text.split(None, 1)[0]
-                    if len(fst_word) > 1 and any(
-                        fst_word.startswith(start) for start in CMD_STARTERS
-                    ):
-                        args = message.text.split()[1:]
-                        command = fst_word[1:].split("@")
-                        command.append(message.bot.username)
+            if super().check_update(update):
 
-                        if not (
-                            command[0].lower() in self.command
-                            and command[1].lower()
-                            == message.bot.username.lower()
-                        ):
-                            return None
+                # Should be safe since check_update passed.
+                command = update.effective_message.text_html.split(None, 1)[
+                    0][1:].split('@')[0]
 
-                        filter_result = self.filters(update)
-                        if filter_result:
-                            chat = update.effective_chat
-                            user = update.effective_user
-                            # disabled, admincmd, user admin
-                            if disable_db.is_command_disabled(
-                                chat.id, command[0].lower()
-                            ):
-                                # check if command was disabled
-                                is_disabled = command[
-                                    0
-                                ] in ADMIN_CMDS and is_user_admin(
-                                    chat, user.id
-                                )
-                                if not is_disabled:
-                                    return None
-                                else:
-                                    return args, filter_result
+                # disabled, admincmd, user admin
+                if sql.is_command_disabled(chat.id, command):
+                    if command in ADMIN_CMDS and is_user_admin(chat, user.id):
+                        return True
 
-                            return args, filter_result
-                        else:
-                            return False
+                # not disabled
+                else:
+                    return True
 
     class DisableAbleMessageHandler(MessageHandler):
-        def __init__(self, pattern, callback, friendly="", **kwargs):
-            super().__init__(pattern, callback, **kwargs)
-            DISABLE_OTHER.append(friendly or pattern)
-            self.friendly = friendly or pattern
-            
+        def __init__(self, filters, callback, friendly, **kwargs):
+            super().__init__(filters, callback, **kwargs)
+            DISABLE_OTHER.append(friendly)
+            self.friendly = friendly
+            self.filters = filters
+
+        def check_update(self, update):
+
+            chat = update.effective_chat
+            if super().check_update(update):
+                return not sql.is_command_disabled(chat.id, self.friendly)
+
     class DisableAbleRegexHandler(RegexHandler):
         def __init__(
                 self,
@@ -100,207 +91,224 @@ if is_module_loaded(FILENAME):
             self.friendly = friendly
 
         def check_update(self, update):
-            if isinstance(update, Update) and update.effective_message:
-                chat = update.effective_chat
-                return self.filters(update) and not disable_db.is_command_disabled(
-                    chat.id, self.friendly
-                )
-
-    @user_admin
-    @typing_action
-    def disable(update, context):
-        chat = update.effective_chat  # type: Optional[Chat]
-        user = update.effective_user
-        args = context.args
-
-        conn = connected(context.bot, update, chat, user.id, need_admin=True)
-        if conn:
-            chat = dispatcher.bot.getChat(conn)
-            chat_name = dispatcher.bot.getChat(conn).title
-        else:
-            if update.effective_message.chat.type == "private":
-                send_message(
-                    update.effective_message,
-                    "Perintah ini dimaksudkan untuk digunakan di grup bukan di PM",
-                )
-                return ""
             chat = update.effective_chat
-            chat_name = update.effective_message.chat.title
+            if super().check_update(update):
+                return not sql.is_command_disabled(chat.id, self.friendly)
 
+    @typing_action
+    @connection_status
+    @user_admin
+    def disable(update, context):
+        chat = update.effective_chat
         if len(args) >= 1:
             disable_cmd = args[0]
             if disable_cmd.startswith(CMD_STARTERS):
                 disable_cmd = disable_cmd[1:]
 
             if disable_cmd in set(DISABLE_CMDS + DISABLE_OTHER):
-                disable_db.disable_command(chat.id, disable_cmd)
-                if conn:
-                    text = "Menonaktifkan penggunaan perintah `{}` di *{}*!".format(
-                        disable_cmd, chat_name
-                    )
-                else:
-                    text = "Menonaktifkan penggunaan perintah `{}`!".format(
-                        disable_cmd
-                    )
-                send_message(
-                    update.effective_message,
-                    text,
-                    parse_mode=ParseMode.MARKDOWN,
-                )
+                sql.disable_command(chat.id, str(disable_cmd).lower())
+                update.effective_message.reply_text(
+                    f"Disabled the use of `{disable_cmd}`",
+                    parse_mode=ParseMode.MARKDOWN)
             else:
-                send_message(
-                    update.effective_message, "Perintah ini tidak dapat dinonaktifkan"
-                )
+                update.effective_message.reply_text(
+                    "That command can't be disabled")
 
         else:
-            send_message(update.effective_message, "Apa yang harus saya nonaktifkan?")
+            update.effective_message.reply_text("What should I disable?")
 
-    @user_admin
     @typing_action
-    def enable(update, context):
-        chat = update.effective_chat  # type: Optional[Chat]
-        user = update.effective_user
-        args = context.args
+    @connection_status
+    @user_admin
+    def disable_module(update, context):
+        chat = update.effective_chat
+        if len(args) >= 1:
+            disable_module = "lynda.modules." + args[0].rsplit(".", 1)[0]
 
-        conn = connected(context.bot, update, chat, user.id, need_admin=True)
-        if conn:
-            chat = dispatcher.bot.getChat(conn)
-            chat_name = dispatcher.bot.getChat(conn).title
+            try:
+                module = importlib.import_module(disable_module)
+            except Exception:
+                update.effective_message.reply_text(
+                    "Does that module even exist?")
+                return
+
+            try:
+                command_list = module.__command_list__
+            except Exception:
+                update.effective_message.reply_text(
+                    "Module does not contain command list!")
+                return
+
+            disabled_cmds = []
+            failed_disabled_cmds = []
+
+            for disable_cmd in command_list:
+                if disable_cmd.startswith(CMD_STARTERS):
+                    disable_cmd = disable_cmd[1:]
+
+                if disable_cmd in set(DISABLE_CMDS + DISABLE_OTHER):
+                    sql.disable_command(chat.id, str(disable_cmd).lower())
+                    disabled_cmds.append(disable_cmd)
+                else:
+                    failed_disabled_cmds.append(disable_cmd)
+
+            if disabled_cmds:
+                disabled_cmds_string = ", ".join(disabled_cmds)
+                update.effective_message.reply_text(
+                    f"Disabled the uses of `{disabled_cmds_string}`",
+                    parse_mode=ParseMode.MARKDOWN)
+
+            if failed_disabled_cmds:
+                failed_disabled_cmds_string = ", ".join(failed_disabled_cmds)
+                update.effective_message.reply_text(
+                    f"Commands `{failed_disabled_cmds_string}` can't be disabled",
+                    parse_mode=ParseMode.MARKDOWN)
+
         else:
-            if update.effective_message.chat.type == "private":
-                send_message(
-                    update.effective_message,
-                    "Perintah ini dimaksudkan untuk digunakan di grup bukan di PM",
-                )
-                return ""
-            chat = update.effective_chat
-            update.effective_chat.id
-            chat_name = update.effective_message.chat.title
+            update.effective_message.reply_text("What should I disable?")
 
+    @typing_action
+    @connection_status
+    @user_admin
+    def enable(update, context):
+
+        chat = update.effective_chat
         if len(args) >= 1:
             enable_cmd = args[0]
             if enable_cmd.startswith(CMD_STARTERS):
                 enable_cmd = enable_cmd[1:]
 
-            if disable_db.enable_command(chat.id, enable_cmd):
-                if conn:
-                    text = "Mengaktifkan penggunaan perintah `{}` di *{}*!".format(
-                        enable_cmd, chat_name
-                    )
-                else:
-                    text = "Mengaktifkan penggunaan perintah `{}`!".format(
-                        enable_cmd
-                    )
-                send_message(
-                    update.effective_message,
-                    text,
-                    parse_mode=ParseMode.MARKDOWN,
-                )
+            if sql.enable_command(chat.id, enable_cmd):
+                update.effective_message.reply_text(
+                    f"Enabled the use of `{enable_cmd}`",
+                    parse_mode=ParseMode.MARKDOWN)
             else:
-                send_message(
-                    update.effective_message, "Apakah itu bahkan dinonaktifkan?"
-                )
+                update.effective_message.reply_text("Is that even disabled?")
 
         else:
-            send_message(update.effective_message, "Apa yang harus saya aktifkan?")
+            update.effective_message.reply_text("What should I enable?")
 
+    @typing_actiontyping_action
+    @connection_status
     @user_admin
-    # @typing_action
+    def enable_module(update, context):
+        chat = update.effective_chat
+
+        if len(args) >= 1:
+            enable_module = "lynda.modules." + args[0].rsplit(".", 1)[0]
+
+            try:
+                module = importlib.import_module(enable_module)
+            except Exception:
+                update.effective_message.reply_text(
+                    "Does that module even exist?")
+                return
+
+            try:
+                command_list = module.__command_list__
+            except Exception:
+                update.effective_message.reply_text(
+                    "Module does not contain command list!")
+                return
+
+            enabled_cmds = []
+            failed_enabled_cmds = []
+
+            for enable_cmd in command_list:
+                if enable_cmd.startswith(CMD_STARTERS):
+                    enable_cmd = enable_cmd[1:]
+
+                if sql.enable_command(chat.id, enable_cmd):
+                    enabled_cmds.append(enable_cmd)
+                else:
+                    failed_enabled_cmds.append(enable_cmd)
+
+            if enabled_cmds:
+                enabled_cmds_string = ", ".join(enabled_cmds)
+                update.effective_message.reply_text(
+                    f"Enabled the uses of `{enabled_cmds_string}`",
+                    parse_mode=ParseMode.MARKDOWN)
+
+            if failed_enabled_cmds:
+                failed_enabled_cmds_string = ", ".join(failed_enabled_cmds)
+                update.effective_message.reply_text(
+                    f"Are the commands `{failed_enabled_cmds_string}` even disabled?",
+                    parse_mode=ParseMode.MARKDOWN)
+
+        else:
+            update.effective_message.reply_text("What should I enable?")
+
+    @typing_action
+    @connection_status
+    @user_admin
     def list_cmds(update, context):
         if DISABLE_CMDS + DISABLE_OTHER:
             result = ""
             for cmd in set(DISABLE_CMDS + DISABLE_OTHER):
-                result += " - `{}`\n".format(escape_markdown(str(cmd)))
+                result += f" - `{escape_markdown(cmd)}`\n"
             update.effective_message.reply_text(
-                "Perintah berikut dapat diubah:\n{}".format(result),
-                parse_mode=ParseMode.MARKDOWN,
-            )
+                f"The following commands are toggleable:\n{result}",
+                parse_mode=ParseMode.MARKDOWN)
         else:
-            update.effective_message.reply_text("Tidak ada perintah yang dapat dinonaktifkan.")
+            update.effective_message.reply_text("No commands can be disabled.")
 
     # do not async
+
     def build_curr_disabled(chat_id: Union[str, int]) -> str:
-        disabled = disable_db.get_all_disabled(chat_id)
+        disabled = sql.get_all_disabled(chat_id)
         if not disabled:
-            return "Tidak ada perintah yang dinonaktifkan!"
+            return "No commands are disabled!"
 
         result = ""
         for cmd in disabled:
             result += " - `{}`\n".format(escape_markdown(cmd))
-        return "Perintah berikut saat ini dibatasi:\n{}".format(
-            result
-        )
+        return "The following commands are currently restricted:\n{}".format(
+            result)
 
     @typing_action
+    @connection_status
     def commands(update, context):
         chat = update.effective_chat
-        user = update.effective_user
-        conn = connected(context.bot, update, chat, user.id, need_admin=True)
-        if conn:
-            chat = dispatcher.bot.getChat(conn)
-        else:
-            if update.effective_message.chat.type == "private":
-                send_message(
-                    update.effective_message,
-                    "Perintah ini dimaksudkan untuk digunakan dalam grup bukan di PM",
-                )
-                return ""
-            chat = update.effective_chat
-
-        text = build_curr_disabled(chat.id)
-        send_message(
-            update.effective_message, text, parse_mode=ParseMode.MARKDOWN
-        )
-
-    def __import_data__(chat_id, data):
-        disabled = data.get("disabled", {})
-        for disable_cmd in disabled:
-            disable_db.disable_command(chat_id, disable_cmd)
+        update.effective_message.reply_text(
+            build_curr_disabled(
+                chat.id), parse_mode=ParseMode.MARKDOWN)
 
     def __stats__():
-        return "× {} item dinonaktifkan, di {} obrolan.".format(
-            disable_db.num_disabled(), disable_db.num_chats()
-        )
+        return f"{sql.num_disabled()} disabled items, across {sql.num_chats()} chats."
 
     def __migrate__(old_chat_id, new_chat_id):
-        disable_db.migrate_chat(old_chat_id, new_chat_id)
+        sql.migrate_chat(old_chat_id, new_chat_id)
 
-    def __chat_settings__(chat_id, user_id):
+    def __chat_settings__(chat_id, _user_id):
         return build_curr_disabled(chat_id)
 
-    __mod_name__ = "Disabling"
-
-    __help__ = """
-Tidak semua orang menginginkan setiap fitur yang ditawarkan bot. Beberapa perintah adalah yang terbaik \
-dibiarkan tidak digunakan; untuk menghindari spam dan penyalahgunaan.
-
-Ini memungkinkan Anda untuk menonaktifkan beberapa perintah yang umum digunakan, jadi tidak ada yang bisa menggunakannya. \
-Ini juga akan memungkinkan Anda untuk menghapusnya secara otomatis, menghentikan orang dari bluetexting.
-
- × /cmds: Periksa status saat ini dari perintah yang dinonaktifkan
-
-*Khusus Admin:*
- × /enable <cmd name>: Aktifkan perintah itu
- × /disable <cmd name>: Nonaktifkan perintah itu
- × /listcmds: Buat daftar semua kemungkinan perintah yang dapat dinonaktifkan
-    """
-
-    DISABLE_HANDLER = CommandHandler(
-        "disable", disable, pass_args=True, run_async=True
-    )  # , filters=Filters.chat_type.groups)
-    ENABLE_HANDLER = CommandHandler(
-        "enable", enable, pass_args=True, run_async=True
-    )  # , filters=Filters.chat_type.groups)
-    COMMANDS_HANDLER = CommandHandler(
-        ["cmds", "disabled"], commands, run_async=True
-    )  # , filters=Filters.chat_type.groups)
-    # , filters=Filters.chat_type.groups)
-    TOGGLE_HANDLER = CommandHandler("listcmds", list_cmds, run_async=True)
+    DISABLE_HANDLER = CommandHandler("disable", disable, pass_args=True)
+    DISABLE_MODULE_HANDLER = CommandHandler(
+        "disablemodule", disable_module, pass_args=True)
+    ENABLE_HANDLER = CommandHandler("enable", enable, pass_args=True)
+    ENABLE_MODULE_HANDLER = CommandHandler(
+        "enablemodule", enable_module, pass_args=True)
+    COMMANDS_HANDLER = CommandHandler(["cmds", "disabled"], commands)
+    TOGGLE_HANDLER = CommandHandler("listcmds", list_cmds)
 
     dispatcher.add_handler(DISABLE_HANDLER)
+    dispatcher.add_handler(DISABLE_MODULE_HANDLER)
     dispatcher.add_handler(ENABLE_HANDLER)
+    dispatcher.add_handler(ENABLE_MODULE_HANDLER)
     dispatcher.add_handler(COMMANDS_HANDLER)
     dispatcher.add_handler(TOGGLE_HANDLER)
+
+    __help__ = """
+    - /cmds: check the current status of disabled commands
+    *Admin only:*
+    - /enable <cmd name>: enable that command
+    - /disable <cmd name>: disable that command
+    - /enablemodule <module name>: enable all commands in that module
+    - /disablemodule <module name>: disable all commands in that module
+    - /listcmds: list all possible toggleable commands
+    """
+
+    __mod_name__ = "Disabling"
 
 else:
     DisableAbleCommandHandler = CommandHandler
