@@ -24,7 +24,7 @@ from kaga.modules.helper_funcs.alternate import typing_action
 import kaga.modules.sql.users_sql as sql
 
 @typing_action
-def info(update, context):
+def whois(update, context):
     message = update.effective_message
     chat = update.effective_chat
     user_id = extract_user(update.effective_message, args)
@@ -113,5 +113,5 @@ def info(update, context):
 
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
-INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
+INFO_HANDLER = DisableAbleCommandHandler("whois", whois, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
