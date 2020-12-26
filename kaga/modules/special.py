@@ -1,6 +1,7 @@
 from kaga import dispatcher
 from telegram import ParseMode, Update
 from kaga.modules.helper_funcs.alternate import typing_action
+from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 
 NEKOS_HELP = (
     Module credits: [Dank-del](https://github.com/Dank-del/Chizuru/) ,
