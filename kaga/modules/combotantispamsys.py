@@ -328,7 +328,7 @@ Perintah:
  - /cas: Info tentang CAS. (Apa itu CAS?)
 """
 
-__mod_name__ = "CAS"
+__mod_name__ = "Combot Anti-Spam"
 
 SETCAS_HANDLER = CommandHandler("setcas", setcas, filters=Filters.group, run_async=True)
 GETCAS_HANDLER = CommandHandler("getcas", get_current_setting, filters=Filters.group, run_async=True)
