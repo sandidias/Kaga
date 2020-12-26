@@ -1,3 +1,4 @@
+
 from kaga import dispatcher
 from telegram import ParseMode, Update
 from telegram.ext import CommandHandler
@@ -62,11 +63,8 @@ def nekos_help(update, context):
     update.effective_message.reply_text(
         NEKOS_HELP, parse_mode=ParseMode.MARKDOWN)
         
-NEKOS_HELP = CommandHandler("nekoshelp", nekos_help, run_async=True)
-
-dispatcher.add_handler(NEKOS_HELP)
-
-__help__: """
+        
+__help__ = """
 *Anime Quote*
   × /aq: Mengirim Quotes Anime Acak.
 *Black Out*
@@ -96,10 +94,14 @@ __help__: """
 /weebify <teks>
 """
 
+NEKOS_HELP = CommandHandler("nekoshelp", nekos_help, run_async=True)
+
+dispatcher.add_handler(NEKOS_HELP)
+
+__command_list__ = []
+__handlers__ = [
+    NEKOS_HELP
+]
+    
 __mod_name__ = "💖Special💖"
-
-
-
-
-
 
