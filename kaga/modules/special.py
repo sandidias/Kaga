@@ -1,5 +1,6 @@
 from kaga import dispatcher
 from telegram import ParseMode, Update
+from telegram.ext import CommandHandler
 from kaga.modules.helper_funcs.alternate import typing_action
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 
