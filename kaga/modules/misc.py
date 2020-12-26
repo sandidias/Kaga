@@ -319,7 +319,7 @@ Commands :
 × /lewdk: Mengirim Random Kitsune Lewds.
 × /ngif: Mengirim GIF Neko Acak.
 × /tickle: Mengirim GIF Gelitik Acak.
-× /cabul: Mengirim Cabul Acak.
+× /lewd: Mengirim Cabul Acak.
 × /feed: Mengirim GIF Pemberian Makan Acak.
 × /eroyuri: Mengirim Gambar sumber Ero-Yuri Acak.
 × /eron: Mengirim Gambar sumber Ero-Neko Acak.
@@ -333,7 +333,7 @@ Commands :
 × /gasm: Mengirim Stiker Orgasme Acak.
 × /poke: Mengirim GIF Poke Acak.
 × /anal: Mengirim GIF Anal Acak.
-× /Hentai: Mengirim Gambar sumber Hentai Acak.
+× /hentai: Mengirim Gambar sumber Hentai Acak.
 × /avatar: Mengirim Stiker Avatar Acak.
 × /erofeet: Mengirim Gambar sumber Ero-Feet Acak.
 × /holo: Mengirim Gambar sumber Random Holo.
