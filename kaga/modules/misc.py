@@ -692,7 +692,7 @@ ECHO_HANDLER = CommandHandler(
     "echo", echo, filters=CustomFilters.sudo_filter, run_async=True
 )
 MD_HELP_HANDLER = CommandHandler(
-    "markdownhelp", markdown_help, filters=Filters.private, run_async=True
+    "markdownhelp", markdown_help, filters=Filters.chat_type.private, run_async=True
 )
 NEKOS_HELP_HANDLER = CommandHandler(
     "nekoshelp", nekos_help, filters=Filters.private, run_async=True
