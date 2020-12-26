@@ -20,14 +20,11 @@ __help__ = """
   × /rmnsfw: MEnonaktifkan mode NSFW
   × /nekoshelp: lihat lebih banyak command.
 *React*
-
   × /react: Mengirim react acak.
+
 *Truth and Dare*
   × /truth: mengirimkan sebuah tantangan kebenaran.
   × /dare: Memberikan tantangan ke kamu.
-  
-*Text to Speech*
-  × /tts <teks>
   
 *Urban Dictionary*
   × /ud: kamus online crowdsourced untuk kata dan frasa gaul, beroperasi di bawah moto *Define Your World.*
