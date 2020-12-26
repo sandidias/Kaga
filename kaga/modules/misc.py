@@ -304,57 +304,57 @@ Ingatlah bahwa pesan Anda <b>HARUS</b> berisi teks selain hanya tombol!
 )
 
 NEKOS_HELP = """
-    Commands :
-     - /neko: Mengirim Gambar sumber SFW Neko Acak.
-     - /feet: Mengirim Gambar Acak Anime Feet.
-     - /yuri: Mengirim Gambar sumber Yuri Acak.
-     - /trap: Mengirim Gambar sumber Perangkap Acak.
-     - /futanari: Mengirim Gambar sumber Futanari Acak.
-     - /hololewd: Mengirimkan Random Holo Lewds.
-     - /lewdkemo: Mengirimkan Random Kemo Lewds.
-     - /sologif: Mengirim GIF Solo Acak.
-     - /cumgif: Mengirim GIF Cum Acak.
-     - /erokemo: Mengirim Gambar Random Ero-Kemo.
-     - /lesbian: Mengirim Gambar Sumber Les Acak.
-     - /lewdk: Mengirim Random Kitsune Lewds.
-     - /ngif: Mengirim GIF Neko Acak.
-     - /tickle: Mengirim GIF Gelitik Acak.
-     - /cabul: Mengirim Cabul Acak.
-     - /feed: Mengirim GIF Pemberian Makan Acak.
-     - /eroyuri: Mengirim Gambar sumber Ero-Yuri Acak.
-     - /eron: Mengirim Gambar sumber Ero-Neko Acak.
-     - /cum: Mengirim Gambar Cum Acak.
-     - /bjgif: Mengirim GIF Pekerjaan Pukulan Acak.
-     - /bj: Mengirim Gambar sumber Pekerjaan Pukulan Acak.
-     - /nekonsfw: Mengirim Gambar sumber NSFW Neko Acak.
-     - /olo: Mengirim GIF Neko NSFW Acak.
-     - /kemonomimi: Mengirim Gambar sumber KemonoMimi Acak.
-     - /avatarlewd: Mengirim Stiker Cabul Pembalas Acak.
-     - /gasm: Mengirim Stiker Orgasme Acak.
-     - /poke: Mengirim GIF Poke Acak.
-     - /anal: Mengirim GIF Anal Acak.
-     - /Hentai: Mengirim Gambar sumber Hentai Acak.
-     - /avatar: Mengirim Stiker Avatar Acak.
-     - /erofeet: Mengirim Gambar sumber Ero-Feet Acak.
-     - /holo: Mengirim Gambar sumber Random Holo.
-     - /tits: Mengirim Gambar sumber Tits Acak.
-     - /pussygif: Mengirim GIF Pussy Acak.
-     - /holoero: Mengirim Gambar sumber Ero-Holo Acak.
-     - /vagina: Mengirim Gambar sumber Pussy Acak.
-     - /hentaigif: Mengirim GIF Hentai Acak.
-     - /classic: Mengirim GIF Hentai Klasik Acak.
-     - /kuni: Mengirim GIF Random Pussy Lick.
-     - /waifu: Mengirim Stiker Waifu Acak.
-     - /kiss: Mengirim GIF Ciuman Acak.
-     - /femdom: Mengirim Gambar sumber Femdom Acak
-     - /cuddle: Mengirim GIF Cuddle Acak.
-     - /erok: Mengirim Gambar sumber Ero-Kitsune Acak.
-     - /foxgirl: Mengirim Gambar sumber FoxGirl Acak.
-     - /titsgif: Mengirim GIF Payudara Acak.
-     - /ero: Mengirim Gambar sumber Ero Acak.
-     - /smug: Mengirim GIF Sombong Acak.
-     - /baka: Mengirim GIF Teriakan Baka Acak.
-     - /dva: Mengirim Gambar sumber D.VA Acak.
+Commands :
+× /neko: Mengirim Gambar sumber SFW Neko Acak.
+× /feet: Mengirim Gambar Acak Anime Feet.
+× /yuri: Mengirim Gambar sumber Yuri Acak.
+× /trap: Mengirim Gambar sumber Perangkap Acak.
+× /futanari: Mengirim Gambar sumber Futanari Acak.
+× /hololewd: Mengirimkan Random Holo Lewds.
+× /lewdkemo: Mengirimkan Random Kemo Lewds.
+× /sologif: Mengirim GIF Solo Acak.
+× /cumgif: Mengirim GIF Cum Acak.
+× /erokemo: Mengirim Gambar Random Ero-Kemo.
+× /lesbian: Mengirim Gambar Sumber Les Acak.
+× /lewdk: Mengirim Random Kitsune Lewds.
+× /ngif: Mengirim GIF Neko Acak.
+× /tickle: Mengirim GIF Gelitik Acak.
+× /cabul: Mengirim Cabul Acak.
+× /feed: Mengirim GIF Pemberian Makan Acak.
+× /eroyuri: Mengirim Gambar sumber Ero-Yuri Acak.
+× /eron: Mengirim Gambar sumber Ero-Neko Acak.
+× /cum: Mengirim Gambar Cum Acak.
+× /bjgif: Mengirim GIF Pekerjaan Pukulan Acak.
+× /bj: Mengirim Gambar sumber Pekerjaan Pukulan Acak.
+× /nekonsfw: Mengirim Gambar sumber NSFW Neko Acak.
+× /solo: Mengirim GIF Neko NSFW Acak.
+× /kemonomimi: Mengirim Gambar sumber KemonoMimi Acak.
+× /avatarlewd: Mengirim Stiker Cabul Pembalas Acak.
+× /gasm: Mengirim Stiker Orgasme Acak.
+× /poke: Mengirim GIF Poke Acak.
+× /anal: Mengirim GIF Anal Acak.
+× /Hentai: Mengirim Gambar sumber Hentai Acak.
+× /avatar: Mengirim Stiker Avatar Acak.
+× /erofeet: Mengirim Gambar sumber Ero-Feet Acak.
+× /holo: Mengirim Gambar sumber Random Holo.
+× /tits: Mengirim Gambar sumber Tits Acak.
+× /pussygif: Mengirim GIF Pussy Acak.
+× /holoero: Mengirim Gambar sumber Ero-Holo Acak.
+× /vagina: Mengirim Gambar sumber Pussy Acak.
+× /hentaigif: Mengirim GIF Hentai Acak.
+× /classic: Mengirim GIF Hentai Klasik Acak.
+× /kuni: Mengirim GIF Random Pussy Lick.
+× /waifu: Mengirim Stiker Waifu Acak.
+× /kiss: Mengirim GIF Ciuman Acak.
+× /femdom: Mengirim Gambar sumber Femdom Acak
+× /cuddle: Mengirim GIF Cuddle Acak.
+× /erok: Mengirim Gambar sumber Ero-Kitsune Acak.
+× /foxgirl: Mengirim Gambar sumber FoxGirl Acak.
+× /titsgif: Mengirim GIF Payudara Acak.
+× /ero: Mengirim Gambar sumber Ero Acak.
+× /smug: Mengirim GIF Sombong Acak.
+× /baka: Mengirim GIF Teriakan Baka Acak.
+× /dva: Mengirim Gambar sumber DVA Acak.
      """.format(
     dispatcher.bot.first_name
 )
@@ -368,9 +368,9 @@ def markdown_help(update, context):
         "Coba teruskan pesan berikut kepada saya, dan Anda akan melihatnya!"
     )
     update.effective_message.reply_text(
-        "/save tes Ini adalah tes markdown. _italics_, --underline--, *bold*, `code`, ~strike~ "
+        "<code>/save tes Ini adalah tes markdown. _italics_, --underline--, *bold*, `code`, ~strike~ "
         "[URL](example.com) [tombol](buttonurl:github.com) "
-        "[tombol2](buttonurl://google.com:same)"
+        "[tombol2](buttonurl://google.com:same)</code>"
     )
     
 @typing_action
