@@ -358,7 +358,7 @@ def export_data(update, context):
     context.bot.sendDocument(
         current_chat_id,
         document=open("KagaRobot{}.backup".format(chat_id), "rb"),
-        caption="*Berhasil mencadangkan:*\nChat: `{}`\nChat ID: `{}`\nDi: `{}`\n\nCatatan: TIni `KagaRobot-Backup` dibuat khusus untuk catatan.".format(
+        caption="*Berhasil mencadangkan:*\nChat: `{}`\nChat ID: `{}`\nDi: `{}`\n\nCatatan: Ini `KagaRobot-Backup` dibuat khusus untuk catatan.".format(
             chat.title, chat_id, tgl
         ),
         timeout=360,
@@ -393,7 +393,7 @@ __help__ = """
 *Hanya untuk administrator obrolan:*
 
  × /import: Balas ke file cadangan untuk kelompok kepala pelayan / emilia untuk mengimpor sebanyak mungkin, membuat transfer sangat mudah! \
- Perhatikan bahwa file / foto tidak dapat diimpor karena pembatasan telegram.
+ Perhatikan bahwa file/foto tidak dapat diimpor karena pembatasan telegram.
 
  × /export: Ekspor data grup, yang akan diekspor adalah: aturan, catatan (dokumen, gambar, musik, video, audio, suara, teks, tombol teks) \
 
