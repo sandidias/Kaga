@@ -340,7 +340,7 @@ Commands :
 × /tits: Mengirim Gambar sumber Tits Acak.
 × /pussygif: Mengirim GIF Pussy Acak.
 × /holoero: Mengirim Gambar sumber Ero-Holo Acak.
-× /vagina: Mengirim Gambar sumber Pussy Acak.
+× /pussy: Mengirim Gambar sumber Pussy Acak.
 × /hentaigif: Mengirim GIF Hentai Acak.
 × /classic: Mengirim GIF Hentai Klasik Acak.
 × /kuni: Mengirim GIF Random Pussy Lick.
