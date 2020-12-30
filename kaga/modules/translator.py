@@ -18,7 +18,7 @@ def gtrans(update, context):
     args = context.args
     lang = " ".join(args)
     if not lang:
-        lang = "en"
+        lang = "id"
     try:
         translate_text = (
             msg.reply_to_message.text or msg.reply_to_message.caption
@@ -37,7 +37,7 @@ def gtrans(update, context):
         source_lan = translator.detect(translate_text)[1].title()
         des_lan = LANGUAGES.get(lang).title()
         msg.reply_text(
-            "Diterjemahkan dari {} ke {}.\n '{}'".format(
+            "Diterjemahkan dari {} ke {}.\n {''}".format(
                 source_lan, des_lan, translated
             )
         )
