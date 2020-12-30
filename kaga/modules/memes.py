@@ -4,6 +4,7 @@ import time
 
 import requests
 import requests as r
+from PIL import Image
 from telegram import MAX_MESSAGE_LENGTH, ParseMode, TelegramError
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters
