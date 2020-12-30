@@ -6,6 +6,7 @@ from emoji import UNICODE_EMOJI
 from google_trans_new import google_translator, LANGUAGES
 from gtts import gTTS
 from telegram import ChatAction
+from telegram.utils.helpers import escape_markdown
 
 from kaga import dispatcher
 from kaga.modules.disable import DisableAbleCommandHandler
