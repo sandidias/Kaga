@@ -207,27 +207,6 @@ def changemymind(update, context):
         os.remove("temp.webp")
         
        
- @typing_action
- def trumptweet(update, context):
-    msg = update.effective_message
-    if not msg.reply_to_message:
-        msg.reply_text("perlu membalas pesan ke tweet")
-    else:
-        text = msg.reply_to_message.text
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}").json()
-        url = r.get("message")
-        if not url:
-            msg.reply_text("Tidak ada URL yang diterima dari API!")
-            return
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(url).content)
-        img = Image.open("temp.png")
-        img.save("temp.webp", "webp")
-        msg.reply_document(open("temp.webp", "rb"))
-        os.remove("temp.webp")
-
-
 @typing_action
 def dice(update, context):
     context.bot.sendDice(update.effective_chat.id)
@@ -549,7 +528,6 @@ GBUN_HANDLER = CommandHandler("gbun", gbun, run_async=True)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table, run_async=True)
 CRI_HANDLER = DisableAbleCommandHandler("cri", cri, run_async=True)
 CHANGEMYMIND_HANDLER = DisableAbleCommandHandler("changemymind", changemymind, run_async=True)
-TRUMPTWEET_HANDLER = DisableAbleCommandHandler("trumptweet", trumptweet, run_async=True)
 PASTA_HANDLER = DisableAbleCommandHandler("pasta", copypasta, run_async=True)
 CLAP_HANDLER = DisableAbleCommandHandler("clap", clapmoji, run_async=True)
 OWO_HANDLER = DisableAbleCommandHandler("owo", owo, run_async=True)
@@ -598,4 +576,3 @@ dispatcher.add_handler(YESNOWTF_HANDLER)
 dispatcher.add_handler(GDMORNING_HANDLER)
 dispatcher.add_handler(GDNIGHT_HANDLER)
 dispatcher.add_handler(CHANGEMYMIND_HANDLER)
-dispatcher.add_handler(TRUMPTWEET_HANDLER)
