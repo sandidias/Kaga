@@ -208,7 +208,7 @@ def changemymind(update, context):
         
        
  @typing_action
- def trumptweet(_bot: Bot, update: Update):
+ def trumptweet(update, context):
     msg = update.effective_message
     if not msg.reply_to_message:
         msg.reply_text("perlu membalas pesan ke tweet")
