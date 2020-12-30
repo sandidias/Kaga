@@ -2,6 +2,7 @@ import random
 import re
 import time
 
+import requests
 import requests as r
 from telegram import MAX_MESSAGE_LENGTH, ParseMode, TelegramError
 from telegram.error import BadRequest
