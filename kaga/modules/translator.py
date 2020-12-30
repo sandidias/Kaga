@@ -38,7 +38,7 @@ def gtrans(update, context):
         source_lan = translator.detect(translate_text)[1].title()
         des_lan = LANGUAGES.get(lang).title()
         msg.reply_text(
-            "Diterjemahkan dari {} ke {}.\n `{}`".format(
+            "Diterjemahkan dari {} ke {}.\n {}".format(
                 source_lan, des_lan, translated
             )
         )
