@@ -36,11 +36,11 @@ def about_me(update, context):
     elif message.reply_to_message:
         username = message.reply_to_message.from_user.first_name
         update.effective_message.reply_text(
-            username + "Information about him is currently unavailable !"
+            username + "Informasi tentang dia saat ini tidak tersedia !"
         )
     else:
         update.effective_message.reply_text(
-            "You have not added any information about yourself yet !"
+            "Anda belum menambahkan informasi apa pun tentang diri Anda !"
         )
 
 
@@ -50,7 +50,7 @@ def set_about_me(update, context):
     user_id = message.from_user.id
     if user_id == 1087968824:
         message.reply_text(
-            "You cannot set your own bio when you're in anonymous admin mode!"
+            "Anda tidak dapat mengatur bio Anda sendiri saat Anda berada dalam mode admin anonim!"
         )
         return
 
@@ -64,10 +64,10 @@ def set_about_me(update, context):
                 {'_id': user_id},
                 {"$set": {'info': info[1]}},
                 upsert=True)
-            message.reply_text("Your bio has been saved successfully")
+            message.reply_text("Biografi Anda berhasil disimpan")
         else:
             message.reply_text(
-                " About You{} To be confined to letters ".format(
+                " Tentang Anda {} Untuk dibatasi pada huruf ".format(
                     MAX_MESSAGE_LENGTH // 4, len(info[1])
                 )
             )
@@ -94,11 +94,11 @@ def about_bio(update, context):
     elif message.reply_to_message:
         username = user.first_name
         update.effective_message.reply_text(
-            "{} No details about him have been saved yet !".format(username)
+            "{} Belum ada detail tentang dia yang disimpan !".format(username)
         )
     else:
         update.effective_message.reply_text(
-            " Your bio  about you has been saved !"
+            " Biografi Anda tentang Anda telah disimpan !"
         )
 
 
@@ -111,14 +111,14 @@ def set_about_bio(update, context):
         user_id = repl_message.from_user.id
         if user_id == message.from_user.id:
             message.reply_text(
-                "Are you looking to change your own ... ?? That 's it."
+                "Apakah Anda ingin mengubah milik Anda sendiri ... ?? Itu dia."
             )
             return
         elif user_id == context.bot.id and sender.id not in DEV_USERS:
-            message.reply_text("Only DEV USERS can change my information.")
+            message.reply_text("Hanya PENGGUNA DEV yang dapat mengubah informasi saya.")
             return
         elif user_id == 1087968824:
-            message.reply_text("You cannot set anonymous user bio!")
+            message.reply_text("Anda tidak dapat mengatur bio pengguna anonim!")
             return
 
         text = message.text
@@ -131,19 +131,19 @@ def set_about_bio(update, context):
                     {"$set": {'bio': bio[1]}},
                     upsert=True)
                 message.reply_text(
-                    "{} bio has been successfully saved!".format(
+                    "{} bio berhasil disimpan!".format(
                         repl_message.from_user.first_name
                     )
                 )
             else:
                 message.reply_text(
-                    "About you {} Must stick to the letter! The number of characters you have just tried {} hm .".format(
+                    "Tentang Anda {} Harus tetap berpegang pada surat! Jumlah karakter yang baru saja Anda coba {}.".format(
                         MAX_MESSAGE_LENGTH // 4, len(bio[1])
                     )
                 )
     else:
         message.reply_text(
-            " His bio can only be saved if someone MESSAGE as a REPLY"
+            " Bio-nya hanya bisa disimpan jika seseorang mengirim pesan lalu dibalas"
         )
 
 
@@ -156,35 +156,35 @@ def __user_info__(user_id):
         me = html.escape(idata["info"])
 
     if bdata and idata:
-        return "<b>About user:</b>\n{me}\n\n<b>What others say:</b>\n{bio}".format(
+        return "<b>Tentang pengguna:</b>\n{me}\n\n<b>Apa yang dikatakan orang lain:</b>\n{bio}".format(
             me=me, bio=bio
         )
     elif bdata:
-        return "<b>What others say:</b>\n{}\n".format(bio)
+        return "<b>Apa yang dikatakan orang lain:</b>\n{}\n".format(bio)
     elif idata:
-        return "<b>About user:</b>\n{}".format(me)
+        return "<b>Tentang Pengguna:</b>\n{}".format(me)
     else:
         return ""
 
 
 __help__ = """
-Writing something about yourself is cool, whether to make people know about yourself or \
-promoting your profile.
+Menulis sesuatu tentang diri Anda itu keren, entah untuk membuat orang tahu tentang diri Anda atau \
+mempromosikan profil Anda.
 
-All bios are displayed on /info command.
+Semua bio ditampilkan pada perintah /info.
 
- × /setbio <text>: While replying, will save another user's bio
- × /bio: Will get your or another user's bio. This cannot be set by yourself.
- × /setme <text>: Will set your info
- × /me: Will get your or another user's info
+ × /setbio <text>: Saat membalas, akan menyimpan bio pengguna lain
+ × /bio: Akan mendapatkan bio Anda atau pengguna lain. Ini tidak dapat diatur sendiri.
+ × /setme <text>: Akan mengatur info Anda
+ × /me: Akan mendapatkan info Anda atau pengguna lain
 
-An example of setting a bio for yourself:
-`/setme I work for Telegram`; Bio is set to yourself.
+Contoh pengaturan bio untuk diri Anda sendiri:
+`/setme Saya bekerja untuk Telegram`; Bio diatur untuk diri Anda sendiri.
 
-An example of writing someone else' bio:
-Reply to user's message: `/setbio He is such cool person`.
+Contoh penulisan biodata orang lain:
+Balas pesan pengguna: `/setbio Dia orang yang sangat keren`.
 
-*Notice:* Do not use /setbio against yourself!
+*Perhatian:* Jangan gunakan /setbio untuk melawan diri sendiri!
 """
 
 __mod_name__ = "Bios/Abouts"
