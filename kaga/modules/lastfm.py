@@ -113,6 +113,11 @@ def last_fm(update, context):
         msg.delete()
     except error.BadRequest:
         return
+ 
+def __stats__():
+    return "× {} menyimpan nama pengguna Last.FM.".format(
+        LASTFM_USER.count_documents({})
+    )
 
 
 SET_USER_HANDLER = CommandHandler("setuser", set_user, pass_args=True, run_async=True)
