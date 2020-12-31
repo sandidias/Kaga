@@ -46,7 +46,7 @@ def magisk(update, context):
         )
 
     del_msg = update.message.reply_text(
-        "*Latest Magisk Releases:*\n{}".format(releases),
+        "*Versi Magisk Terbaru:*\n{}".format(releases),
         parse_mode=ParseMode.MARKDOWN,
         disable_web_page_preview=True,
     )
@@ -86,7 +86,7 @@ def device(update, context):
     db = get(DEVICES_DATA).json()
     newdevice = device.strip("lte") if device.startswith("beyond") else device
     try:
-        reply = f"Search results for {device}:\n\n"
+        reply = f"Hasil pencarian {device}:\n\n"
         brand = db[newdevice][0]["brand"]
         name = db[newdevice][0]["name"]
         model = db[newdevice][0]["model"]
