@@ -380,4 +380,4 @@ def migrate_chat(old_chat_id, new_chat_id):
             SESSION.commit()
 
 
-__load_chat_filters()kaga
+__load_chat_filters()
