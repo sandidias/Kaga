@@ -7,6 +7,7 @@ import time
 import spamwatch
 import telegram.ext as tg
 from telegraph import Telegraph
+from pyrogram import Client, errors
 from telethon import TelegramClient
 from dotenv import load_dotenv
 
