@@ -5,7 +5,7 @@ import re
 import subprocess
 from io import StringIO, BytesIO
 from kaga import kagabot, ALLOWED_USERS
-from kaga.modules.sql import chats_db
+from kaga.modules.sql import users_sql
 from pyrogram import filters
 
 from kaga.utils.errors import capture_err
