@@ -106,7 +106,7 @@ updater = tg.Updater(TOKEN, workers=WORKERS)
 telethn = TelegramClient("KagaRobot", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 
-pbot = Client("KagaRobot", api_id=API_KEY,
+pbot = Client("KagaRobot", api_id=API_ID,
               api_hash=API_HASH,
               bot_token=TOKEN)
 
