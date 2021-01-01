@@ -94,6 +94,7 @@ CASH_API_KEY = os.environ.get("CASH_API_KEY") or None
 WALL_API = os.environ.get("WALL_API") or None
 SPAMWATCH = os.environ.get("SPAMWATCH_API") or None
 LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY") or None
+ALLOWED_USERS = os.environ.get("ALLOWED_USERS") or None
 
 # add owner to devusers
 DEV_USERS.add(OWNER_ID)
