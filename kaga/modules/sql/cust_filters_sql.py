@@ -223,7 +223,7 @@ def new_add_filter(chat_id, keyword, reply_text, file_type, file_id, buttons):
         filt = CustomFilters(
             str(chat_id),
             keyword,
-            reply="there is should be a new reply",
+            reply="harus ada balasan baru",
             is_sticker=False,
             is_document=False,
             is_image=False,
