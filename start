@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 # Attemp to Terminate and Remove previous session
-if [ -f kaga.session ]; then
-    kill $(pgrep -f 'python3 -m kaga')
-    rm -f kaga.session-journal kaga.session
+if [ ! -d .git ]; then
+    git clone https://github.com/HayakaRyu/KagaRobot -b main tmp_git
+    mv tmp_git/.git .
+    rm -rf tmp_git
 fi
-
 # start
 python3 -m kaga
