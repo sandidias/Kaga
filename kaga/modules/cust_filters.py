@@ -61,7 +61,7 @@ def list_handlers(update, context):
             filter_list = "*local filters:*\n"
         else:
             chat_name = chat.title
-            filter_list = "*Filter di {}*:\n"
+            filter_list = "*Filter in {}*:\n"
 
     all_handlers = sql.get_chat_triggers(chat_id)
 
