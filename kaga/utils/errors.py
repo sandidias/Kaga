@@ -1,6 +1,6 @@
 from functools import wraps
 import pyrogram
-from thebot import logging
+from kaga import logging
 import traceback
 import sys
 from kaga import ALLOWED_USERS, LOG_CHANNEL
