@@ -120,7 +120,7 @@ STAFF_USERS = list(STAFF)
 
 WHITELIST_USERS = list(WHITELIST_USERS)
 
-kagarobot = Client(':memory:', api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+kagabot = Client(':memory:', api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 # Load at end to ensure all prev variables have been set
 # pylint: disable=C0413
