@@ -119,11 +119,11 @@ async def terminal(client, message):
         output = None
     if output:
         if len(output) > 4096:
-            with open("thebot/output.txt", "w+") as file:
+            with open("kaga/output.txt", "w+") as file:
                 file.write(output)
-            await client.send_document(message.chat.id, "thebot/output.txt", reply_to_message_id=message.message_id,
+            await client.send_document(message.chat.id, "kaga/output.txt", reply_to_message_id=message.message_id,
                                     caption="`Output file`")
-            os.remove("thebot/output.txt")
+            os.remove("kaga/output.txt")
             return
         await message.reply(f"**Output:**\n```{output}```", parse_mode='markdown')
     else:
@@ -133,13 +133,13 @@ async def terminal(client, message):
 @kagabot.on_message(filters.user(ALLOWED_USERS) & filters.command("stats", prefixes='/'))
 async def stats_text(_, message):
     stats = "──「 <b>Current stats</b> 」──\n"
-    stats += f"-> <code>{chats_db.num_users()}</code> users, across <code>{chats_db.num_chats()}</code> chats"
+    stats += f"-> <code>{users_sql.num_users()}</code> users, across <code>{users_sql.num_chats()}</code> chats"
     await message.reply(stats)
 
 
 @kagabot.on_message(~filters.me & filters.user(ALLOWED_USERS) & filters.command("chats", prefixes='/'))
 async def chat_stats(client, message):
-    all_chats = chats_db.get_all_chats() or []
+    all_chats = users_sql.get_all_chats() or []
     chatfile = 'List of chats.\n0. Chat name | Chat ID | Members count\n'
     P = 1
     for chat in all_chats:
@@ -160,13 +160,13 @@ async def chat_stats(client, message):
 @kagabot.on_message(filters.all & filters.group)
 def log_user(client, message):
     chat = message.chat
-    chats_db.update_user(message.from_user.id, message.from_user.username, chat.id,
+    users_sql.update_user(message.from_user.id, message.from_user.username, chat.id,
                     chat.title)
 
     if message.reply_to_message:
-        chats_db.update_user(message.reply_to_message.from_user.id,
+        users_sql.update_user(message.reply_to_message.from_user.id,
                         message.reply_to_message.from_user.username, chat.id,
                         chat.title)
 
     if message.forward_from:
-        chats_db.update_user(message.forward_from.id, message.forward_from.username)
+        users_sql.update_user(message.forward_from.id, message.forward_from.username)
