@@ -468,7 +468,7 @@ def get_help(update, context):
     if chat.type != chat.PRIVATE:
 
         update.effective_message.reply_text(
-            "Hubungi saya di PM untuk mendapatkan daftar kemungkinan perintah.",
+            "Hubungi saya di PM untuk mendapatkan daftar perintah yang ada.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
