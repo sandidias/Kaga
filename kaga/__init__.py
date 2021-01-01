@@ -16,6 +16,8 @@ StartTime = time.time()
 telegraph = Telegraph()
 telegraph.create_account(short_name='kagarobot')
 
+logging.basicConfig(level=logging.INFO)
+
 # enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
