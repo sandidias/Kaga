@@ -14,7 +14,7 @@ from telegram.ext import (
 )
 from telegram.utils.helpers import mention_html, escape_markdown
 
-from kaga import dispatcher, LOGGER, DRAGONS
+from kaga import dispatcher, LOGGER, DEV
 from kaga.modules.disable import DisableAbleCommandHandler
 from kaga.modules.helper_funcs.chat_status import user_admin
 from kaga.modules.helper_funcs.extraction import extract_text
@@ -48,7 +48,6 @@ ENUM_FUNC_MAP = {
 }
 
 
-@run_async
 @typing_action
 def list_handlers(update, context):
     chat = update.effective_chat
@@ -263,7 +262,7 @@ def stop_filter(update, context):
     )
 
 
-@run_async
+@typing_action
 def reply_filter(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     message = update.effective_message  # type: Optional[Message]
@@ -452,12 +451,12 @@ def reply_filter(update, context):
                 break
 
 
-@run_async
+@typing_action
 def rmall_filters(update, context):
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
-    if member.status != "creator" and user.id not in DRAGONS:
+    if member.status != "creator" and user.id not in DEV:
         update.effective_message.reply_text(
             "Only the chat owner can clear all notes at once.")
     else:
@@ -473,14 +472,14 @@ def rmall_filters(update, context):
             parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
+@typing_action
 def rmall_callback(update, context):
     query = update.callback_query
     chat = update.effective_chat
     msg = update.effective_message
     member = chat.get_member(query.from_user.id)
     if query.data == 'filters_rmall':
-        if member.status == "creator" or query.from_user.id in DRAGONS:
+        if member.status == "creator" or query.from_user.id in DEV:
             allfilters = sql.get_chat_triggers(chat.id)
             if not allfilters:
                 msg.edit_text("No filters in this chat, nothing to stop!")
@@ -503,7 +502,7 @@ def rmall_callback(update, context):
         if member.status == "member":
             query.answer("You need to be admin to do this.")
     elif query.data == 'filters_cancel':
-        if member.status == "creator" or query.from_user.id in DRAGONS:
+        if member.status == "creator" or query.from_user.id in DEV:
             msg.edit_text("Clearing of all filters has been cancelled.")
             return
         if member.status == "administrator":
