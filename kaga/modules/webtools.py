@@ -116,11 +116,11 @@ def gitpull(update, context):
     sent_msg = update.effective_message.reply_text(
         "Menarik semua perubahan dari jarak jauh..."
     )
-    subprocess.open("git reset --hard origin/master && git clean -fd && git pull", stdout=subprocess.PIPE, shell=True)
+    subprocess.Popen("git reset --hard origin/master && git clean -fd && git pull", stdout=subprocess.PIPE, shell=True)
 
     sent_msg_text = (
         sent_msg.text
-        + "\n\nPerubahan ditarik... Sepertinya.\nLanjutkan untuk memulai ulang /reboot "
+        + "\n\nPerubahan ditarik. Sepertinya.\nLanjutkan untuk memulai ulang /reboot "
     )
     sent_msg.edit_text(sent_msg_text)
 
