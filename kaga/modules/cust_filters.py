@@ -238,7 +238,7 @@ def stop_filter(update, context):
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
-            chat_name = "Filter lokal"
+            chat_name = "Local filters"
         else:
             chat_name = chat.title
 
