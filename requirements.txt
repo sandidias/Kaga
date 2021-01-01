@@ -43,3 +43,6 @@ nekos.py
 fontTools
 coffeehouse
 geopy
+pymoe
+ffmpeg
+tgcrypto
