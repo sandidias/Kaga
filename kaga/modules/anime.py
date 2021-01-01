@@ -11,7 +11,6 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, Update, InlineKeyboardMarkup, InlineKeyboardButton
 
 from kaga import pbot
-from kaga.modules.tr_engine.strings import tld
 
 telegraph = Telegraph()
 telegraph.create_account(short_name='KagaRobot')
@@ -176,7 +175,7 @@ async def anime_airing(c: Client, m: Message):
     search_str = m.text.split(' ', 1)
     chat_id = m.chat.id
     if len(search_str) == 1:
-        await m.reply_text(tld(chat_id, "anime_no_arg"))
+        await m.reply_text(chat_id, "anime_no_arg")
         return
     variables = {'search': search_str[1]}
     response = requests.post(
@@ -196,7 +195,7 @@ async def anime_search(c: Client, m: Message):
     search = m.text.split(' ', 1)
     chat_id = m.chat.id
     if len(search) == 1:
-        await m.reply_text(tld(chat_id, "anime_no_arg"))
+        await m.reply_text(chat_id, "anime_no_arg")
         return
     else:
         search = search[1]
@@ -208,7 +207,7 @@ async def anime_search(c: Client, m: Message):
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
-        msg += tld(chat_id, "anime_studios")
+        msg += (chat_id, "anime_studios")
         for x in json['studios']['nodes']:
             msg += f"{x['name']}, "
         msg = msg[:-2] + '`\n'
@@ -223,7 +222,7 @@ async def anime_search(c: Client, m: Message):
             'description', 'N/A').replace('<i>', '').replace('</i>', '').replace('<br>', '')
         msg += shorten(description, info)
         image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
-        more_info = tld(chat_id, "anime_more_info")
+        more_info = (chat_id, "anime_more_info")
         if trailer:
             buttons = [
                 [InlineKeyboardButton(more_info, url=info),
@@ -248,7 +247,7 @@ async def character_search(c: Client, m: Message):
     search = m.text.split(' ', 1)
     chat_id = m.chat.id
     if len(search) == 1:
-        await m.reply_text(tld(chat_id, "character_no_arg"))
+        await m.reply_text(chat_id, "character_no_arg")
         return
     search = search[1]
     variables = {'query': search}
@@ -272,7 +271,7 @@ async def manga_search(c: Client, m: Message):
     search = m.text.split(' ', 1)
     chat_id = m.chat.id
     if len(search) == 1:
-        await m.reply_text(tld(chat_id, "manga_no_arg"))
+        await m.reply_text(chat_id, "manga_no_arg")
         return
     search = search[1]
     variables = {'search': search}
@@ -289,12 +288,12 @@ async def manga_search(c: Client, m: Message):
             if title_native:
                 ms_g += f"(`{title_native}`)"
         if start_date:
-            ms_g += tld(chat_id, "manga_start_date").format(start_date)
+            ms_g += (chat_id, "manga_start_date").format(start_date)
         if status:
-            ms_g += tld(chat_id, "manga_status").format(status)
+            ms_g += (chat_id, "manga_status").format(status)
         if score:
-            ms_g += tld(chat_id, "manga_score").format(score)
-        ms_g += tld(chat_id, "manga_genre")
+            ms_g += (chat_id, "manga_score").format(score)
+        ms_g += (chat_id, "manga_genre")
         for x in json.get('genres', []):
             ms_g += f"{x}, "
         ms_g = ms_g[:-2]
