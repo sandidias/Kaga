@@ -18,7 +18,8 @@ from telegram.ext import (
 from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 from sqlalchemy.exc import SQLAlchemyError, DBAPIError
-
+from pyrogram import  idle, Client
+from kaga import kagabot
 
 from kaga import (
     dispatcher,
@@ -166,6 +167,7 @@ for module_name in ALL_MODULES:
     imported_module = importlib.import_module(
         "kaga.modules." + module_name
     )
+    importlib.reload(imported_module)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
