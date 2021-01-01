@@ -19,7 +19,6 @@ from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 from sqlalchemy.exc import SQLAlchemyError, DBAPIError
 from pyrogram import  idle, Client
-from kaga import kagabot
 
 from kaga import (
     dispatcher,
@@ -93,9 +92,6 @@ buttons += [
     [
         InlineKeyboardButton(
             text="Support 🎗️", url="https://t.me/ZeroBotSupport"
-        ),
-        InlineKeyboardButton(
-            text="Source 💻", url="telegra.ph/Source-Closed-12-23"
         ),
         InlineKeyboardButton(
             text="Channel 📢", url="https://t.me/HayakaRyuUpdates"
