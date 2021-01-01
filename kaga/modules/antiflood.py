@@ -218,7 +218,7 @@ def flood(update, context):
         if update.effective_message.chat.type == "private":
             send_message(
                 update.effective_message,
-                "Perintah ini dimaksudkan untuk digunakan dalam grup tidak dalam PM",
+                "Perintah ini dimaksudkan untuk digunakan dalam grup bukan di PM",
             )
             return
         chat_id = update.effective_chat.id
@@ -227,26 +227,25 @@ def flood(update, context):
     limit = sql.get_flood_limit(chat_id)
     if limit == 0:
         if conn:
-            text = msg.reply_text(
-                "Aku tidak akan menegakkan pengendalian banjir di {}!".format(chat_name)
+            text = (
+                "Saya tidak memaksakan pengendalian flood apa pun{}!".format(chat_name)
             )
         else:
-            text = msg.reply_text("Aku tidak akan menegakkan pengendalian bflood di sini!")
-        send_message(update.effective_message, text, parse_mode="markdown")
+            text = ("Saya tidak memaksakan pengendalian flood di sini!")
     else:
         if conn:
-            text = msg.reply_text(
-                "Saat ini saya membatasi anggota setelah {} pesan berturut-turut di {}.".format(
+            text = (
+                "Saya saat ini membatasi anggota setelah {} pesan berurutan di {}.".format(
                     limit, chat_name
                 )
             )
         else:
-            text = msg.reply_text(
-                "Saat ini saya membatasi anggota setelah {} pesan berturut-turut.".format(
+            text = (
+                "Saya saat ini membatasi anggota setelah {} pesan berturut-turut.".format(
                     limit
                 )
             )
-        send_message(update.effective_message, text, parse_mode="markdown")
+    send_message(msg, text, parse_mode="markdown")
 
 
 @user_admin
