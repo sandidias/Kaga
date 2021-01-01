@@ -50,8 +50,8 @@ def capture_err(func):
                 )
             )
             for x in error_feedback:
-                if LOG_CHANNEL:
-                    await client.send_message(LOG_CHANNEL, x)
+                if EVENT_LOGS:
+                    await client.send_message(EVENT_LOGS, x)
                 else:
                     for m in ALLOWED_USERS:
                         await client.send_message(m, x)
