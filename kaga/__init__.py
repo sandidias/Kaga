@@ -6,17 +6,11 @@ import sys
 import time
 import spamwatch
 import telegram.ext as tg
-from telegraph import Telegraph
 from pyrogram import Client, errors
 from telethon import TelegramClient
 from dotenv import load_dotenv
 
 StartTime = time.time()
-
-telegraph = Telegraph()
-telegraph.create_account(short_name='kagarobot')
-
-logging.basicConfig(level=logging.INFO)
 
 # enable logging
 logging.basicConfig(
@@ -96,7 +90,6 @@ CASH_API_KEY = os.environ.get("CASH_API_KEY") or None
 WALL_API = os.environ.get("WALL_API") or None
 SPAMWATCH = os.environ.get("SPAMWATCH_API") or None
 LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY") or None
-ALLOWED_USERS = os.environ.get("ALLOWED_USERS") or None
 
 # add owner to devusers
 DEV_USERS.add(OWNER_ID)
@@ -123,7 +116,6 @@ STAFF_USERS = list(STAFF)
 
 WHITELIST_USERS = list(WHITELIST_USERS)
 
-kagabot = Client(':memory:', api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 # Load at end to ensure all prev variables have been set
 # pylint: disable=C0413
