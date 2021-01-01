@@ -3,7 +3,7 @@ import pyrogram
 from kaga import logging
 import traceback
 import sys
-from kaga import ALLOWED_USERS, LOG_CHANNEL
+from kaga import ALLOWED_USERS, EVENT_LOGS
 
 
 def split_limits(text):
@@ -32,7 +32,7 @@ def capture_err(func):
             return await func(client, message, *args, **kwargs)
         except pyrogram.errors.exceptions.forbidden_403.ChatWriteForbidden as err:
             logging.info(
-                "Bot was muted in {} {}".format(message.chat.title, message.chat.id)
+                "Bot dibungkam di {} {}".format(message.chat.title, message.chat.id)
             )
             await client.leave_chat(message.chat.id)
         except Exception as err:
@@ -42,7 +42,7 @@ def capture_err(func):
                 etype=exc_type, value=exc_obj, tb=exc_tb
             )
             error_feedback = split_limits(
-                "**EsseX ERROR** | `{}` | `{}`\n\n```{}```\n\n```{}```\n".format(
+                "**KagaRobot ERROR** | `{}` | `{}`\n\n```{}```\n\n```{}```\n".format(
                     0 if not message.from_user else message.from_user.id,
                     0 if not message.chat else message.chat.id,
                     message.text or message.caption,
