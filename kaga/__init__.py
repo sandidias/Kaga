@@ -106,6 +106,10 @@ updater = tg.Updater(TOKEN, workers=WORKERS)
 telethn = TelegramClient("KagaRobot", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 
+pbot = Client("KagaRobot", api_id=API_KEY,
+              api_hash=API_HASH,
+              bot_token=TOKEN)
+
 # Declare user rank
 DEV_USERS = list(DEV_USERS)
 SUDO_USERS = list(SUDO_USERS)
