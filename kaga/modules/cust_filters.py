@@ -57,8 +57,8 @@ def list_handlers(update, context):
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
-            chat_name = "Filter lokal"
-            filter_list = "*Filter lokal:*\n"
+            chat_name = "Local filters"
+            filter_list = "*local filters:*\n"
         else:
             chat_name = chat.title
             filter_list = "*Filter di {}*:\n"
