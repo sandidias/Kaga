@@ -296,3 +296,13 @@ async def manga_search(client, message):
         else:
             await message.reply(ms_g)
 
+            
+__help__ = """
+*Anime*
+Dapatkan informasi tentang anime, manga, atau karakter dengan bantuan modul ini! Semua data diambil dari [AniList](anilist.co).
+*Perintah yang tersedia:*
+ - /anime <anime>: memberikan informasi tentang anime.
+ - /character <character>:  memberikan informasi tentang karakter tersebut.
+ - /manga <manga>:  memberikan informasi tentang manga.
+"""
+__mod_name__ = "Anime"
