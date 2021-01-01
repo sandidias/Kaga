@@ -6,10 +6,14 @@ import sys
 import time
 import spamwatch
 import telegram.ext as tg
+from telegraph import Telegraph
 from telethon import TelegramClient
 from dotenv import load_dotenv
 
 StartTime = time.time()
+
+telegraph = Telegraph()
+telegraph.create_account(short_name='kagarobot')
 
 # enable logging
 logging.basicConfig(
@@ -114,6 +118,8 @@ STAFF = DEV_USERS + SUDO_USERS + SUPPORT_USERS
 STAFF_USERS = list(STAFF)
 
 WHITELIST_USERS = list(WHITELIST_USERS)
+
+kagarobot = Client(':memory:', api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 # Load at end to ensure all prev variables have been set
 # pylint: disable=C0413
