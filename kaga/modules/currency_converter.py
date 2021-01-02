@@ -2,6 +2,7 @@ import requests
 import time
 from kaga import CASH_API_KEY, dispatcher
 from telegram import Update, ParseMode
+from telegram.error import BadRequest
 from telegram.ext import CommandHandler
 from kaga.modules.helper_funcs.alternate import typing_action
 
