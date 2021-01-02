@@ -111,12 +111,9 @@ def log_user(update, context):
 
 def chats(update, context):
     all_chats = users_db.get_all_chats() or []
-    all_users = users_db.get_all_users() or []
     chatfile = "List of chats.\n"
     for chat in all_chats:
         chatfile += "{} - ({})\n".format(chat["chat_name"], chat["chat_id"])
-    for user in all_users:
-        chatfile += "{} - ({})\n".format(user["username"], user["_id"])
 
 
     with BytesIO(str.encode(chatfile)) as output:
@@ -125,6 +122,22 @@ def chats(update, context):
             document=output,
             filename="chatlist.txt",
             caption="Berikut adalah daftar obrolan di database saya.",
+        )
+        
+        
+ def users(update, context):
+    all_users = users_db.get_all_users() or []
+    chatfile = "List of Users.\n"
+    for user in all_users:
+        chatfile += "{} - ({})\n".format(user["username"], user["_id"])
+
+
+    with BytesIO(str.encode(chatfile)) as output:
+        output.name = "chatlist.txt"
+        update.effective_message.reply_document(
+            document=output,
+            filename="userlist.txt",
+            caption="Berikut adalah daftar pengguna di database saya.",
         )
         
 
