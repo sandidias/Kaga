@@ -196,5 +196,5 @@ CHAT_CHECKER_HANDLER = MessageHandler(
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
 dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
-dispatcher.add_handler(USERS_HANDLER)
+dispatcher.add_handler(USERLIST_HANDLER)
 dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
