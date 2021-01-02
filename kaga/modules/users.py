@@ -67,7 +67,7 @@ def broadcast(update, context):
             for chat in chats:
                 try:
                     context.bot.sendMessage(
-                        int(chat.chat_id),
+                        int(chat["chat_id"]),
                         to_send[1],
                         parse_mode="MARKDOWN",
                         disable_web_page_preview=True)
@@ -78,7 +78,7 @@ def broadcast(update, context):
             for user in users:
                 try:
                     context.bot.sendMessage(
-                        int(user.user_id),
+                        int(user["user_id"]),
                         to_send[1],
                         parse_mode="MARKDOWN",
                         disable_web_page_preview=True)
@@ -110,7 +110,7 @@ def log_user(update, context):
         users_db.update_user(msg.forward_from.id, msg.forward_from.username)
 
 
-def chats(update: Update, context: CallbackContext):
+def chats(update, context):
     all_chats = users_db.get_all_chats() or []
     chatfile = 'Daftar obrolan. \n0. Nama obrolan | ID Obrolan | Anggota menghitung \n'
     P = 1
