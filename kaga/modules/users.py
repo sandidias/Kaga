@@ -112,25 +112,16 @@ def log_user(update, context):
 
 def chats(update, context):
     all_chats = users_db.get_all_chats() or []
-    chatfile = 'Daftar obrolan. \n0. Nama obrolan | ID Obrolan | Anggota menghitung \n'
-    P = 1
+    chatfile = "List of chats.\n"
     for chat in all_chats:
-        try:
-            curr_chat = context.bot.getChat(chat.chat_id)
-            bot_member = curr_chat.get_member(context.bot.id)
-            chat_members = curr_chat.get_members_count(context.bot.id)
-            chatfile += "{}. {} | {} | {}\n".format(P, chat.chat_name,
-                                                    chat.chat_id, chat_members)
-            P = P + 1
-        except:
-            pass
+        chatfile += "{} - ({})\n".format(chat["chat_name"], chat["chat_id"])
 
     with BytesIO(str.encode(chatfile)) as output:
-        output.name = "groups_list.txt"
+        output.name = "chatlist.txt"
         update.effective_message.reply_document(
             document=output,
-            filename="groups_list.txt",
-            caption="Berikut adalah daftar grup di database saya.")
+            filename="chatlist.txt",
+            caption="Berikut adalah daftar obrolan di database saya.",
 
 def chat_checker(update, context):
     try:
