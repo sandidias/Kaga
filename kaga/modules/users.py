@@ -7,7 +7,7 @@ from telegram.ext import CommandHandler, Filters, MessageHandler
 
 from kaga.modules.no_sql import users_db
 import kaga.modules.sql.users_sql as sql
-from kaga.modules.sql.users_sql import get_all_users
+from kaga.modules.no_sql.users_db import get_all_users
 from kaga import LOGGER, OWNER_ID, dispatcher
 from kaga.modules.helper_funcs.filters import CustomFilters
 
@@ -60,7 +60,7 @@ def broadcast(update, context):
         else:
             to_group = to_user = True
         chats = users_db.get_all_chats() or []
-        users = users_db.get_all_users()
+        users = get_all_users()
         failed = 0
         failed_user = 0
         if to_group:
@@ -112,12 +112,9 @@ def log_user(update, context):
 
 def chats(update, context):
     all_chats = users_db.get_all_chats() or []
-    all_users = users_db.get_all_users() or []
     chatfile = "List of chats.\n"
     for chat in all_chats:
         chatfile += "{} - ({})\n".format(chat["chat_name"], chat["chat_id"])
-    for user in all_users:
-        chatfile += "{} - ({})\n".format( user["user_id"])
 
 
     with BytesIO(str.encode(chatfile)) as output:
