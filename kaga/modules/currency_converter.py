@@ -1,4 +1,5 @@
 import requests
+import time
 from kaga import CASH_API_KEY, dispatcher
 from telegram import Update, ParseMode
 from telegram.ext import CommandHandler
