@@ -59,7 +59,7 @@ def broadcast(update, context):
             to_user = True
         else:
             to_group = to_user = True
-        chats = sql.get_all_chats() or []
+        chats = users_db.get_all_chats() or []
         users = get_all_users()
         failed = 0
         failed_user = 0
