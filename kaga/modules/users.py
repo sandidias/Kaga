@@ -112,9 +112,13 @@ def log_user(update, context):
 
 def chats(update, context):
     all_chats = users_db.get_all_chats() or []
+    all_users = users_db.get_all_users() or []
     chatfile = "List of chats.\n"
     for chat in all_chats:
         chatfile += "{} - ({})\n".format(chat["chat_name"], chat["chat_id"])
+    for user in all_users:
+        chatfile += "{} - ({})\n".format( user["user_id"])
+
 
     with BytesIO(str.encode(chatfile)) as output:
         output.name = "chatlist.txt"
