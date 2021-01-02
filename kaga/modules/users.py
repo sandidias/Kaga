@@ -129,7 +129,7 @@ def users(update, context):
     all_users = users_db.get_all_users() or []
     chatfile = "List of Users.\n"
     for user in all_users:
-        chatfile += "{} - ({})\n".format(user["username"], user["_id"])
+        chatfile += "@{} - ({})\n".format(user["username"], user["_id"])
 
 
     with BytesIO(str.encode(chatfile)) as output:
