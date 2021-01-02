@@ -186,6 +186,9 @@ USER_HANDLER = MessageHandler(
 CHATLIST_HANDLER = CommandHandler(
     "chatlist", chats, filters=CustomFilters.sudo_filter, run_async=True
 )
+CHATLIST_HANDLER = CommandHandler(
+    "userlist", users, filters=CustomFilters.sudo_filter, run_async=True
+)
 CHAT_CHECKER_HANDLER = MessageHandler(
     Filters.all & Filters.chat_type.groups, chat_checker, run_async=True
 )
@@ -193,4 +196,5 @@ CHAT_CHECKER_HANDLER = MessageHandler(
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
 dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
+dispatcher.add_handler(USERS_HANDLER)
 dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
