@@ -47,20 +47,7 @@ def convert(update, context):
         update.effective_message.reply_text(
             f"*Invalid Args!!:* Required 3 But Passed {len(args) -1}",
             parse_mode=ParseMode.MARKDOWN)
-        del_msg = update.effective_message.reply_text(
-        "{}".format(reply),
-        parse_mode=ParseMode.MARKDOWN,
-        disable_web_page_preview=True,
-    )
-    time.sleep(30)
-    try:
-        del_msg.delete()
-        update.effective_message.delete()
-    except BadRequest as err:
-        if (err.message == "Message to delete not found") or (
-            err.message == "Message can't be deleted"
-        ):
-            return
+        
 
 
 CONVERTER_HANDLER = CommandHandler('cash', convert)
