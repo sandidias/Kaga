@@ -9,7 +9,8 @@ from kaga import DEV_USERS, OWNER_ID, dispatcher
 from kaga.modules.disable import DisableAbleCommandHandler
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
                       Update)
-from telegram.ext import CallbackContext, CallbackQueryHandler, run_async
+from telegram.ext import CallbackContext, CallbackQueryHandler
+from kaga.modules.helper_funcs.alternate import typing_action
 
 info_btn = "More Information"
 kaizoku_btn = "Kaizoku ☠️"
@@ -158,8 +159,8 @@ query ($id: Int,$search: String) {
 url = 'https://graphql.anilist.co'
 
 
-@run_async
-def airing(update: Update, context: CallbackContext):
+@typing_action
+def airing(update, context):
     message = update.effective_message
     search_str = message.text.split(' ', 1)
     if len(search_str) == 1:
@@ -182,8 +183,8 @@ def airing(update: Update, context: CallbackContext):
     update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
-def anime(update: Update, context: CallbackContext):
+@typing_action
+def anime(update, context):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -249,8 +250,8 @@ def anime(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(buttons))
 
 
-@run_async
-def character(update: Update, context: CallbackContext):
+@typing_action
+def character(update, context):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -285,8 +286,8 @@ def character(update: Update, context: CallbackContext):
                 msg.replace('<b>', '</b>'), parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
-def manga(update: Update, context: CallbackContext):
+@typing_action
+def manga(update, contextupdate, context):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -349,8 +350,8 @@ def manga(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(buttons))
 
 
-@run_async
-def user(update: Update, context: CallbackContext):
+@typing_action
+def user(update, context):
     message = update.effective_message
     args = message.text.strip().split(" ", 1)
 
@@ -432,8 +433,8 @@ def user(update: Update, context: CallbackContext):
     progress_message.delete()
 
 
-@run_async
-def upcoming(update: Update, context: CallbackContext):
+@typing_action
+def upcoming(update, context):
     jikan = jikanpy.jikan.Jikan()
     upcoming = jikan.top('anime', page=1, subtype="upcoming")
 
@@ -542,13 +543,13 @@ def site_search(update: Update, context: CallbackContext, site: str):
             result, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
-@run_async
-def kaizoku(update: Update, context: CallbackContext):
+@typing_action
+def kaizoku(update, context):
     site_search(update, context, "kaizoku")
 
 
-@run_async
-def kayo(update: Update, context: CallbackContext):
+@typing_action
+def kayo(update, context):
     site_search(update, context, "kayo")
 
 
