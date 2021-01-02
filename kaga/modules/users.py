@@ -60,7 +60,7 @@ def broadcast(update, context):
         else:
             to_group = to_user = True
         chats = users_db.get_all_chats() or []
-        users = get_all_users()
+        users = users_db.get_all_users()
         failed = 0
         failed_user = 0
         if to_group:
