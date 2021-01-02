@@ -6,6 +6,8 @@ from telegram.error import BadRequest, TimedOut, Unauthorized
 from telegram.ext import CommandHandler, Filters, MessageHandler
 
 from kaga.modules.no_sql import users_db
+import kaga.modules.sql.users_sql as sql
+from kaga.modules.sql.users_sql import get_all_users
 from kaga import LOGGER, OWNER_ID, dispatcher
 from kaga.modules.helper_funcs.filters import CustomFilters
 
