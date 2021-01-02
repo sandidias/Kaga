@@ -6,7 +6,6 @@ import sys
 import time
 import spamwatch
 import telegram.ext as tg
-from pyrogram import Client, errors
 from telethon import TelegramClient
 from dotenv import load_dotenv
 
@@ -105,10 +104,6 @@ else:
 updater = tg.Updater(TOKEN, workers=WORKERS)
 telethn = TelegramClient("KagaRobot", API_ID, API_HASH)
 dispatcher = updater.dispatcher
-
-pbot = Client("KagaRobot", api_id=API_ID,
-              api_hash=API_HASH,
-              bot_token=TOKEN)
 
 # Declare user rank
 DEV_USERS = list(DEV_USERS)
