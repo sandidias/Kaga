@@ -7,7 +7,6 @@ from telegram.ext import CommandHandler, Filters, MessageHandler
 
 from kaga.modules.no_sql import users_db
 import kaga.modules.sql.users_sql as sql
-from kaga.modules.sql.users_sql import get_all_users
 from kaga import LOGGER, OWNER_ID, dispatcher
 from kaga.modules.helper_funcs.filters import CustomFilters
 
@@ -78,7 +77,7 @@ def broadcast(update, context):
             for user in users:
                 try:
                     context.bot.sendMessage(
-                        int(user.user_id),
+                        int(user["user_id"]),
                         to_send[1],
                         parse_mode="MARKDOWN",
                         disable_web_page_preview=True)
