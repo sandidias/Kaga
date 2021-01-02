@@ -21,6 +21,11 @@ __help__ = """
   × /nekoshelp: lihat lebih banyak command.
 *React*
   × /react: Mengirim react acak.
+  
+*Time*
+  × /time <query>: Memberikan informasi tentang zona waktu.
+  *Tersedia:* Country Code/Country Name/Timezone Name
+  🕐 [Timezones list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 *Truth and Dare*
   × /truth: mengirimkan sebuah tantangan kebenaran.
