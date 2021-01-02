@@ -49,7 +49,7 @@ def get_bot_ip(update, context):
 @typing_action
 def speedtst(update, context):
     message = update.effective_message
-    ed_msg = message.reply_text("Menjalankan tes speed test . . .")
+    ed_msg = message.reply_text("Mencoba Kecepatan Server.")
     test = speedtest.Speedtest()
     test.get_best_server()
     test.download()
