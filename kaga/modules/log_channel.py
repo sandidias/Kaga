@@ -71,29 +71,25 @@ if is_module_loaded(FILENAME):
 
         return glog_action
 
-    def send_log(context: CallbackContext, log_chat_id: str, orig_chat_id: str,
-                 result: str):
-        bot = context.bot
+    def send_log(bot: Bot, log_chat_id: str, orig_chat_id: str, result: str):
         try:
-            bot.send_message(
-                log_chat_id,
-                result,
-                parse_mode=ParseMode.HTML,
-                disable_web_page_preview=True)
+            bot.send_message(log_chat_id, result, parse_mode=ParseMode.HTML)
         except BadRequest as excp:
             if excp.message == "Chat not found":
                 bot.send_message(
                     orig_chat_id,
-                    "This log channel has been deleted - unsetting.")
-                sql.stop_chat_logging(orig_chat_id)
+                    "This log channel has been deleted - unsetting.",
+                )
+                db.stop_chat_logging(orig_chat_id)
             else:
                 LOGGER.warning(excp.message)
                 LOGGER.warning(result)
                 LOGGER.exception("Could not parse")
 
                 bot.send_message(
-                    log_chat_id, result +
-                    "\n\nFormatting has been disabled due to an unexpected error."
+                    log_chat_id,
+                    result
+                    + "\n\nFormatting has been disabled due to an unexpected error.",
                 )
 
     @run_async
