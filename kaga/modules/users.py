@@ -125,7 +125,7 @@ def chats(update, context):
         )
         
         
- def users(update, context):
+def users(update, context):
     all_users = users_db.get_all_users() or []
     chatfile = "List of Users.\n"
     for user in all_users:
