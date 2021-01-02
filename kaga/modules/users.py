@@ -77,7 +77,7 @@ def broadcast(update, context):
             for user in users:
                 try:
                     context.bot.sendMessage(
-                        int(user["user_id"]),
+                        int(user["_id"]),
                         to_send[1],
                         parse_mode="MARKDOWN",
                         disable_web_page_preview=True)
@@ -111,9 +111,12 @@ def log_user(update, context):
 
 def chats(update, context):
     all_chats = users_db.get_all_chats() or []
+    all_users = users_db.get_all_users() or []
     chatfile = "List of chats.\n"
     for chat in all_chats:
         chatfile += "{} - ({})\n".format(chat["chat_name"], chat["chat_id"])
+    for user in all_users:
+        chatfile += "{} - ({})\n".format(user["username"], user["_id"])
 
 
     with BytesIO(str.encode(chatfile)) as output:
