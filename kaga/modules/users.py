@@ -47,24 +47,44 @@ def get_user_id(username):
 
 def broadcast(update, context):
     to_send = update.effective_message.text.split(None, 1)
-    if len(to_send) >= 2:
-        chats = users_db.get_all_chats() or []
-        failed = 0
-        for chat in chats:
-            try:
-                context.bot.sendMessage(int(chat["chat_id"]), to_send[1])
-                sleep(0.1)
-            except TelegramError:
-                failed += 1
-                LOGGER.warning(
-                    "Couldn't send broadcast to %s, group name %s",
-                    str(chat["chat_id"]),
-                    str(chat["chat_name"]),
-                )
 
+    if len(to_send) >= 2:
+        to_group = False
+        to_user = False
+        if to_send[0] == '/broadcastgroups':
+            to_group = True
+        if to_send[0] == '/broadcastusers':
+            to_user = True
+        else:
+            to_group = to_user = True
+        chats = sql.get_all_chats() or []
+        users = get_all_users()
+        failed = 0
+        failed_user = 0
+        if to_group:
+            for chat in chats:
+                try:
+                    context.bot.sendMessage(
+                        int(chat.chat_id),
+                        to_send[1],
+                        parse_mode="MARKDOWN",
+                        disable_web_page_preview=True)
+                    sleep(0.1)
+                except TelegramError:
+                    failed += 1
+        if to_user:
+            for user in users:
+                try:
+                    context.bot.sendMessage(
+                        int(user.user_id),
+                        to_send[1],
+                        parse_mode="MARKDOWN",
+                        disable_web_page_preview=True)
+                    sleep(0.1)
+                except TelegramError:
+                    failed_user += 1
         update.effective_message.reply_text(
-            "Siaran selesai. {} grup mungkin gagal menerima pesan "
-            "karena ditendang.".format(failed)
+            f"Siaran selesai.\nSiaran ke grup gagal: {failed}.\nSiaran ke pengguna gagal: {failed_user}."
         )
 
 
@@ -140,7 +160,7 @@ __help__ = ""  # no help string
 __mod_name__ = "Users"
 
 BROADCAST_HANDLER = CommandHandler(
-    "broadcast", broadcast, filters=Filters.user(OWNER_ID), run_async=True
+    ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast, filters=Filters.user(OWNER_ID), run_async=True
 )
 USER_HANDLER = MessageHandler(
     Filters.all & Filters.chat_type.groups, log_user, run_async=True
