@@ -18,7 +18,6 @@ from telegram.ext import (
 from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 from sqlalchemy.exc import SQLAlchemyError, DBAPIError
-from pyrogram import  idle, Client
 
 from kaga import (
     dispatcher,
