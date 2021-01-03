@@ -267,120 +267,13 @@ def gdpr(update, context):
         "Data pribadi Anda telah dihapus.\n\nPerhatikan bahwa ini tidak akan membatalkan pelarangan "
         "Anda dari obrolan apa pun, karena itu adalah data telegram, bukan data KagaRobot. "
         "Flood, peringatan, dan gban juga dipertahankan, mulai dari "
-        "[this](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
+        "[ini](https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-erasure/), "
         "yang dengan jelas menyatakan bahwa hak untuk menghapus tidak berlaku "
         '"untuk pelaksanaan tugas yang dilakukan untuk kepentingan umum", sebagaimana adanya '
         "kasus untuk potongan data tersebut di atas.",
         parse_mode=ParseMode.MARKDOWN,
     )
 
-
-MARKDOWN_HELP = """
-Markdown adalah alat pemformatan yang sangat kuat yang didukung oleh telegram. {} memiliki beberapa peningkatan, untuk memastikannya \
-pesan yang disimpan diurai dengan benar, dan untuk memungkinkan Anda membuat tombol.
-
-- <code>_italic_</code>: membungkus teks dengan '_' akan menghasilkan teks miring
-- <code>*bold*</code>: membungkus teks dengan '*' akan menghasilkan teks tebal
-- <code>`code`</code>: membungkus teks dengan '"' akan menghasilkan teks berspasi tunggal, juga dikenal sebagai 'kode'
-- <code>~strike~</code> membungkus teks dengan '~' akan menghasilkan teks coretan
-- <code>--underline--</code> membungkus teks dengan '-' akan menghasilkan teks garis bawah
-- <code>[sometext](someURL)</code>:ini akan membuat tautan - pesan itu hanya akan ditampilkan <code>sometext</code>, \
-dan mengetuknya akan membuka halaman di <code>someURL</code>.
-Misal: <code>[test](contoh.com)</code>
-
-- <code>[buttontext](buttonurl:someURL)</code>: ini adalah peningkatan khusus untuk memungkinkan pengguna memiliki telegram \
-tombol di markdown mereka. <code>buttontext</code> akan menjadi apa yang ditampilkan pada tombol, dan <code>someurl</code> \
-akan menjadi url yang dibuka.
-Misal: <code>[Ini sebuah tombol](buttonurl:contoh.com)</code>
-
-ika Anda ingin beberapa tombol pada baris yang sama, gunakan: sama, seperti:
-<code>[satu](buttonurl://contoh.com)
-[dua](buttonurl://google.com:same)</code>
-Ini akan membuat dua tombol pada satu baris, bukan satu tombol per baris.
-
-Ingatlah bahwa pesan Anda <b>HARUS</b> berisi teks selain hanya tombol!
-""".format(
-    dispatcher.bot.first_name
-)
-
-NEKOS_HELP = """
-Commands :
-× /neko: Mengirim Gambar sumber SFW Neko Acak.
-× /feet: Mengirim Gambar Acak Anime Feet.
-× /yuri: Mengirim Gambar sumber Yuri Acak.
-× /trap: Mengirim Gambar sumber Perangkap Acak.
-× /futanari: Mengirim Gambar sumber Futanari Acak.
-× /hololewd: Mengirimkan Random Holo Lewds.
-× /lewdkemo: Mengirimkan Random Kemo Lewds.
-× /sologif: Mengirim GIF Solo Acak.
-× /cumgif: Mengirim GIF Cum Acak.
-× /erokemo: Mengirim Gambar Random Ero-Kemo.
-× /lesbian: Mengirim Gambar Sumber Les Acak.
-× /lewdk: Mengirim Random Kitsune Lewds.
-× /ngif: Mengirim GIF Neko Acak.
-× /tickle: Mengirim GIF Gelitik Acak.
-× /lewd: Mengirim Cabul Acak.
-× /feed: Mengirim GIF Pemberian Makan Acak.
-× /eroyuri: Mengirim Gambar sumber Ero-Yuri Acak.
-× /eron: Mengirim Gambar sumber Ero-Neko Acak.
-× /cum: Mengirim Gambar Cum Acak.
-× /bjgif: Mengirim GIF Pekerjaan Pukulan Acak.
-× /bj: Mengirim Gambar sumber Pekerjaan Pukulan Acak.
-× /nekonsfw: Mengirim Gambar sumber NSFW Neko Acak.
-× /solo: Mengirim GIF Neko NSFW Acak.
-× /kemonomimi: Mengirim Gambar sumber KemonoMimi Acak.
-× /avatarlewd: Mengirim Stiker Cabul Pembalas Acak.
-× /gasm: Mengirim Stiker Orgasme Acak.
-× /poke: Mengirim GIF Poke Acak.
-× /anal: Mengirim GIF Anal Acak.
-× /hentai: Mengirim Gambar sumber Hentai Acak.
-× /avatar: Mengirim Stiker Avatar Acak.
-× /erofeet: Mengirim Gambar sumber Ero-Feet Acak.
-× /holo: Mengirim Gambar sumber Random Holo.
-× /tits: Mengirim Gambar sumber Tits Acak.
-× /pussygif: Mengirim GIF Pussy Acak.
-× /holoero: Mengirim Gambar sumber Ero-Holo Acak.
-× /pussy: Mengirim Gambar sumber Pussy Acak.
-× /hentaigif: Mengirim GIF Hentai Acak.
-× /classic: Mengirim GIF Hentai Klasik Acak.
-× /kuni: Mengirim GIF Random Pussy Lick.
-× /waifu: Mengirim Stiker Waifu Acak.
-× /kiss: Mengirim GIF Ciuman Acak.
-× /femdom: Mengirim Gambar sumber Femdom Acak
-× /cuddle: Mengirim GIF Cuddle Acak.
-× /erok: Mengirim Gambar sumber Ero-Kitsune Acak.
-× /foxgirl: Mengirim Gambar sumber FoxGirl Acak.
-× /titsgif: Mengirim GIF Payudara Acak.
-× /ero: Mengirim Gambar sumber Ero Acak.
-× /smug: Mengirim GIF Sombong Acak.
-× /baka: Mengirim GIF Teriakan Baka Acak.
-× /dva: Mengirim Gambar sumber DVA Acak.
-     """.format(
-    dispatcher.bot.first_name
-)
-
-@typing_action
-def markdown_help(update, context):
-    update.effective_message.reply_text(
-        MARKDOWN_HELP, parse_mode=ParseMode.HTML
-    )
-    update.effective_message.reply_text(
-        "Coba teruskan pesan berikut kepada saya, dan Anda akan melihatnya!"
-    )
-    update.effective_message.reply_text(
-        "<code>/save tes Ini adalah tes markdown. _italics_, --underline--, *bold*, `code`, ~strike~ "
-        "[URL](example.com) [tombol](buttonurl:github.com) "
-        "[tombol2](buttonurl://google.com:same)</code>"
-    )
-    
-@typing_action
-def nekos_help(update, context):
-    update.effective_message.reply_text(
-        NEKOS_HELP, parse_mode=ParseMode.HTML
-    )
-    update.effective_message.reply_text(
-        "Harap gunakan dengan baik!"
-    )
 
 @typing_action
 def wiki(update, context):
@@ -691,12 +584,6 @@ INFO_HANDLER = DisableAbleCommandHandler(
 ECHO_HANDLER = CommandHandler(
     "echo", echo, filters=CustomFilters.sudo_filter, run_async=True
 )
-MD_HELP_HANDLER = CommandHandler(
-    "markdownhelp", markdown_help, filters=Filters.chat_type.private, run_async=True
-)
-NEKOS_HELP_HANDLER = CommandHandler(
-    "nekoshelp", nekos_help, filters=Filters.private, run_async=True
-)
 STATS_HANDLER = CommandHandler(
     "stats", stats, filters=CustomFilters.dev_filter, run_async=True
 )
@@ -727,8 +614,6 @@ dispatcher.add_handler(UD_HANDLER)
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
-dispatcher.add_handler(MD_HELP_HANDLER)
-dispatcher.add_handler(NEKOS_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(GDPR_HANDLER)
 dispatcher.add_handler(WIKI_HANDLER)
