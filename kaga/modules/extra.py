@@ -110,7 +110,7 @@ def markdown_help(update, context):
     
 def nekos_help_sender(update: Update):
     update.effective_message.reply_text(
-        MARKDOWN_HELP, parse_mode=ParseMode.HTML)
+        NEKOS_HELP, parse_mode=ParseMode.HTML)
     update.effective_message.reply_text(
         "Harap gunakan dengan bijak :D"
     )
