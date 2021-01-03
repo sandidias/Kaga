@@ -123,7 +123,7 @@ def nekos_help(update, context):
             'Hubungi saya di PM',
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton(
-                    "Bantuan Nodul Nekos",
+                    "Bantuan Modul Nekos",
                     url=f"t.me/{context.bot.username}?start=nekoshelp")
             ]]))
         return
