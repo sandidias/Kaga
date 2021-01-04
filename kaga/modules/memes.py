@@ -490,7 +490,7 @@ def thonkify(update, context):
     # the telegram doesnt support any longer dimensions +
     # you have the lulz
     if (len(msg)) > 39:
-        message.reply_text("Thonk yourself!")
+        message.reply_text("Pikirkan sendiri!")
         return
 
     tracking = Image.open(BytesIO(base64.b64decode(
@@ -523,6 +523,48 @@ def thonkify(update, context):
         image.save(buffer, 'PNG')
         buffer.seek(0)
         context.bot.send_sticker(chat_id=message.chat_id, sticker=buffer)
+        
+        
+@typing_action
+def changemymind(update, context):
+    msg = update.effective_message
+    if not msg.reply_to_message:
+        msg.reply_text("perlu membalas pesan untuk membuat stiker.")
+    else:
+        text = msg.reply_to_message.text
+        r = requests.get(
+            f"https://nekobot.xyz/api/imagegen?type=changemymind&text={text}").json()
+        url = r.get("message")
+        if not url:
+            msg.reply_text("No URL was received from the API!")
+            return
+        with open("temp.png", "wb") as f:
+            f.write(requests.get(url).content)
+        img = Image.open("temp.png")
+        img.save("temp.webp", "webp")
+        msg.reply_document(open("temp.webp", "rb"))
+        os.remove("temp.webp")
+
+
+@typing_action
+def trumptweet(update, context):
+    msg = update.effective_message
+    if not msg.reply_to_message:
+        msg.reply_text("perlu membalas pesan ke tweet")
+    else:
+        text = msg.reply_to_message.text
+        r = requests.get(
+            f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}").json()
+        url = r.get("message")
+        if not url:
+            msg.reply_text("No URL was received from the API!")
+            return
+        with open("temp.png", "wb") as f:
+            f.write(requests.get(url).content)
+        img = Image.open("temp.png")
+        img.save("temp.webp", "webp")
+        msg.reply_document(open("temp.webp", "rb"))
+        os.remove("temp.webp")
 
 
 __help__ = """
@@ -611,6 +653,9 @@ GDNIGHT_HANDLER = DisableAbleMessageHandler(
     run_async=True,
 )
 THONKIFY_HANDLER = DisableAbleCommandHandler("thonkify", thonkify, run_async=True)
+CHANGEMYMIND_HANDLER = DisableAbleCommandHandler("changemymind", changemymind, run_async=True)
+TRUMPTWEET_HANDLER = DisableAbleCommandHandler("trumptweet", trumptweet, run_async=True)
+
 
 dispatcher.add_handler(POLICE_HANDLER)
 dispatcher.add_handler(SHRUG_HANDLER)
@@ -636,3 +681,5 @@ dispatcher.add_handler(GDMORNING_HANDLER)
 dispatcher.add_handler(GDNIGHT_HANDLER)
 dispatcher.add_handler(CHANGEMYMIND_HANDLER)
 dispatcher.add_handler(THONKIFY_HANDLER)
+dispatcher.add_handler(CHANGEMYMIND_HANDLER)
+dispatcher.add_handler(TRUMPTWEET_HANDLER)
