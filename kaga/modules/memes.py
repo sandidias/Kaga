@@ -3,8 +3,10 @@ import re
 import time
 import os
 
+import base64
 import requests
 import requests as r
+from io import BytesIO
 from PIL import Image
 from telegram import MAX_MESSAGE_LENGTH, ParseMode, TelegramError
 from telegram.error import BadRequest
@@ -12,6 +14,7 @@ from telegram.ext import CommandHandler, Filters
 from telegram.utils.helpers import escape_markdown
 
 import kaga.modules.helper_funcs.fun_strings as fun
+from kaga.modules.disable import DisableAbleCommandHandler
 from kaga import DEV_USERS, LOGGER, SUDO_USERS, SUPPORT_USERS, dispatcher
 from kaga.modules.disable import (
     DisableAbleCommandHandler,
@@ -20,6 +23,7 @@ from kaga.modules.disable import (
 from kaga.modules.helper_funcs.alternate import typing_action
 from kaga.modules.helper_funcs.extraction import extract_user
 from kaga.modules.helper_funcs.filters import CustomFilters
+from kaga import dispatcher
 
 
 @typing_action
@@ -469,10 +473,60 @@ def goodmorning(update, context):
     message = update.effective_message
     reply = random.choice(fun.GDMORNING)
     message.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
+    
+    
+@typing_action
+def thonkify(update, context):
+    from kaga.modules.helper_funcs.thonkify_dict import thonkifydict
+
+    chat = update.effective_chat
+    message = update.effective_message
+    if not message.reply_to_message:
+        msg = message.text.split(None, 1)[1]
+    else:
+        msg = message.reply_to_message.text
+
+    # the processed photo becomes too long and unreadable +
+    # the telegram doesnt support any longer dimensions +
+    # you have the lulz
+    if (len(msg)) > 39:
+        message.reply_text("Thonk yourself!")
+        return
+
+    tracking = Image.open(BytesIO(base64.b64decode(
+        'iVBORw0KGgoAAAANSUhEUgAAAAYAAAOACAYAAAAZzQIQAAAALElEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwZV4AAAfA8WFIAAAAASUVORK5CYII=')))  # base64 encoded empty image(but longer)
+
+    # remove characters thonkify can't parse
+    for character in msg:
+        if character not in thonkifydict:
+            msg = msg.replace(character, "")
+
+    x = 0
+    y = 896
+    image = Image.new('RGBA', [x, y], (0, 0, 0))
+    for character in msg:
+        value = thonkifydict.get(character)
+        addedimg = Image.new('RGBA', [x + value.size[0] + tracking.size[0], y], (0, 0, 0))
+        addedimg.paste(image, [0, 0])
+        addedimg.paste(tracking, [x, 0])
+        addedimg.paste(value, [x + tracking.size[0], 0])
+        image = addedimg
+        x = x + value.size[0] + tracking.size[0]
+
+    maxsize = 1024, 896
+    if image.size[0] > maxsize[0]:
+        image.thumbnail(maxsize, Image.ANTIALIAS)
+
+    # put processed image in a buffer and then upload cause async
+    with BytesIO() as buffer:
+        buffer.name = 'cache/image.png'
+        image.save(buffer, 'PNG')
+        buffer.seek(0)
+        context.bot.send_sticker(chat_id=message.chat_id, sticker=buffer)
 
 
 __help__ = """
-Beberapa meme lembap untuk bersenang-senang atau apa pun!
+Beberapa meme untuk bersenang-senang atau apa pun!
 
  × /shrug | /cri: Angkat bahu atau ToT.
  × /decide: Jawab secara acak ya tidak dll.
@@ -489,6 +543,7 @@ Beberapa meme lembap untuk bersenang-senang atau apa pun!
  × /warm: Peluk pengguna dengan hangat, atau peluk jika bukan balasan.
  × /punch: Pukul pengguna, atau dapatkan pukulan jika bukan balasan.
  × /police: Berikan Animasi sirene Polisi
+ × thonkify: Membuat text thonkify
 
 *Meme berbasis regex:*
 
@@ -555,6 +610,7 @@ GDNIGHT_HANDLER = DisableAbleMessageHandler(
     friendly="selamatmalam",
     run_async=True,
 )
+THONKIFY_HANDLER = DisableAbleCommandHandler("thonkify", thonkify, run_async=True)
 
 dispatcher.add_handler(POLICE_HANDLER)
 dispatcher.add_handler(SHRUG_HANDLER)
@@ -579,3 +635,4 @@ dispatcher.add_handler(YESNOWTF_HANDLER)
 dispatcher.add_handler(GDMORNING_HANDLER)
 dispatcher.add_handler(GDNIGHT_HANDLER)
 dispatcher.add_handler(CHANGEMYMIND_HANDLER)
+dispatcher.add_handler(THONKIFY_HANDLER)
