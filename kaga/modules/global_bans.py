@@ -195,8 +195,8 @@ def gban(update, context):
         return
 
     message.reply_text(
-        f"<b>Memulai Pemblokiran Global untuk</b> {mention_html(user_chat.id, user_chat.first_name)}"
-        f"\n<b>Dengan ID</b>: <code>{user_chat.id}</code>"
+        f"<b>Pelarangan Global untuk</b> {mention_html(user_chat.id, user_chat.first_name)}"
+        f"\n<b>ID Pengguna</b>: <code>{user_chat.id}</code>"
         f"\n<b>Alasan</b>: <code>{reason or 'Tidak ada alasan yang diberikan'}</code>",
         parse_mode=ParseMode.HTML,
     )
