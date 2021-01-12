@@ -141,75 +141,96 @@ def gban(update, context):
         )
         return
 
-    banner = update.effective_user
-    bannerid = banner.id
-    bannername = banner.first_name
-    reason = f"{reason} // GBanned by {bannername} banner id: {bannerid}"
-
     if gban_db.is_user_gbanned(user_id):
+        if not reason:
+            message.reply_text(
+                "Pengguna ini sudah diblokir; Saya akan mengubah alasannya, tetapi Anda belum memberi saya satu pun..."
+            )
+            return
+
         old_reason = gban_db.update_gban_reason(
             user_id, user_chat.username or user_chat.first_name, reason
         )
+        user_id, new_reason = extract_user_and_text(message, args)
 
-        context.bot.sendMessage(
-            GBAN_LOGS,
-            "<b>Global Ban Reason Update</b>"
-            "\n<b>Sudo Admin:</b> {}"
-            "\n<b>User:</b> {}"
-            "\n<b>ID:</b> <code>{}</code>"
-            "\n<b>Previous Reason:</b> {}"
-            "\n<b>New Reason:</b> {}".format(
-                mention_html(banner.id, banner.first_name),
-                mention_html(
-                    user_chat.id, user_chat.first_name or "Deleted Account"
+        if old_reason:
+            banner = update.effective_user
+            bannerid = banner.id
+            bannername = banner.first_name
+            new_reason = f"{new_reason} // GBanned oleh {bannername} banner id: {bannerid}"
+
+            context.bot.sendMessage(
+                GBAN_LOGS,
+                "<b>Global Ban Reason Update</b>"
+                "\n<b>Sudo Admin:</b> {}"
+                "\n<b>User:</b> {}"
+                "\n<b>ID:</b> <code>{}</code>"
+                "\n<b>Previous Reason:</b> {}"
+                "\n<b>New Reason:</b> {}".format(
+                    mention_html(banner.id, banner.first_name),
+                    mention_html(
+                        user_chat.id, user_chat.first_name or "Deleted Account"
+                    ),
+                    user_chat.id,
+                    old_reason,
+                    new_reason,
                 ),
-                user_chat.id,
-                old_reason,
-                reason,
-            ),
-            parse_mode=ParseMode.HTML,
-        )
+                parse_mode=ParseMode.HTML,
+            )
 
-        message.reply_text(
-            "Pengguna ini sudah diblokir, karena alasan berikut:\n"
-            "<code>{}</code>\n"
-            "Saya telah pergi dan memperbaruinya dengan alasan baru Anda!".format(
-                html.escape(old_reason)
-            ),
-            parse_mode=ParseMode.HTML,
-        )
-    else:
-        message.reply_text(
-            f"<b>Pelarangan Global untuk</b> {mention_html(user_chat.id, user_chat.first_name)}"
-            f"\n<bID Pengguna</b>: <code>{user_chat.id}</code>"
-            f"\n<b>Alasan</b>: <code>{reason or 'No reason given'}</code>",
-            parse_mode=ParseMode.HTML,
-        )
+            message.reply_text(
+                "Pengguna ini sudah diblokir, karena alasan berikut:\n"
+                "<code>{}</code>\n"
+                "Saya telah pergi dan memperbaruinya dengan alasan baru Anda!".format(
+                    html.escape(old_reason)
+                ),
+                parse_mode=ParseMode.HTML,
+            )
 
-        context.bot.sendMessage(
-            GBAN_LOGS,
-            "<b>New Global Ban</b>"
-            "\n#GBAN"
-            "\n<b>Status:</b> <code>Enforcing</code>"
-            "\n<b>Sudo Admin:</b> {}"
-            "\n<b>User:</b> {}"
-            "\n<b>ID:</b> <code>{}</code>"
-            "\n<b>Reason:</b> {}".format(
-                mention_html(banner.id, banner.first_name),
-                mention_html(user_chat.id, user_chat.first_name),
-                user_chat.id,
-                reason,
-            ),
-            parse_mode=ParseMode.HTML,
-        )
+        else:
+            message.reply_text(
+                "Pengguna ini sudah diblokir, tetapi tidak ada alasan yang ditetapkan; Saya telah pergi dan memperbaruinya!"
+            )
 
-        try:
-            context.bot.kick_chat_member(chat.id, user_chat.id)
-        except BadRequest as excp:
-            if excp.message in GBAN_ERRORS:
-                pass
+        return
 
-        gban_db.gban_user(user_id, user_chat.username or user_chat.first_name, reason)
+    message.reply_text(
+        f"<b>Pelarangan Global untuk</b> {mention_html(user_chat.id, user_chat.first_name)}"
+        f"\n<b>ID Pengguna</b>: <code>{user_chat.id}</code>"
+        f"\n<b>Alasan</b>: <code>{reason or 'Tidak ada alasan yang diberikan'}</code>",
+        parse_mode=ParseMode.HTML,
+    )
+
+    banner = update.effective_user
+    bannerid = banner.id
+    bannername = banner.first_name
+    reason = f"{reason} // GBanned oleh {bannername} banner id: {bannerid}"
+
+    context.bot.sendMessage(
+        GBAN_LOGS,
+        "<b>New Global Ban</b>"
+        "\n#GBAN"
+        "\n<b>Status:</b> <code>Enforcing</code>"
+        "\n<b>Sudo Admin:</b> {}"
+        "\n<b>User:</b> {}"
+        "\n<b>ID:</b> <code>{}</code>"
+        "\n<b>Reason:</b> {}".format(
+            mention_html(banner.id, banner.first_name),
+            mention_html(user_chat.id, user_chat.first_name),
+            user_chat.id,
+            reason or "No reason given",
+        ),
+        parse_mode=ParseMode.HTML,
+    )
+
+    try:
+        context.bot.kick_chat_member(chat.id, user_chat.id)
+    except BadRequest as excp:
+        if excp.message in GBAN_ERRORS:
+            pass
+
+    gban_db.gban_user(user_id, user_chat.username or user_chat.first_name, reason)
+
 
 @typing_action
 def ungban(update, context):
