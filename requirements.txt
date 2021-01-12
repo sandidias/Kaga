@@ -39,8 +39,5 @@ py-cpuinfo
 animu-cf
 gtts
 aiohttp
-nekos.py
 fontTools
-coffeehouse
 geopy
-ffmpeg
