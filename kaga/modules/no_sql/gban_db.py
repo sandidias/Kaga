@@ -18,11 +18,15 @@ def gban_user(user_id, name, reason=None) -> None:
 
 
 def update_gban_reason(user_id, name, reason) -> str:
-    data = GBAN_USER.find_one_and_update(
+    user = GBAN_USER.find_one({'_id': user_id})
+    if not user:
+        return None
+    old_reason = user["reason"]
+    GBAN_USER.update_one(
         {'_id': user_id},
         {"$set": {'name': name, 'reason': reason}},
-        upsert=False)
-    return data["reason"]
+        upsert=True)
+    return old_reason
 
 
 
