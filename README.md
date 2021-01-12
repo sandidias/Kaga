@@ -82,7 +82,7 @@ Contoh file `config.env` bisa jadi:
 
 Instal dependensi Python yang diperlukan dengan berpindah ke direktori proyek dan menjalankan:
 
-`pip3 install -r requirement.txt`.
+`pip3 install -r requirements.txt`.
 
 Ini akan menginstal semua paket python yang diperlukan.
 
